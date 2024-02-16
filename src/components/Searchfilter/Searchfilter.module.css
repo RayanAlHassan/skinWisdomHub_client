@@ -25,6 +25,7 @@ color: var(--purple-color);
 .h2 {
     color: rgb(45, 31, 31);
 }
+.maginife{}
 
 .btn {
     min-width: 50px;
@@ -33,7 +34,7 @@ color: var(--purple-color);
     outline: none;
     color: rgb(255, 255, 255);
     /* background-color: var(--purple-color); */
-    background-color: rgb(23, 61, 83);
+    background-color: rgba(23, 61, 83, 0.199);
     border: none;
     cursor: pointer;
     font-size: 16px;
@@ -62,8 +63,9 @@ color: var(--purple-color);
     justify-content: center;
     flex-wrap: wrap;
     /* gap: 2rem; */
-    position: absolute;
+    /* position: absolute; */
     height: 4rem;
+    align-items: center;
     background-color: blure;
 
     top: 10rem;
@@ -81,13 +83,16 @@ color: var(--purple-color);
     /* border-radius: 40px; */
     height: 100%;
     width:16rem;
-    margin-left: 8rem;
+    margin-left: 5rem;
     padding: 10px;
     border:2px solid var(--purple-color);
     /* background-color: var(--cream-color); */
     background-color: white;
 }
 
+.maginife{
+    background-color: transparent;
+}
 @media screen and (max-width: 1500px) {
     /* .input{
         width: 10rem;
@@ -115,6 +120,7 @@ color: var(--purple-color);
         gap: 0.5rem;
     }
 }
+
 @media (max-width: 768px) {
     .container {
 

@@ -1,0 +1,36 @@
+.card{
+    height: 28rem;
+    width: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    position: relative;
+
+}
+.img{
+    height: 80%;
+    width: 80%;
+    object-fit: cover;
+}
+
+.container{
+    gap: 16px;
+    display: flex;
+    /* gap: 5rem; */
+    flex-wrap: wrap;
+    /* width: fit-content; */
+    /* max-width: 66.8vw; */
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+.desc{
+    position: absolute;
+    bottom: 50px;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: 650;
+}

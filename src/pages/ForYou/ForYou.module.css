@@ -1,9 +1,49 @@
 .container {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+  /* height: 100%; */
   margin-bottom: 3rem;
-  background-color: var(--main-color);
+  /* background-color: var(--main-color); */
   width: 100%;
   }
+.header{
+  height: 0px;
+  font-weight: 200;
+}
+.filter{
+  position: absolute;
+  bottom: 0;
+}
+.top{
+  position: relative;
+  height: 18rem;
+}
+.card{
+  display: flex;
+  /* height: 100vh; */
+  margin-top: 5rem;
+  flex-direction: row;
+  width: 100vw;
 
   
+}
+.bottom{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+.discover:hover {
+  background-image: linear-gradient(to bottom right, #3d77a3, #4ea8de);
+}
+.discover {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 25px;
+  background-image: linear-gradient(to bottom right, #4ea8de, #3d77a3);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: background-image 0.3s;
+}

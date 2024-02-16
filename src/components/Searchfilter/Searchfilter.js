@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Styles from '../Searchfilter/Searchfilter.module.css';
 import { motion } from "framer-motion"
-
+import magnifire from "../../assets/icons/magnifire.png"
 const Searchfilter = () => {
     const navigate = useNavigate();
 
@@ -121,7 +121,7 @@ const Searchfilter = () => {
               <input className={Styles.ingred}type="text" placeholder='mention ingrediants that cause allergic '></input>
             </motion.div>
             <motion.button className={Styles.btn} onClick={handleSearch} initial={{ opacity: 0.7, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-                Search
+             <img className={Styles.maginife}src={magnifire} width={"30px"} height={"30"}/>
             </motion.button>
 
             </div>
