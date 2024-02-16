@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  height: 100vh;
+  margin-bottom: 3rem;
+  background-color: var(--main-color);
+  width: 100%;
+  }
+
+  

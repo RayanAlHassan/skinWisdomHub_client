@@ -1,6 +1,6 @@
 import React from 'react'
 
-function QuestionAnswer() {
+function FreequentQuestion() {
   return (
     <div>
       question & Answer !!!
@@ -8,4 +8,4 @@ function QuestionAnswer() {
   )
 }
 
-export default QuestionAnswer
+export default FreequentQuestion

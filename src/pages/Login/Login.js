@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import relaxing from "../../assets/images/relaxing.jpg"; // Fix the import path
 import tulip from "../../assets/images/tulip.webp";
-import style from "./Login.module.css";
+import style from "./login.module.css";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import rose from "../../assets/images/sd.jpg"
 import { AuthContext } from "../../Context/AuthContext";
 import axiosInstance from "../../Utils/AxiosInstance";
 
@@ -57,7 +58,7 @@ function Login() {
         setUser(response.data); // Assuming user data is nested under response.data
         console.log("role: " + response.data.role);
 
-        if ( response.data.role === "admin") {
+        if (response.data.role === "admin") {
           navigate("/questionAnswer");
         } else {
           navigate("/");
@@ -78,12 +79,13 @@ function Login() {
   };
 
   return (
+
     <main className={style.container}>
       <aside className={style.asidee}>
         <Link className={style.logo} to={"/"}>
           SkinWisdomHub
         </Link>
-        <img src={tulip} alt="bag" style={{ height: "100%", width: "35vw" }} />
+        <img src={rose} alt="bag" style={{ height: "100%", width: "100%",position:"fixed" }} />
       </aside>
 
       <main className={style.content}>
@@ -118,10 +120,7 @@ function Login() {
             />
           </div>
           <div className={style.sect}>
-            <label
-              htmlFor="password"
-              className={style.label}
-            >
+            <label htmlFor="password" className={style.label}>
               Password
             </label>
             <input
@@ -136,17 +135,20 @@ function Login() {
             />
           </div>
           <button
-          type="submit"
-          className={style.btnSignin}
-          style={{ marginTop: "40px" }}
-        >
-          Sign In
-        </button>
+            type="submit"
+            className={style.btnSignin}
+            style={{ marginTop: "40px" }}
+          >
+            Sign In
+          </button>
         </form>
+     
 
-    
       </main>
+  
     </main>
+
+  
   );
 }
 

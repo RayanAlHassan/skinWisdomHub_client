@@ -1,0 +1,149 @@
+.container {
+  /* border-radius: 40px; */
+  margin-bottom: 3rem;
+  display: flex;
+  height: 100vh;
+  box-shadow: 0 0 20px 10px rgba(238, 238, 238, 0.5); /* Adjust the blur radius and color as needed */
+}
+
+.left {
+  /* border-radius: 40px 0px 0px 40px; */
+
+  width: 33%;
+  background-color: var(
+    --purple-color
+  ); /* Assuming 'rosee' is a valid color variable or code */
+}
+
+.right {
+  width: 100%;
+  position: relative;
+  background-color: var(--main-color);
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.mainImg {
+  width: 31vw;
+  height: 92vh;
+  position: absolute;
+  top: 4rem;
+  left: 2%;
+}
+
+.cremImg {
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
+}
+
+.header {
+  color: var(--font-color);
+  font-size: 5rem;
+  line-height: 8rem;
+  width: 64%;
+  z-index: 10;
+}
+
+.ul {
+  margin-left: 8rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.li {
+  color: var(--purple-color);
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  row-gap: 2rem;
+  width: 93%;
+  z-index: 2;
+}
+.btnaction{
+  background-color: var(--font-color);
+  width: 16rem;
+  height:3rem;
+  font-size: 26px;
+  border: none;
+  font-weight: bold;
+  border-radius:0px 50px 50px 50px;
+
+
+}
+.action {
+  color: var(--gray-color);
+  font-size: 26px;
+  z-index: 10;
+  display: flex;
+  row-gap: 2rem;
+  flex-direction: column;
+}
+.cart {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  /* margin-right: 75px; */
+  transition: all 0.3s linear;
+}
+.cart:hover {
+  filter: brightness(1.2);
+}
+.btn {
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 400;
+  position: relative;
+  border: 2px solid var(--gray-color);
+  color: var(--main-color);
+  background-color: var(--purple-color);
+  overflow: hidden;
+  margin-top: 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s linear;
+  margin-bottom: 1rem;
+}
+.btn:hover {
+  filter: brightness(1.2);
+}
+
+@media (max-width: 1200px) {
+  .left {
+    display: none;
+  }
+  .right {
+    /* border-radius: 40px; */
+
+    width: 100%;
+  }
+}
+@media (max-width: 957px) {
+  .header {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    row-gap: 2rem;
+  }
+}
