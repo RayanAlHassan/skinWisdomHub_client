@@ -15,12 +15,12 @@
 }
 div,
 p {
-  font-weight: 300;
+  font-weight: 600;
 }
 :root {
   --main-font-size: 18px;
   --title-font-family: "Protest Riot", sans-serif;
-  --main-color: #dfdfdf;
+  --main-color: #eceaea;;
 
 
   --white-color: #f7f7f7;
@@ -28,8 +28,8 @@ p {
   --font-color:#000000d6;
   --blur-color:#67645e8a;
   --gray-color: hsl(0deg 0% 50.2%);
-
-  
+  --fonts-color:#eceaeafa;
+  --grays-color:#00000073;
   --border-radius: 30px;
   --margin-LR: 8rem;
 }

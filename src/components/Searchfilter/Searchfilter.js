@@ -121,9 +121,9 @@ const Searchfilter = () => {
             <motion.div initial={{ opacity: 0.5, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}>
               <input className={Styles.ingred}type="text" placeholder='mention ingrediants that cause allergic '></input>
             </motion.div>
-            <motion.button className={Styles.btn} onClick={handleSearch} initial={{ opacity: 0.7, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-             <FaSlidersH  />
-            </motion.button>
+            <motion.button className={`${Styles.btn} ${Styles.hoverEffect}`} onClick={handleSearch} initial={{ opacity: 0.7, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
+  <FaSlidersH className={`${Styles.filterIcon} ${Styles.hoverEffect}`} />
+</motion.button>
 
        
        

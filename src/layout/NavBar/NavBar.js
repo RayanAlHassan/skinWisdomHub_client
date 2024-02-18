@@ -159,13 +159,13 @@ function NavBar() {
               <NavLink
                 className={` ${styles.btn}`}
                 to="./login"
-                style={{ color: "var(--font-color)" }}
+                style={{ color: "var(--fonts-color)" }}
               >
                 Login{" "}
               </NavLink>
             ) : (
               <NavLink
-                style={{ color: "var(--font-color)" }}
+                style={{ color: "var(--fonts-color)" }}
                 className={` ${styles.btn}`}
                 to="./"
                 onClick={logout}
@@ -182,7 +182,7 @@ function NavBar() {
               hideOutline={false}
               duration={0.8}
               toggled={menuOpen}
-              color="var(--font-color)"
+              color="var(--grays-color)"
             />
           </div>
         </div>

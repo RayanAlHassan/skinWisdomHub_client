@@ -17,7 +17,7 @@
         width: 25rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         /* border: 1px solid black; */
         position: relative;  
@@ -29,6 +29,7 @@
     height: 40%;
     margin: 0 auto;
     text-align: center;
+    color: var(--grays-color);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -44,6 +45,8 @@
 .answer p {
     font-weight: 300;
     padding: 13px;
+    color: var(--fonts-color);
+
 }
 /* .answer{
     border-radius: 40px 0px;

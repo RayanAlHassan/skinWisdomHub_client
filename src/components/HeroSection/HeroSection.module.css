@@ -18,14 +18,15 @@
 .right {
   width: 100%;
   position: relative;
-  background-image: url(../../assets/images/model.jpg);
+  background-image: url(../../assets/images/mod.png);
   background-color: var(--main-color);
   background-size: cover;
   background-position: center center;
   display: flex;
-
   flex-direction: column;
   align-items: center;
+  background-position-y: 28%; /* You can adjust this value as needed */
+
 
 }
 
@@ -44,11 +45,10 @@
 }
 
 .header {
-  color: var(--cream-color);
+  color: #00000073;
   font-size: 5rem;
-  line-height: 8rem;
-  width: 64%;
-  z-index: 1000;
+  line-height: 6rem;
+  width: 30%;
 
 }
 
@@ -65,14 +65,14 @@
   z-index: 2;
 }
 .btnaction{
-  background-color: var(--cream-color);
+  background-color:     #00000073;
+  font-size: 5rem;
   width: 16rem;
-  height:3rem;
+  height: 4rem;
   font-size: 26px;
   border: none;
   font-weight: bold;
-  border-radius:0px 50px 50px 50px;
-
+  border-radius: 0px 50px 50px 50px;
 
 }
 .action {
@@ -130,12 +130,18 @@
   }
 }
 @media (max-width: 957px) {
-  .header {
+  /* .header {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
     row-gap: 2rem;
+  } */
+  .header{
+    color: #00000073;
+    font-size: 3rem;
+    line-height: 4rem;
+    width: 30%;
   }
 }

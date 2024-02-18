@@ -24,7 +24,7 @@ function HeroSection() {
 >
             <NavLink
               to="/login"
-        style={{textDecoration:"none" , color:"var(--font-color"}}
+        style={{textDecoration:"none" , color:"var(--cream-color"}}
             >
               Join Now!
             </NavLink>
@@ -33,7 +33,7 @@ function HeroSection() {
            
           </p>
         </div>
-        <img className={style.cremImg} src={crem} alt="main" />
+        {/* <img className={style.cremImg} src={crem} alt="main" /> */}
       </div>
     </main>
   );

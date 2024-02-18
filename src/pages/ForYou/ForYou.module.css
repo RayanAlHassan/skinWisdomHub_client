@@ -18,12 +18,18 @@
 .header{
   height: 32px;
   width:50%;
-  font-weight: 200;
+  font-weight: 600;
+  color: var(--grays-color);
   text-align: center;
   
 }
-.filterIcon{
+.filterIcon {
   cursor: pointer;
+  transition: transform 0.3s ease; /* Add transition for smooth scaling effect */
+}
+
+.filterIcon:hover {
+  transform: scale(1.2); /* Scale up the icon on hover */
 }
 
 .show{
@@ -50,8 +56,9 @@
 
 .bottom{
   display: flex;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
+  background-color: var(--main-color);
 }
 .discover:hover {
   background-image: linear-gradient(to bottom right, #3d77a3, #4ea8de);

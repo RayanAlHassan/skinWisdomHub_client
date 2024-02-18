@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./ForYou.module.css";
 import Searchfilter from "../../components/Searchfilter/Searchfilter";
-import bcg from "../../assets/images/backgrd.jpg";
+import bcg from "../../assets/images/bcg.png";
 import Cards from "../../components/Cards/Cards";
 import { FaFilter, FaSearch, FaSlidersH, FaTags } from "react-icons/fa";
 

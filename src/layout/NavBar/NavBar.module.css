@@ -116,7 +116,7 @@
   font-weight: 600;
   position: relative;
   /* border: 1px solid var(--font-color); */
-  background-color: lightgray;
+  background-color: var(--grays-color);
   /* background-color: transparent; */
   overflow: hidden;
   text-decoration: none;
@@ -136,7 +136,7 @@
 }
 .logo {
   text-decoration: none;
-  color: var(--font-color);
+  color: var(--grays-color);
   font-size: 40px;
   font-family: var(--title-font-family);
 }
@@ -235,14 +235,14 @@
     cursor: pointer;
     font-weight: 400;
     position: relative;
-    border: 2px solid var(--font-color);
-    background-color: var(--main-color);
+    border: 2px solid var(--grays-color);
+    background-color: var(--grays-color);
     overflow: hidden;
     margin-top: 8px;
     text-decoration: none;
     font-size: 1.1rem;
     transition: all 0.3s linear;
-    color: var(--font-color);
+    color: var(--fonts-color);
 
     height: 30px;
     width: 100px;
