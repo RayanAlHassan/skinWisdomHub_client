@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import style from "./HeroSection.module.css";
-import main from "../../../src/assets/images/mainImg.png";
+// import main from "../../../src/assets/images/model.jpg";
 import crem from "../../../src/assets/images/crem.png";
 import { AuthContext } from "../../Context/AuthContext";
 
@@ -24,7 +24,7 @@ function HeroSection() {
 >
             <NavLink
               to="/login"
-        style={{textDecoration:"none" , color:"var(--main-color"}}
+        style={{textDecoration:"none" , color:"var(--font-color"}}
             >
               Join Now!
             </NavLink>
@@ -32,39 +32,6 @@ function HeroSection() {
      
            
           </p>
-          {/* <p>SkinWis: Where Beauty Meets Knowledge</p> */}
-          {/* <button className={style.cart}>
-            {!user ? (
-              <NavLink className={` ${style.btn}`} to="./login"             style={{color:"var(--beij-color)"}}
-              >
-                Login{" "}
-              </NavLink>
-            ) : (
-              <NavLink              style={{color:"var(--beij-color)"}}
-               className={` ${style.btn}`} to="./" onClick={logout}>
-                logout
-              </NavLink>
-            )}
-          </button> */}
-          {/* <ul className={style.ul}>
-            <li className={style.li}>Knowledge what your skin needs</li>
-            <li className={style.li}>Help your skin recover</li>
-            <li className={style.li}>Trust Curology</li>
-          </ul> */}
-          {/* 
-<h1>
-   
-      
-      <div class="scroller">
-        <span>
-          Knowledge what your skin needs<br/>
-          Help your skin recover<br/>
-          Trust Curology
-        </span>
-      </div>
-      
- 
-    </h1> */}
         </div>
         <img className={style.cremImg} src={crem} alt="main" />
       </div>

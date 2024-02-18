@@ -3,10 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import UserOutlet from "../outlet/UserOutlet";
 import Home from "../pages/Home/Home";
 import ForYou from "../pages/ForYou/ForYou";
-import FreequentQuestion from "../pages/FreequentQuestion/FreequentQuestion";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Reviews from "../../src/pages/Reviews/Reviews"
+import FreequentQuestion from "../pages/FreequentQuestion/FreequentQuestion";
 function AppRoute() {
   return (
     <Routes>

@@ -18,6 +18,7 @@
 .right {
   width: 100%;
   position: relative;
+  background-image: url(../../assets/images/model.jpg);
   background-color: var(--main-color);
   background-size: cover;
   background-position: center center;
@@ -43,25 +44,15 @@
 }
 
 .header {
-  color: var(--font-color);
+  color: var(--cream-color);
   font-size: 5rem;
   line-height: 8rem;
   width: 64%;
-  z-index: 10;
+  z-index: 1000;
+
 }
 
-.ul {
-  margin-left: 8rem;
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
-}
 
-.li {
-  color: var(--purple-color);
-  font-weight: 500;
-  font-size: 20px;
-}
 
 .div {
   height: 100%;
@@ -74,7 +65,7 @@
   z-index: 2;
 }
 .btnaction{
-  background-color: var(--font-color);
+  background-color: var(--cream-color);
   width: 16rem;
   height:3rem;
   font-size: 26px;
@@ -85,12 +76,13 @@
 
 }
 .action {
-  color: var(--gray-color);
+  color:hsl(0deg 0% 50.2% / 59%);
   font-size: 26px;
   z-index: 10;
   display: flex;
   row-gap: 2rem;
   flex-direction: column;
+  
 }
 .cart {
   background-color: transparent;

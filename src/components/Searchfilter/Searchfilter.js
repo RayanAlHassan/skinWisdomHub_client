@@ -4,6 +4,8 @@ import axios from 'axios';
 import Styles from '../Searchfilter/Searchfilter.module.css';
 import { motion } from "framer-motion"
 import magnifire from "../../assets/icons/magnifire.png"
+import { FaFilter, FaSearch, FaSlidersH, FaTags } from "react-icons/fa";
+
 const Searchfilter = () => {
     const navigate = useNavigate();
 
@@ -65,7 +67,6 @@ const Searchfilter = () => {
 
     return (
         <motion.div className={Styles.container}>
-          {/* <div className={Styles.flexing}> */}
           <motion.div initial={{ opacity: 0.5, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
                 <select
                     className={Styles.input}
@@ -100,7 +101,7 @@ const Searchfilter = () => {
             </motion.div>
           {/* </div> */}
     
-          <div className={Styles.flexing}>
+          {/* <div className={Styles.flexing}> */}
             <motion.div initial={{ opacity: 0.5, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} >
                 <select
                     className={Styles.input}
@@ -121,10 +122,10 @@ const Searchfilter = () => {
               <input className={Styles.ingred}type="text" placeholder='mention ingrediants that cause allergic '></input>
             </motion.div>
             <motion.button className={Styles.btn} onClick={handleSearch} initial={{ opacity: 0.7, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-             <img className={Styles.maginife}src={magnifire} width={"30px"} height={"30"}/>
+             <FaSlidersH  />
             </motion.button>
 
-            </div>
+       
        
             
         </motion.div>
