@@ -1,0 +1,147 @@
+/* SignUpForm.module.css */
+* {
+    margin: 0;
+  }
+  
+  /* For full-width design */
+  .sign-up-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .sign-up-form {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px auto;
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  input,
+  textarea {
+    width: 98%;
+    padding: 1%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .role-radio-group label {
+    margin-right: 15px;
+  }
+  
+  button {
+    background-color: #119c59;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    padding: 6px;
+  }
+  
+  .radios {
+    display: flex;
+    align-items: center;
+    margin: 15px;
+  }
+  
+  .password-input-container {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
+  }
+  
+  .flexing {
+    display: flex;
+    justify-content: center; /* Center items on larger screens */
+    align-items: flex-start;
+    gap: 10%;
+    margin: 5px;
+  }
+  
+  .left,
+  .right {
+    width: 40%;
+  }
+  
+  .flexingRadioBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center buttons on larger screens */
+  }
+  
+  /* Responsive styles for screens up to 780px */
+  @media (max-width: 780px) {
+   
+  
+  .sign-up-form {
+   
+    width: 80%; /* Full width by default */
+  
+  
+  }
+  
+  
+  
+  button {
+    background-color: #119c59;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    padding: 6px;
+  }
+  
+  
+  
+  .flexing {
+    display: flex;
+    flex-wrap: wrap; /* Allow flex items to wrap to the next line on small screens */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10%;
+    margin: 5px;
+  }
+  
+  .left,
+  .right {
+    width: 100%; /* Full width by default */
+  
+    /* Responsive styles for screens larger than 730px */
+    @media (min-width: 731px) {
+      width: 48%; /* Adjust as needed for larger screens */
+    }
+  }
+  
+  .flexingRadioBtn {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    justify-content: center;
+    align-items: center;
+  
+    /* Responsive styles for screens larger than 730px */
+    @media (min-width: 731px) {
+      flex-direction: row; /* Align buttons horizontally on larger screens */
+    }
+  }
+  
+  }
+  

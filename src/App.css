@@ -1,6 +1,12 @@
 .App {
-    margin: 0rem;
-    padding: 0;
-    box-sizing: border-box; 
-    font-family: Swiss,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;  }
-  
+  margin: 0rem;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Swiss, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+}
+
+.slick-arrow::before{
+  color: black;
+  background-color: gray;
+}

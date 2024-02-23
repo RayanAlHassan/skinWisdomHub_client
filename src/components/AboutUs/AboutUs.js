@@ -4,14 +4,18 @@ import style from "./AboutUs.module.css"; // Import the CSS module
 // import trust from "../../assets/images/"
 function AboutUs() {
   return (
-    <main className={style.container}> {/* Apply the 'container' class */}
+    <section className={style.all}>
+   
+    <h1 className={style.header}>About Us</h1> {/* Apply the 'header' class */}
+
+    <div className={style.container}> 
+
       <div className={style.left}>
         <img className={style.imgg} src={pd} width="100%" height="100%" />
         
         </div> {/* Apply the 'left' class */}
       <div className={style.right}>
         <div className={style.div}>
-          <h1 className={style.header}>About Us</h1> {/* Apply the 'header' class */}
           <p className={style.action}> {/* Apply the 'action' class */}
             Welcome to <span>SkinWiz</span>, where we're here to help you understand
             your skin better and find the right products for you. In today's world,
@@ -27,7 +31,8 @@ function AboutUs() {
           </p>
         </div>
       </div>
-    </main>
+    </div>
+    </section>
   );
 }
 

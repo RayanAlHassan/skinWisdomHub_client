@@ -1,0 +1,22 @@
+.searchBar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchIcon {
+    cursor: pointer;
+  }
+  
+  .searchInput {
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    outline: none;
+    width: 0;
+    transition: width 0.5s;
+  }
+  
+  .searchInput:focus {
+    width: 150px; /* Adjust width as needed */
+  }
+  

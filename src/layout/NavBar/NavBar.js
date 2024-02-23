@@ -94,7 +94,7 @@ function NavBar() {
               className={
                 location.pathname === "/" ? styles.activeLink : styles.link
               }
-              style={{ color: "var(--beij-color)" }}
+              // style={{ color: "var(--beij-color)" }}
               to="/"
               onClick={() => setMenuOpen(false)}
             >
@@ -103,7 +103,7 @@ function NavBar() {
           </li>
           <li className={styles.li}>
             <NavLink
-              style={{ color: "var(--beij-color)" }}
+              // style={{ color: "var(--beij-color)" }}
               className={
                 location.pathname === "/reviews"
                   ? styles.activeLink

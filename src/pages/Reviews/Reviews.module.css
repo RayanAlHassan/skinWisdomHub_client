@@ -1,124 +1,72 @@
 .container {
-    /* border-radius: 40px; */
-    display: flex;
-    height: 90vh;
-    margin-bottom: 3rem;
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5); /* Adjust the blur radius and color as needed */
-  }
 
-  
-  .right {
-    /* border-radius: 0px 40px 40px 0px; */
-    width: 100%;
-    position: relative;
-    /* background-color: var(--whte-color); */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .mainImg {
-    width: 31vw;
-    height: 92vh;
-    position: absolute;
-    top: 4rem;
-    left: 2%;
-  }
-  
-  .cremImg {
-    position: absolute;
-    right: 0;
-    bottom: 1.5rem;
-  }
-  
-  .header {
-    color: var(--purple-color);
-    font-size: 5rem;
-    line-height: 8rem;
-    width: 80%;
-    z-index: 10;
-  }
-  
-  .ul {
-    margin-left: 8rem;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-  }
-  
-  .li {
-    color: var(--purple-color);
-    font-weight: 500;
-    font-size: 20px;
-  }
-  
-  .div {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    row-gap: 2rem;
-  }
-  
+  height: 100%;
+  margin-bottom: 3rem;
+}
 
-  .action {
-    color: var(--purple-color);
-    font-size: 20px;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    z-index: 10;
-  }
-  .cart {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s linear;
-  }
-  .cart:hover {
-    filter: brightness(1.2);
-  }
-  .btn {
-    background: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 170px;
-    height: 2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 400;
-    position: relative;
-    border: 2px solid var(--gray-color);
-    color: var(--main-color);
-    background-color: var(--purple-color);
-    overflow: hidden;
-    margin-top: 5px;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: all 0.3s linear;
-    margin-bottom: 1rem;
-  }
-  .btn:hover {
-    filter: brightness(1.2);
-  }
-  
-  @media (max-width: 1200px) {
-    .left {
-      display: none;
-    }
-    .right {
-      width: 100%;
-    }
-  }
-  @media (max-width: 957px) {
-    .header {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      row-gap: 2rem;
-    }
-  }
-  
+.top {
+  height: 18rem;
+  width: 100%;
+  position: relative;
+  z-index: 4;
+  background-color: rgb(27, 186, 186);
+}
+.img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.user {
+  height: 100px;
+  margin-left: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.post{
+  width: 50%;
+  margin: auto;
+  max-height: 60rem;
+  background-color: rgb(21, 97, 97);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+.profileUser {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-right: 2rem;
+}
+
+.postTop{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  height: 5rem;
+  padding: 43px;
+}
+.topLeft{
+  display: flex;
+  align-items: center;
+  gap: rem;
+}
+.center{
+  width: 100%;
+  height: 60%;
+}
+.posttt{
+  object-fit: cover;
+  height: 20rem;
+  width: 100%;
+}
+.bottom{
+  padding: 10px;
+  color: white;
+  /* min-height: 5rem;
+  max-height: 15rem; */
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}

@@ -1,289 +1,58 @@
-import React from 'react';
-import style from './SingleCard.module.css';
-import image from '../../assets/images/serum.jpg';
+import React from "react";
+import style from "./SingleCard.module.css";
+import image from "../../assets/images/serum.jpg";
 
-const data = [
+const fakeData = [
   {
     id: 1,
-    brand: "la roshe pose",
+    brand: "FAKE BRAND",
     img: image,
-    categoryID: "face",
-    subCategoryID: "cleansing",
-    description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-    image: image, // Replace with actual image URL
-    skinType: "All skin types",
+    description:
+      "A nutrient-rich, lightweight essence that boosts barrier function and provides immediate, luminous hydration. Hailey's essential prep step to calm skin and begin the rhode routine. ",
+    subCategoryID: "fakeSubCateg1",
+    skinType: "oil skin",
     ingredients: [
       {
-        name: "Chamomile Extract",
-        description: "Soothes and calms the skin, reducing redness and irritation."
+        name: "Fake Ingredient 1",
+        description: "Description of Fake Ingredient 1",
       },
       {
-        name: "Aloe Vera Extract",
-        description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
+        name: "Fake Ingredient 2",
+        description: "Description of Fake Ingredient 2",
       },
-      {
-        name: "Glycerin",
-        description: "Attracts moisture to the skin, keeping it soft and supple."
-      },
-      {
-        name: "Coco-Betaine",
-        description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-      }
-    ]
+    ],
   },
-  {
-      id: 2,
-      brand: "la roshe pose",
-      img: image,
-      categoryID: "face",
-      subCategoryID: "cleansing",
-      description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-      image: image, // Replace with actual image URL
-      skinType: "All skin types",
-      ingredients: [
-        {
-          name: "Chamomile Extract",
-          description: "Soothes and calms the skin, reducing redness and irritation."
-        },
-        {
-          name: "Aloe Vera Extract",
-          description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
-        },
-        {
-          name: "Glycerin",
-          description: "Attracts moisture to the skin, keeping it soft and supple."
-        },
-        {
-          name: "Coco-Betaine",
-          description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-        }
-      ]
-    },
-    {
-      id: 3,
-      brand: "la roshe pose",
-      img: image,
-      categoryID: "face",
-      subCategoryID: "cleansing",
-      description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-      image: image, // Replace with actual image URL
-      skinType: "All skin types",
-      ingredients: [
-        {
-          name: "Chamomile Extract",
-          description: "Soothes and calms the skin, reducing redness and irritation."
-        },
-        {
-          name: "Aloe Vera Extract",
-          description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
-        },
-        {
-          name: "Glycerin",
-          description: "Attracts moisture to the skin, keeping it soft and supple."
-        },
-        {
-          name: "Coco-Betaine",
-          description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-        }
-      ]
-    },
-    {
-      id: 4,
-      brand: "la roshe pose",
-      img: image,
-      categoryID: "face",
-      subCategoryID: "cleansing",
-      description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-      image: image, // Replace with actual image URL
-      skinType: "All skin types",
-      ingredients: [
-        {
-          name: "Chamomile Extract",
-          description: "Soothes and calms the skin, reducing redness and irritation."
-        },
-        {
-          name: "Aloe Vera Extract",
-          description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
-        },
-        {
-          name: "Glycerin",
-          description: "Attracts moisture to the skin, keeping it soft and supple."
-        },
-        {
-          name: "Coco-Betaine",
-          description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-        }
-      ]
-    },
-    {
-      id: 5,
-      brand: "la roshe pose",
-      img: image,
-      categoryID: "face",
-      subCategoryID: "cleansing",
-      description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-      image: image, // Replace with actual image URL
-      skinType: "All skin types",
-      ingredients: [
-        {
-          name: "Chamomile Extract",
-          description: "Soothes and calms the skin, reducing redness and irritation."
-        },
-        {
-          name: "Aloe Vera Extract",
-          description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
-        },
-        {
-          name: "Glycerin",
-          description: "Attracts moisture to the skin, keeping it soft and supple."
-        },
-        {
-          name: "Coco-Betaine",
-          description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-        }
-      ]
-    },
-    {
-      id: 6,
-      brand: "la roshe pose",
-      img: image,
-      categoryID: "face",
-      subCategoryID: "cleansing",
-      description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-      image: image, // Replace with actual image URL
-      skinType: "All skin types",
-      ingredients: [
-        {
-          name: "Chamomile Extract",
-          description: "Soothes and calms the skin, reducing redness and irritation."
-        },
-        {
-          name: "Aloe Vera Extract",
-          description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
-        },
-        {
-          name: "Glycerin",
-          description: "Attracts moisture to the skin, keeping it soft and supple."
-        },
-        {
-          name: "Coco-Betaine",
-          description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-        }
-      ]
-    }, {
-      id: 7,
-      brand: "la roshe pose",
-      img: image,
-      categoryID: "face",
-      subCategoryID: "cleansing",
-      description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-      image: image, // Replace with actual image URL
-      skinType: "All skin types",
-      ingredients: [
-        {
-          name: "Chamomile Extract",
-          description: "Soothes and calms the skin, reducing redness and irritation."
-        },
-        {
-          name: "Aloe Vera Extract",
-          description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
-        },
-        {
-          name: "Glycerin",
-          description: "Attracts moisture to the skin, keeping it soft and supple."
-        },
-        {
-          name: "Coco-Betaine",
-          description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-        }
-      ]
-    }, {
-      id: 8,
-      brand: "la roshe pose",
-      img: image,
-      categoryID: "face",
-      subCategoryID: "cleansing",
-      description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-      image: image, // Replace with actual image URL
-      skinType: "All skin types",
-      ingredients: [
-        {
-          name: "Chamomile Extract",
-          description: "Soothes and calms the skin, reducing redness and irritation."
-        },
-        {
-          name: "Aloe Vera Extract",
-          description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
-        },
-        {
-          name: "Glycerin",
-          description: "Attracts moisture to the skin, keeping it soft and supple."
-        },
-        {
-          name: "Coco-Betaine",
-          description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-        }
-      ]
-    }, {
-      id: 9,
-      brand: "la roshe pose",
-      img: image,
-      categoryID: "face",
-      subCategoryID: "cleansing",
-      description: "This gentle cleansing foam effectively removes impurities while nourishing the skin. Formulated with natural extracts including chamomile and aloe vera, it leaves your skin feeling refreshed and revitalized.",
-      image: image, // Replace with actual image URL
-      skinType: "All skin types",
-      ingredients: [
-        {
-          name: "Chamomile Extract",
-          description: "Soothes and calms the skin, reducing redness and irritation."
-        },
-        {
-          name: "Aloe Vera Extract",
-          description: "Hydrates and moisturizes the skin, promoting a healthy complexion."
-        },
-        {
-          name: "Glycerin",
-          description: "Attracts moisture to the skin, keeping it soft and supple."
-        },
-        {
-          name: "Coco-Betaine",
-          description: "Gently cleanses without stripping away natural oils, leaving the skin balanced."
-        }
-      ]
-    },
+
+  // Add more fake data objects as needed
 ];
 
-const SingleCard = ({ id }) => {
-  // Find the item with the provided id
-  const item = data.find(item => item.id === id);
-
-  if (!item) {
-    return null; // Or you can render a loading indicator or an error message
-  }
-  const imgSrc = item.img ? item.img : ''; // Set imgSrc to an empty string if item.img is undefined
-
+const SingleCard = () => {
   return (
     <div className={style.container}>
-      <div className={style.left}>
-        <img className={style.img} src={imgSrc} alt={item.brand} />
-      </div>
-      <div className={style.right}>
-        <h2>{item.brand}</h2>
-        <p>Category: {item.categoryID}</p>
-        <p>Subcategory: {item.subCategoryID}</p>
-        <p>Description: {item.description}</p>
-        <p>Skin Type: {item.skinType}</p>
-        <ul>
-          <p>Ingredients:</p>
-          {item.ingredients.map((ingredient, index) => (
-            <li key={index}>{ingredient.name}: {ingredient.description}</li>
-          ))}
-        </ul>
-      </div>
+      {fakeData.map((item) => (
+        <div key={item.id} className={style.content}>
+          <div className={style.left}>
+            <img className={style.img} src={item.img} alt={item.brand} />
+          </div>
+          <div className={style.right}>
+            <p className={style.subCategory}> {item.subCategoryID}</p>
+            <p className={style.brand}>BRAND: {item.brand}</p>
+            <p className={style.skinType}>Skin Type: {item.skinType}</p>
+            <p className={style.description}>description: {item.description}</p>
+
+            <ul className={style.ingredients}>
+              <p className={style.ingredientsTitle}>Ingredients:</p>
+              {item.ingredients.map((ingredient, index) => (
+                <li key={index} className={style.li}>
+                  {ingredient.name}: {ingredient.description}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
-
 
 export default SingleCard;

@@ -9,7 +9,7 @@ function HeroSection() {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <main className={style.container}>
+    <section className={style.container}>
       {/* <div className={style.left}>
         <img className={style.mainImg} src={main} alt="main" />
       </div> */}
@@ -35,7 +35,7 @@ function HeroSection() {
         </div>
         {/* <img className={style.cremImg} src={crem} alt="main" /> */}
       </div>
-    </main>
+    </section>
   );
 }
 

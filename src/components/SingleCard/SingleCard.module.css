@@ -1,19 +1,100 @@
 .container {
-    display: flex;
+  height: 100%;
+  width: 89%;
+  margin: 0 auto;
+  padding: 6rem;
+  border-radius: 30px;
+
   }
-  
-  .left {
-    flex: 1;
-  }
-  
-  .right {
-    flex: 2;
-  }
-  
-  .img {
+
+  .content{
     width: 100%;
-    height: auto;
+    height: 80vh;
+    display: flex;
+    gap: 1rem;
+    border-radius: 30px;
+
   }
+  .left{
+    width: 50vw;
+    border-radius: 30px;
+
+  }
+  .img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-grow: 1;
+    border-radius: 30px;
+
+  }
+  .right{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    padding: 2rem;
+    /* background-color: rgb(13, 10, 48) !important; */
+    background: linear-gradient(to left, rgb(182, 136, 12), rgb(107, 90, 58)) ;
+
   
-  /* You can add more styling as needed */
+    height: 100%;
+    background-color: rgb(233, 222, 222);
+  }
+  .subCategory{
+    font-size: 80px;
+    font-weight: 900;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    color: rgb(90, 89, 89);
+    /* background: linear-gradient(to right, rgb(245, 168, 2), rgb(241, 241, 241)); */
+    color: lightgrey;
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color:transparent ; */
+  }
+  .description{
+    font-size: 25px;
+    margin-left: 1rem;
+    font-weight: 600;
+    margin-left: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    color: lightgray;
+  }
+  .brand{
+    font-size: 25px;
+    font-weight: 600;
+    margin-left: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    color: black;
+  }
+  .skinType{
+    font-size: 25px;
+    margin-left: 1rem;
+    font-weight: 600;
+    margin-left: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    color: rgb(56, 54, 54);
+  }
+
+  .ingredientsTitle{
+    font-size: 40px;
+    margin-left: 1rem;
+    font-size: 40px;
+    font-weight: 700;
+    margin-left: 1rem;
+    color: black;
+    margin-bottom: 1rem;
+  }
+  .li{
+    list-style-type: none;
+    margin-left: 1rem;
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 1rem;
+    color: black;
+
+  }
   

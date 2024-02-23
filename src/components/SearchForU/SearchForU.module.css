@@ -5,18 +5,15 @@
   margin-bottom: 3rem;
 }
 
-.right {
-  /* border-radius: 40px 40px 40px 40px; */
+/* .right {
   width: 100%;
   position: relative;
-  /* background-color: var(--gray-color); */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-image: url(/src/assets/images/product.jpg); */
   background-size: cover;
   background-position: center center;
-}
+} */
 
 .mainImg {
   width: 31vw;
