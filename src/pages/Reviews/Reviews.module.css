@@ -1,4 +1,6 @@
 .container {
+position: 
+relative;
   height: 100%;
   margin-bottom: 3rem;
   background-color: var(--main-color);
@@ -134,8 +136,6 @@ margin: 0 1rem;
   overflow-y: auto;
   max-height: 70%;
 }
-.modalContent {
-}
 
 .commentsContainer {
   position: fixed;
@@ -194,4 +194,15 @@ margin: 0 1rem;
      color: var(--grays-color);
   
   background-color: var(--main-color);
+}
+.searchbar{
+  width: 25%;
+  margin: 0 auto;
+  position: absolute;
+  /* text-align: center; */
+  padding: 1%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  bottom: 0;
+  right: 38%;
 }
