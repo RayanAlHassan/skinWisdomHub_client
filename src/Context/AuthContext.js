@@ -94,27 +94,32 @@
 // withe cookies not local storage 
 import React, { createContext, useState, useEffect } from "react";
 import axiosInstance from "../Utils/AxiosInstance.js";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [checkUser, setCheckUser] = useState(false);
+  const [userUpdated, setUserUpdated] = useState(false)
 
   useEffect(() => {
-    if (!user && user === null) {
-      fetchUserData();
+    console.log(user)
+    if (!user || userUpdated) {
+      // fetchUserData();
+      fetchOne()
     } else {
       console.log("user:",user);
     }
-  }, [user]);
+  }, [user, userUpdated]);
 
   const fetchUserData = async () => {
     
     try {
       setCheckUser(true);
       const response = await axiosInstance.get(
-        `http://localhost:5000/user/view-all`
+        `/user/view-all`,
+        {withCredentials:true}
       );
       setUser(response.data.user);
     } catch (err) {
@@ -123,6 +128,24 @@ export const AuthProvider = ({ children }) => {
       setCheckUser(false);
     }
   };
+  const fetchOne=async()=>{
+    
+    try {
+      setCheckUser(true)
+      const response = await axios.get(`http://localhost:5000/user/loggedIn`,
+      {withCredentials:true}
+      )
+      setUser(response.data.user)
+      console.log(response.data.user)
+      setUserUpdated(false)
+  } catch (error) {
+      setUser(null);
+      console.log(error);
+  }
+  finally{
+      setCheckUser(false)
+  }
+  }
 
   const logout = async () => {
     try{
@@ -137,7 +160,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, checkUser, fetchUserData, logout }}
+      value={{ user, setUser, checkUser, fetchUserData,fetchOne, logout }}
     >
       {children}
     </AuthContext.Provider>

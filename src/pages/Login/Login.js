@@ -11,7 +11,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import axiosInstance from "../../Utils/AxiosInstance";
 
 function Login() {
-  const { setUser, user } = useContext(AuthContext); // Use the useContext hook to access setUser and state
+  const { setUser, user , fetchOne} = useContext(AuthContext); // Use the useContext hook to access setUser and state
   const navigate = useNavigate();
   const [networkError, setNetworkError] = useState(false); //network err
   const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +54,8 @@ function Login() {
       console.log(response.data);
       console.log(response);
 
-      if (response.data) {
+      if (response) {
+        
         setUser(response.data); // Assuming user data is nested under response.data
         console.log("role: " + response.data.role);
 

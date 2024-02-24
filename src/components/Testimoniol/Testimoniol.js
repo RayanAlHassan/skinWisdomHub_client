@@ -35,10 +35,20 @@ function Testimoniol() {
                 <h4>namee :{element?.userID?.name}</h4>
                 <p className={style.feedback}>{element.feedback}</p>
               </div>
+              {/* <div className={style.topLeft}>
+              <img
+              src={`http://localhost:5000/images/${element?.userID?.image}`}
+              className={style.profileUser}
+                alt="profile user"
+              />
+              <p className={style.name}>{element.userID?.name}</p>
+            </div> */}
             </div>
+            
           );
         })}
       </div>
+     
     </section>
   );
 }
