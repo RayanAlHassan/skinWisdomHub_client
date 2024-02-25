@@ -34,16 +34,12 @@
     flex-direction: column;
     border-radius: 30px;
     padding: 2rem;
-    /* background-color: rgb(13, 10, 48) !important; */
-    background: linear-gradient(to left, rgb(182, 136, 12), rgb(107, 90, 58)) ;
-
-  
+    background: linear-gradient(to left, rgb(120 126 126), rgb(96 90 78));
     height: 100%;
-    background-color: rgb(233, 222, 222);
   }
   .subCategory{
-    font-size: 80px;
-    font-weight: 900;
+    font-size: 60px;
+    font-weight: 600;
     margin-left: 1rem;
     margin-bottom: 1rem;
     color: rgb(90, 89, 89);
@@ -52,27 +48,29 @@
     /* -webkit-background-clip: text;
     -webkit-text-fill-color:transparent ; */
   }
-  .description{
-    font-size: 25px;
+  .name{
+    font-size: 40px;
+    font-weight: 500;
     margin-left: 1rem;
-    font-weight: 600;
+    margin-bottom: 1rem;
+    color: rgb(90, 89, 89);
+    /* background: linear-gradient(to right, rgb(245, 168, 2), rgb(241, 241, 241)); */
+    color: lightgrey;
+  }
+  .description{
+    font-size: 15px;
+    margin-left: 1rem;
+    font-weight: 400;
     margin-left: 1rem;
     letter-spacing: 1px;
     margin-bottom: 1rem;
     color: lightgray;
   }
-  .brand{
-    font-size: 25px;
-    font-weight: 600;
-    margin-left: 1rem;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-    color: black;
-  }
+
   .skinType{
     font-size: 25px;
     margin-left: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-left: 1rem;
     letter-spacing: 1px;
     margin-bottom: 1rem;
@@ -80,21 +78,27 @@
   }
 
   .ingredientsTitle{
-    font-size: 40px;
+    font-size: 10px;
     margin-left: 1rem;
     font-size: 40px;
-    font-weight: 700;
+    font-weight: 500;
     margin-left: 1rem;
-    color: black;
+    color: rgb(56, 54, 54);
     margin-bottom: 1rem;
   }
   .li{
     list-style-type: none;
-    margin-left: 1rem;
-    font-size: 25px;
-    font-weight: 500;
-    margin-left: 1rem;
-    color: black;
+  
+    color: blacrgba(0, 0, 0, 0.375)
 
   }
-  
+  .nameIng{
+    font-weight: 500;
+    margin-left: 1rem;
+    font-size: 22px;
+    color: lightgray;
+  }
+  .descIng{
+    color: lightgray;
+        font-size:18px;
+  }

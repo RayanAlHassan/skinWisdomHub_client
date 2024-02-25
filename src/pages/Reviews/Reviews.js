@@ -361,7 +361,6 @@ function Reviews() {
       />
       </div>
       
-      {/* Search input */}
      
   
       {/* Posts */}

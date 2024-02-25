@@ -7,10 +7,11 @@ import { FaFilter, FaSearch, FaSlidersH, FaTags } from "react-icons/fa";
 // import SearchBar from "../../components/SearchBar/SearchBar";
 import useFilterStore from "../../components/filterStore";
 function ForYou() {
-  const filterData = useFilterStore((state) => state.filterData);
-  const setFilterData = useFilterStore((state) => state.setFilterData);
+  const [filteredData, setFilteredData] = useState([]);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-
+  const handleFilterChange = (filteredData) => {
+    setFilteredData(filteredData); // Receive filtered data from Searchfilter
+  };
   useEffect(() => {
     setIsFilterVisible(false); // Reset the state to false when the component mounts
   }, []);
@@ -18,9 +19,7 @@ function ForYou() {
   const toggleFilter = () => {
     setIsFilterVisible(!isFilterVisible);
   };
-  const handleFilterChange = (filterData) => {
-    setFilterData(filterData);
-  };
+
 
   return (
     <main className={style.container}>
@@ -41,7 +40,7 @@ function ForYou() {
 
         {isFilterVisible && (
           <div className={style.show}>
-      <Searchfilter onFilterChange={handleFilterChange} />
+          <Searchfilter onFilterChange={handleFilterChange} />
           </div>
         )}
       </div>
@@ -54,7 +53,7 @@ function ForYou() {
         </div>
 
         <div className={style.card}>
-          <Cards filterData={filterData} />
+        <Cards filteredData={filteredData} /> {/* Pass filtered data to Cards */}
         </div>
       </div>
     </main>

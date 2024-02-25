@@ -147,7 +147,6 @@
 // };
 
 // export default Searchfilter;
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -155,7 +154,8 @@ import Styles from '../Searchfilter/Searchfilter.module.css';
 import { motion } from "framer-motion"
 import { FaSlidersH } from "react-icons/fa";
 import useFilterStore from "../filterStore"
-const Searchfilter = (props) => {
+
+const Searchfilter = ({ onFilterChange }) => {
     const navigate = useNavigate();
     const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
@@ -168,73 +168,66 @@ const Searchfilter = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-          fetchSkinTypes();
-          fetchIngredients();
-          fetchCategories();
+            fetchSkinTypes();
+            fetchIngredients();
+            fetchCategories();
         };
       
         fetchData();
-      }, []);
-    const fetchSkinTypes = async () => {
+    }, []);
 
-    try {
-        const response = await axios.get("http://localhost:5000/product/getall");
-        if (!response.data) {
-          throw new Error("Failed to fetch products");
+    const fetchSkinTypes = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/product/getall");
+            if (!response.data) {
+                throw new Error("Failed to fetch products");
+            }
+            setProductData(response.data);
+            setIsLoadingProducts(false);
+        } catch (error) {
+            console.error(error);
+            setIsLoadingProducts(false);
         }
-        console.log(response.data);
-        setProductData(response.data);
-        setIsLoadingProducts(false);
-      } catch (error) {
-        console.error(error);
-        setIsLoadingProducts(false);
-      }}
-  
+    }
 
     const fetchIngredients = async () => {
         try {
             const response = await axios.get("http://localhost:5000/ingrediants");
             if (!response.data) {
-              throw new Error("Failed to fetch ingrediants");
+                throw new Error("Failed to fetch ingrediants");
             }
-            console.log(response.data);
             setIngredients(response.data);
             setIsLoadingProducts(false);
-          } catch (error) {
+        } catch (error) {
             console.error(error);
             setIsLoadingProducts(false);
-          }
+        }
     };
 
     const fetchCategories = async () => {
         try {
             const response = await axios.get("http://localhost:5000/category/getall");
             if (!response.data) {
-              throw new Error("Failed to fetch category");
+                throw new Error("Failed to fetch category");
             }
-            console.log(response.data);
             setCategories(response.data.categories);
             setIsLoadingProducts(false);
-          } catch (error) {
+        } catch (error) {
             console.error(error);
             setIsLoadingProducts(false);
-          }
-          }
-    
-
+        }
+    }
 
     const fetchSubCategories = async (id) => {
-        console.log(id);
         try {
-          let res = await axios.get(
-            `http://localhost:5000/subCategory/getsubbycategory/${id}`
-          );
-          console.log(res.data);
-          setSubCategories(res.data.subCategories);
+            let res = await axios.get(
+                `http://localhost:5000/subCategory/getsubbycategory/${id}`
+            );
+            setSubCategories(res.data.subCategories);
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-      };
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -243,23 +236,22 @@ const Searchfilter = (props) => {
         }
 
         setFilterState(prevState => ({ ...prevState, [name]: value }));
-        console.log("djjjjjjjjjjjj",filterState)
     };
 
     const handleSearch = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/product/products`, { params: filterState });
-            console.log(response.data);
-            props.setFilterData(filterState); 
+            const response = await axios.get("http://localhost:5000/product/products", { params: filterState });
+            onFilterChange(response.data);
         } catch (error) {
             console.error('Error fetching products:', error);
         }
     };
-    const resetFilter=()=>{
-        setFilterState({}).then(()=>{
-            handleSearch()
-        })
-    }
+
+    const resetFilter = () => {
+        setFilterState({});
+        handleSearch();
+    };
+
     return (
         <motion.div className={Styles.container}>
             <div>
@@ -320,11 +312,9 @@ const Searchfilter = (props) => {
             >
                 <FaSlidersH className={`${Styles.filterIcon} ${Styles.hoverEffect}`} />
             </motion.button>
-            <button onClick={resetFilter}>X</button>
-
-            </motion.div>
-            
-
-            );
+            <button onClick={resetFilter}>Reset</button>
+        </motion.div>
+    );
 };
+
 export default Searchfilter;

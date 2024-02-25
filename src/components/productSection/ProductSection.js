@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import style from "./ProductSection.module.css";
 import { motion } from "framer-motion";
 import axios from "axios";
+import {  useNavigate } from 'react-router-dom'; // Import useHistory from react-router-dom
+
 import { NavLink } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,6 +14,7 @@ const ProductSection = () => {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [productData, setProductData] = useState([]);
   const [expandedDescriptionId, setExpandedDescriptionId] = useState(null);
+  const navigate = useNavigate(); // Use useNavigate hook here
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,9 +87,11 @@ const ProductSection = () => {
                 key={element._id}
               >
                 <NavLink
-                  to={`/singleProduct/${element.slug}`}
+                  // to={`/singleProduct/${element.slug}`}
                   className={style.productHolder}
                   key={element._id}
+                  onClick={() => navigate(`/card/${element._id}`)} // Navigate to SingleCard on click
+
                 >
                   <h1 className={style.subtitle}>{element.subCategoryID.name}</h1>{" "}
                   <img

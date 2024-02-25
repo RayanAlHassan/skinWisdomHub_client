@@ -1,13 +1,13 @@
-import React, {useEffect,useState} from 'react'
-import { Link } from 'react-router-dom';
+import React, {useEffect,useState,} from 'react'
 import axios from 'axios';
 import styles from './Cards.module.css';
-
+import {  useNavigate } from 'react-router-dom'; // Import useHistory from react-router-dom
 const Cards = (props) => {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [productData, setProductData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate(); // Use useNavigate hook here
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,8 +70,11 @@ const Cards = (props) => {
         <p>Loading...</p>
       ) : (
         filteredProducts.map((item) => (
-          <Link to={`/card/${item._id}`} key={item._id} className={styles.link} >
-            <div key={item._id} className={styles.card}>
+          <div 
+          key={item._id} 
+          className={styles.card}
+          onClick={() => navigate(`/card/${item._id}`)} // Navigate to SingleCard on click
+          >          
               <div className={styles.cardContent}>
                 <p className={styles.subCategory}>Subcategory: {item.subCategoryID?.name}</p>
                 <img 
@@ -85,17 +88,18 @@ const Cards = (props) => {
                 </div>
               </div>
               <div className={styles.hoverDetails}>
-                <p className={styles.subCategory}>Subcategory: {item.subCategoryID?.name}</p>
-                <p className={styles.brand}>Brand: {item.name}</p>
-                <ul className={styles.ingredients}>
+                {/* <p className={styles.subCategory}>Subcategory: {item.subCategoryID?.name}</p> */}
+                {/* <p className={styles.p}> */}
+                  desc: <span className={styles.desc}>{item.description}</span>
+                  {/* </p> */}
+                {/* <ul className={styles.ingredients}>
                   <p className={styles.ingredientsTitle}>Ingredients:</p>
                   {item.ingrediantsID?.map((ingredient, index) => (
                     <li key={index}>{ingredient?.name}</li>
                   ))}
-                </ul>
+                </ul> */}
               </div>
-            </div>
-          </Link>
+          </div>
         ))
       )}
     </div>
