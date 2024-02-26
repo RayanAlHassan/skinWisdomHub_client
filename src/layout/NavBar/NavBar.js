@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
-
+import { FaUser } from 'react-icons/fa';
 import styles from "./NavBar.module.css";
 import { Spin as Hamburger } from "hamburger-react";
 import { AuthContext } from "../../Context/AuthContext";
@@ -15,7 +15,7 @@ function NavBar() {
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
   const [scrollY, setScrollY] = useState(0);
-
+const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -59,7 +59,6 @@ function NavBar() {
     setMenuOpen(!menuOpen);
   };
 
-  const navigate = useNavigate();
 
   const handleScrollToAbout = () => {
     setMenuOpen(false);
@@ -73,6 +72,9 @@ function NavBar() {
           .scrollIntoView({ behavior: "smooth" });
       }, 1000);
     }
+  };
+  const handleProfileClick = () => {
+    navigate('/userProfile'); // Navigate to the user profile page
   };
 
   return (
@@ -153,7 +155,7 @@ function NavBar() {
             </NavLink>
           </li>
         </ul>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div className={styles.containBtn} >
           <button className={styles.cart}>
             {!user ? (
               <NavLink
@@ -174,6 +176,11 @@ function NavBar() {
               </NavLink>
             )}
           </button>
+          <button style={{backgroundColor:"transparent"}} onClick={handleProfileClick}>
+      <FaUser  style={{ color: 'var(--grays-color)' ,backgroundColor:"transparent",fontSize: "24px"}} />
+      {/* Add text if needed */}
+      {/* <span>Profile</span> */}
+    </button>
 
           <div className={styles.hamburger} onClick={handleMenuClick}>
             <Hamburger

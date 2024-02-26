@@ -155,7 +155,7 @@ import { motion } from "framer-motion"
 import { FaSlidersH } from "react-icons/fa";
 import useFilterStore from "../filterStore"
 
-const Searchfilter = ({ onFilterChange }) => {
+const Searchfilter = ({ onFilterChange ,handleSearch}) => {
     const navigate = useNavigate();
     const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
@@ -231,21 +231,24 @@ const Searchfilter = ({ onFilterChange }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name === "category") {
+        if (name === "categoryID") {
             fetchSubCategories(value);
         }
 
         setFilterState(prevState => ({ ...prevState, [name]: value }));
+        console.log("SELECTED", filterState)
+       
     };
 
-    const handleSearch = async () => {
-        try {
-            const response = await axios.get("http://localhost:5000/product/products", { params: filterState });
-            onFilterChange(response.data);
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    };
+    // const handleSearch = async () => {
+    //     try {
+    //         const response = await axios.post("http://localhost:5000/product/read/products",filterState);
+    //         onFilterChange(response.data);
+    //         console.log("result filter",response.data)
+    //     } catch (error) {
+    //         console.error('Error fetching products:', error);
+    //     }
+    // };
 
     const resetFilter = () => {
         setFilterState({});
@@ -270,8 +273,8 @@ const Searchfilter = ({ onFilterChange }) => {
             <div>
                 <select
                     className={Styles.input}
-                    name="ingredient"
-                    value={filterState.ingredient || ''}
+                    name="ingredients"
+                    value={filterState.ingredients || ''}
                     onChange={handleChange}
                 >
                     <option value="">Select Ingredient</option>
@@ -283,8 +286,8 @@ const Searchfilter = ({ onFilterChange }) => {
             <div>
                 <select
                     className={Styles.input}
-                    name="category"
-                    value={filterState.category || ''}
+                    name="categoryID"
+                    value={filterState.categoryID || ''}
                     onChange={handleChange}
                 >
                     <option value="">Select Category</option>
@@ -296,8 +299,8 @@ const Searchfilter = ({ onFilterChange }) => {
             <div>
                 <select
                     className={Styles.input}
-                    name="subCategory"
-                    value={filterState.subCategory || ''}
+                    name="subCategoryID"
+                    value={filterState.subCategoryID || ''}
                     onChange={handleChange}
                 >
                     <option value="">Select Subcategory</option>
@@ -308,12 +311,13 @@ const Searchfilter = ({ onFilterChange }) => {
             </div>
             <motion.button
                 className={`${Styles.btn} ${Styles.hoverEffect}`}
-                onClick={handleSearch}
+                onClick={()=>handleSearch(filterState)}
             >
                 <FaSlidersH className={`${Styles.filterIcon} ${Styles.hoverEffect}`} />
             </motion.button>
             <button onClick={resetFilter}>Reset</button>
         </motion.div>
+
     );
 };
 

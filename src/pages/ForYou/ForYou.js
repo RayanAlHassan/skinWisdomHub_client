@@ -6,6 +6,7 @@ import Cards from "../../components/Cards/Cards";
 import { FaFilter, FaSearch, FaSlidersH, FaTags } from "react-icons/fa";
 // import SearchBar from "../../components/SearchBar/SearchBar";
 import useFilterStore from "../../components/filterStore";
+import axios from "axios";
 function ForYou() {
   const [filteredData, setFilteredData] = useState([]);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -19,7 +20,17 @@ function ForYou() {
   const toggleFilter = () => {
     setIsFilterVisible(!isFilterVisible);
   };
-
+  console.log("data",filteredData)
+  const handleSearch = async (filterState) => {
+    try {
+        const response = await axios.post("http://localhost:5000/product/read/products",filterState);
+        // onFilterChange(response.data);
+        setFilteredData(response.data)
+        console.log("result filter",filteredData)
+    } catch (error) {
+        console.error('Error fetching products:', error);
+    }
+};
 
   return (
     <main className={style.container}>
@@ -40,7 +51,7 @@ function ForYou() {
 
         {isFilterVisible && (
           <div className={style.show}>
-          <Searchfilter onFilterChange={handleFilterChange} />
+          <Searchfilter onFilterChange={handleFilterChange} handleSearch={handleSearch} />
           </div>
         )}
       </div>
