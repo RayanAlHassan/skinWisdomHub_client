@@ -45,7 +45,7 @@
 }
 
 .header {
-  color: #00000073;
+  color: #ffffffc2;
   font-size: 5rem;
   line-height: 6rem;
   width: 30%;
@@ -65,7 +65,7 @@
   z-index: 2;
 }
 .btnaction{
-  background-color: #9d665f;
+  background-color: #a7483c;
   font-size: 5rem;
   width: 16rem;
   height: 4rem;
@@ -76,7 +76,7 @@
 
 }
 .action {
-  color:hsl(0deg 0% 50.2% / 59%);
+  color:hsla(0, 0%, 100%, 0.59);
   font-size: 26px;
   z-index: 10;
   display: flex;
@@ -109,7 +109,7 @@
   color: var(--main-color);
   background-color: var(--purple-color);
   overflow: hidden;
-  margin-top: 5px;
+  margin-top: 5px;  
   text-decoration: none;
   font-size: 1.1rem;
   transition: all 0.3s linear;

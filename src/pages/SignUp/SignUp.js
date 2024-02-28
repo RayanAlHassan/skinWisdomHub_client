@@ -164,6 +164,8 @@ import styles from "./SignUp.module.css";
 import axios from "axios";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import rose from "../../assets/images/sd.jpg";
+
 // import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 // import { app } from "../../firebase";
 
@@ -180,6 +182,10 @@ const SignUpForm = () => {
   });
 
   const [image, setImage] = useState(null);
+  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState(""); // State to store the name of the selected file
+  const [imageUrl, setImageUrl] = useState(""); // State to store the URL of the selected image
+
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -221,7 +227,11 @@ const SignUpForm = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
+    setFileName(file.name); // Set the name of the selected file
+    const imageUrl = URL.createObjectURL(file); // Create temporary URL for the selected image
+    setImageUrl(imageUrl); // Set the URL of the selected image
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -231,7 +241,8 @@ const SignUpForm = () => {
       !formData.role ||
       !formData.dob ||
       !formData.email ||
-      !formData.password  ) {
+      !formData.password
+    ) {
       setError(true);
       setErrorMessage("All input fields are required");
     } else if (error && !passwordRegex.test(formData.password)) {
@@ -316,12 +327,25 @@ const SignUpForm = () => {
   //     console.log(err);
   //   }
   // };
-
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
   return (
     <div className={styles["sign-up-container"]}>
+      
+      {/* <img
+        src={rose}
+        alt="bag"
+        style={{ height: "100%", width: "100%", position: "fixed", zIndex:"0" }}
+      /> */}
+     
+   
+
       <form onSubmit={handleSubmit} className={styles["sign-up-form"]}>
         <div style={{ margin: "0 auto" }}>
-          <h2>Sign Up</h2>
+          <h2 className={styles.title}>Rgistration</h2>
+          <hr></hr>
           <div className={styles.flexing}>
             <div className={styles.left}>
               <div className={styles["form-group"]}>
@@ -333,12 +357,10 @@ const SignUpForm = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                
                 />
               </div>
-        
-            
-             
-              
+
               <div className={styles["form-group"]}>
                 <label htmlFor="dob">Date of Birth</label>
                 <input
@@ -422,12 +444,44 @@ const SignUpForm = () => {
               </div>
               <div className={styles["form-group"]}>
                 <label>Image</label>
-                <input
+
+                {/* <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
                   required
-                />
+                /> */}
+              </div>
+            </div>
+          </div>
+          <div className={styles.bottom}>
+            {" "}
+            <div class="container">
+              <div className={styles.card}>
+                <h3>Upload Files</h3>
+                <div className={styles.drop_box}>
+                  <header>
+                    <h4>Uplaod an image here </h4>
+                  </header>
+                  <div className={styles.imggFile}>
+                  {fileName &&  <p ><span className={styles.fileName}>
+                  {fileName} </span></p>} {/* Display file name */}
+                  {imageUrl && <img  className={styles.selectedImg} src={imageUrl} alt="Selected Image"  />} {/* Display selected image */}
+
+                  </div>
+               
+                  <p style={{color:"white"}}> </p>
+                  <input
+                    onChange={handleImageChange}
+                    type="file"
+                    hidden
+                    id="fileID"
+                    // style={{display:"none"}}
+                  />
+                  <label htmlFor="fileID" className={styles.btn}>
+                    Choose File
+                  </label>
+                </div>
               </div>
             </div>
           </div>

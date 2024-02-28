@@ -1,39 +1,97 @@
 .container {
-  position: relative;
-  height: 100%;
+  height: 93vh;
   margin-bottom: 3rem;
   background-color: white;
 }
-
 .top {
   height: 18rem;
   width: 100%;
   position: relative;
   z-index: 4;
-  background:linear-gradient(to right red purple);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(229, 220, 226, 0.902),
+    rgb(160, 157, 158)
+  );
 }
-.img {
-  object-fit: cover;
+.center {
+  display: flex;
   width: 100%;
-  height: 100%;
+}
+.left {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 5rem;
+  height: 20rem;
+  /* position: relative; */
 }
 
-.user {
-  height: 100px;
-  margin-left: 9%;
+.right {
+  width: 75%;
+  /* border:1px solid red ; */
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
 }
+.pfImg {
+  z-index: 1000;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -4rem;
+  left: 12rem;
+  object-fit: cover;
+}
+.nameLeft {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+  font-weight: 400;
+}
+.btns {
+  display: flex;
+  /* flex-direction: column; */
+}
+.btn {
+  background-color: rgb(232, 225, 225);
+  color: black;
+  border-radius: 0;
+  height: 3rem;
+  transition: all 0.3s ease;
+}
+.btn2:hover {
+  box-shadow: 0 0 10px black;
+  background-color: transparent;
+}
+.btn2 {
+  background-color: rgb(232, 225, 225);
+  color: black;
+  border-radius: 0;
+  height: 3rem;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  box-shadow: 0 0 10px black;
+  color: white;
+  background-color: rgb(87, 11, 95);
+}
+/* //////////////////////////////////////// */
 .post {
-  width: 50%;
-  border-radius: 20px;
+  width: 62%;
   margin: auto;
   max-height: 60rem;
   background-color: whitesmoke;
   margin-bottom: 1rem;
-  margin-top: 2rem;
   padding-top: 1rem;
+  margin-top: 3rem;
 }
 .profileUser {
   border-radius: 50%;
@@ -69,7 +127,7 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.center {
+.centerPost {
   width: 100%;
   height: 60%;
 }
@@ -117,10 +175,13 @@
   font-size: 18px;
   color: black;
 }
-.time{
-
+.mail {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
 }
-.productName{
+.productName {
   position: absolute;
   right: 0;
   color: white;
@@ -130,7 +191,6 @@
   padding: 12px 7px 10px 7px;
   font-size: 18px;
   background-color: rgb(22, 129, 129);
-
 }
 .modalBackdrop {
   position: fixed;
@@ -141,7 +201,7 @@
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   width: 40%;
-  height:60%;
+  height: 60%;
   /* overflow-y: auto;  */
 }
 
@@ -156,21 +216,7 @@
   overflow-y: auto;
   max-height: 70%;
 }
-.userComented{
-  display: flex;
-  height: 100%;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-.imgComment{
-  width: 45px;
-  height: 45px;
-  object-fit: cover;
 
-  border-radius: 50%;
-
-}
 .commentsContainer {
   position: fixed;
   top: 0;
@@ -190,15 +236,13 @@
   left: 3rem;
   cursor: pointer;
   color: var(--grays-color);
-
   color: white;
   background-color: #ff758d;
 }
-.skinType{
+.skinType {
   margin-top: 1rem;
   margin-left: 1.3rem;
   margin-bottom: 1rem;
-
 }
 .closee {
   position: absolute;
@@ -226,26 +270,82 @@
   /* position: absolute; */
   bottom: 0rem;
   /* right: 100%; */
-  height: 3rem;
-  width: 12rem;
-  font-size: 17px;
-  /* font-size: 12px; */
-  color: white;
+  height: 2rem;
+  width: 7rem;
+  font-size: 12px;
+  color: var(--grays-color);
 
-  /* background-color: var(--main-color); */
-  background-color: rgb(32, 117, 114);
-  border-radius: 20px;
+  background-color: var(--main-color);
 }
 .searchbar {
-  width: 18%;
+  width: 25%;
   margin: 0 auto;
   position: absolute;
   /* text-align: center; */
   padding: 1%;
-  /* border: 1px solid #ccc; */
-  border: none;
-  border-radius: 20px;
-  bottom: 3px;
-  right: 25%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  bottom: 0;
+  right: 38%;
+}
+.img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.containerPost {
+  width: 100%;
+  height: 64vh;
+  overflow-y: scroll;
+}
+.userComented {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.imgComment {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+.subCategory {
+  position: absolute;
+  right: 0;
+  color: white;
+  top: 64px;
+  height: 3rem;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  border-bottom-left-radius: 18px;
+  padding: 12px 7px 10px 7px;
   font-size: 18px;
+  background-color: rgb(22, 129, 129);
+}
+.btn1{
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 2.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  /* border: 1px solid var(--font-color); */
+  background-color: var(--grays-color);
+  /* background-color: transparent; */
+  overflow: hidden;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s ease-out;
+  
+}
+.btn1:hover {
+  box-shadow: 0 0 10px black;
+  background-color: transparent;
 }

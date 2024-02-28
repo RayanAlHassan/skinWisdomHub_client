@@ -61,12 +61,11 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-
   height: 4rem;
   align-items: center;
   background-color: blure;
-
-  top: 10rem;
+  /* top: 10rem; */
+  align-content: center;
 }
 .flexing {
   display: flex;

@@ -11,7 +11,7 @@
 .card {
   height: 35rem;
   width: 25rem;
-  background-color: hsla(0, 0%, 100%, 0.3);
+  background-color: hsl(0deg 0% 92.54% / 30%);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -19,6 +19,7 @@
   overflow: hidden;
   border: 1px solid gray;
   padding: 2rem;
+
 }
 
 .details {

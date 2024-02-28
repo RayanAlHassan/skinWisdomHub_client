@@ -56,7 +56,8 @@ function Login() {
 
       if (response) {
         
-        setUser(response.data); // Assuming user data is nested under response.data
+        // setUser(response.data);
+        fetchOne()
         console.log("role: " + response.data.role);
 
         if (response.data.role === "admin") {

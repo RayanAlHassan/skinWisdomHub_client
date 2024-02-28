@@ -73,9 +73,7 @@ const navigate = useNavigate();
       }, 1000);
     }
   };
-  const handleProfileClick = () => {
-    navigate('/userProfile'); // Navigate to the user profile page
-  };
+
 
   return (
 <header className={`${styles.header} ${visible ? "" : styles.hidden}`} style={{ backgroundColor: scrollY > 0 ? 'var(--main-color)' : '' }}>
@@ -176,11 +174,12 @@ const navigate = useNavigate();
               </NavLink>
             )}
           </button>
-          <button style={{backgroundColor:"transparent"}} onClick={handleProfileClick}>
+          {user ? (<Link  to="./userP" style={{backgroundColor:"transparent"}} >
       <FaUser  style={{ color: 'var(--grays-color)' ,backgroundColor:"transparent",fontSize: "24px"}} />
       {/* Add text if needed */}
       {/* <span>Profile</span> */}
-    </button>
+    </Link> ):("")}
+         
 
           <div className={styles.hamburger} onClick={handleMenuClick}>
             <Hamburger
