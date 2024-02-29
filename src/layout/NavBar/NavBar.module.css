@@ -55,6 +55,7 @@
     height: 4rem;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
 }
 .order {
   width: 40px;
@@ -74,7 +75,7 @@
 .link,
 .activeLink {
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.603);
+  color:white;
   cursor: pointer;
   border-bottom: 2px solid transparent;
   padding-bottom: -1px;
@@ -88,7 +89,7 @@
   display: block;
   content: "";
   width: inherit;
-  border-bottom: solid 2px rgba(0, 0, 0, 0.603);
+  border-bottom: solid 2px var(--Font-color);
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
@@ -100,13 +101,13 @@
   transform-origin: left;
 }
 .activeLink {
-  border-color: rgba(0, 0, 0, 0.603);
+  border-color: white;
 }
 .link {
   transition: all 0.2s ease;
 }
 .link:hover {
-  color: var(--font-color);
+  color: var(--Font-color);
 }
 /* ////////////////////////login btn transition///////////////////////////////// */
 .btn {
@@ -158,7 +159,9 @@
   }
   .dropdown {
     /* background-color: var(--blur-color); Change the background color */
-    background-color: rgb(255 255 255 / 82%);
+    /* background-color: rgb(255 255 255 / 82%); */
+    /* background-color: rgb(255 255 255 / 82%);  */
+    background-color: var(--bcg--top);
     position: absolute;
     top: 120px;
     right: 0;
@@ -166,12 +169,13 @@
     height: 0;
     overflow: hidden;
     display: flex;
+    backdrop-filter: blur(40px);
     flex-direction: column;
-    z-index: 1000; /* Set a higher z-index */
+    z-index: 1000;
     align-items: flex-start;
     transition: width 0.6s ease;
-    overflow-y: auto; /* Enable vertical scrolling */
-    max-height: calc(100vh - 120px); /* Set maximum height */
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
   }
 
   .dropdown.active {
@@ -185,10 +189,9 @@
     padding: 10px;
     transition: width 0.6s ease;
     height: 90vh;
-    width: 98vw;
+    width: 100vw;
     margin: 0 auto;
-    right: 10px;
-
+    /* right: 10px; */
     border-radius: 40px 0;
   }
 

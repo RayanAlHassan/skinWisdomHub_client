@@ -55,6 +55,8 @@ left: 0;
 font-size: 70px;
 width: 2rem;
 height: 2rem;
+color: var(--bcg--top);
+
 }
 .detail::after{
     content: " 	 ”";
@@ -65,11 +67,17 @@ right: 0;
 font-size: 70px;
 width: 2rem;
 height: 2rem;
-
+color: var(--bcg--top);
 }
 .title{
     font-size: 2rem;
     color: var(--grays-color);
     font-weight: bold;
     margin-bottom: 100px;
+}
+.name{
+  color: var(--Font-color);
+}
+.feedback{
+  color: var(--grays-color);
 }

@@ -486,7 +486,7 @@ const SignUpForm = () => {
             </div>
           </div>
           <div className={styles.flexingRadioBtn}>
-            <button type="submit">Sign Up</button>
+            <button className={styles.button} type="submit">Sign Up</button>
             {/* <button onClick={handleOAuth}>sign up with google</button> */}
           </div>
 

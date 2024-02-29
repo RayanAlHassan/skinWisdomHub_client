@@ -48,6 +48,7 @@
   bottom: -4rem;
   left: 12rem;
   object-fit: cover;
+  border: 4px solid white;
 }
 .nameLeft {
   display: flex;
@@ -77,6 +78,12 @@
   border-radius: 0;
   height: 3rem;
   transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  margin: 14px;
+  font-size: 18px;
+  padding: 11px;
+  width: 11rem;
 }
 .btn:hover {
   box-shadow: 0 0 10px black;
@@ -91,7 +98,7 @@
   background-color: whitesmoke;
   margin-bottom: 1rem;
   padding-top: 1rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 .profileUser {
   border-radius: 50%;
@@ -114,7 +121,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  width: 50%;
+  width: 40%;
   height: 100%;
   justify-content: flex-start;
 }
@@ -122,7 +129,7 @@
   padding: 1rem;
   display: flex;
   height: 100%;
-  width: 50%;
+  width: 60%;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -160,15 +167,19 @@
   color: var(--grays-color);
   display: flex;
   position: relative;
+  margin-left: 3rem;
+  height: 2rem;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .desc {
-  width: 100%;
-  max-height: 10rem;
+  width: 90%;
+  max-height: 3rem;
   color: var(--grays-color);
-  /* padding: 1rem; */
-  margin-left: 1.3rem;
+  overflow-y: scroll;
+  padding: 12px;
+  margin: 0 auto 1rem auto;
 }
 .name {
   font-weight: 500;
@@ -185,12 +196,13 @@
   position: absolute;
   right: 0;
   color: white;
-  height: 3rem;
-  max-width: fit-content;
+  text-align: center;
+  max-width: 50%;
+  min-width: 7rem;
   border-bottom-left-radius: 18px;
   padding: 12px 7px 10px 7px;
   font-size: 18px;
-  background-color: rgb(22, 129, 129);
+  background-color: var(--Font-color);
 }
 .modalBackdrop {
   position: fixed;
@@ -227,7 +239,7 @@
 }
 .commentTextArea {
   height: 16%;
-  width: 88%;
+  width: 87%;
   margin: 1rem 3rem;
 }
 .submitButton {
@@ -235,47 +247,81 @@
   bottom: 0rem;
   left: 3rem;
   cursor: pointer;
-  color: var(--grays-color);
   color: white;
-  background-color: #ff758d;
+  background-color: var(--Font-color);
+
+  /* background-color: rgb(232, 225, 225); */
+  border-radius: 0;
+  height: 3rem;
+  transition: all 0.3s ease;
+  border: none;
+  margin: 14px;
+  font-size: 18px;
+  padding: 11px;
+  width: 11rem;
 }
-.skinType {
-  margin-top: 1rem;
-  margin-left: 1.3rem;
-  margin-bottom: 1rem;
+.submitButton:hover{
+  box-shadow: 0 0 8px var(--grays-color);
+  background-color: transparent;
+  color: var(--Font-color);
 }
+
 .closee {
   position: absolute;
   top: -0.5rem;
-  color: #ff758d;
+  /* color: #ff758d; */
   right: 1rem;
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 600;
+  font-weight: 400;
   background-color: transparent;
   z-index: 1000;
+  background-color: var(--Font-color);
+  color: white;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  margin: 14px;
+  font-size: 14px;
+  padding: 6px;
+}
+.closee:hover{
+  box-shadow: 0 0 8px var(--grays-color);
+  background-color: transparent;
+  color: var(--Font-color);
 }
 .titleCmnt {
   position: absolute;
   top: 0.5rem;
-  color: #ff758d;
+  color: var(--Font-color);
   left: 3rem;
   cursor: pointer;
   font-weight: 800;
   background-color: transparent;
   z-index: 1000;
 }
+.skinType {
+  margin-top: 1rem;
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  color: var(--Font-color);
+  font-size: 18px;
+}
 .commentButton {
   cursor: pointer;
-
   /* position: absolute; */
   bottom: 0rem;
   /* right: 100%; */
-  height: 2rem;
-  width: 7rem;
-  font-size: 12px;
-  color: var(--grays-color);
-
-  background-color: var(--main-color);
+  border: none;
+  height: 1rem;
+  width: 2rem;
+  font-size: 20px;
+  /* font-size: 12px; */
+  margin-right: 5%;
+  color: white;
+  /* background-color: var(--main-color); */
+  background-color: transparent;
 }
 .searchbar {
   width: 25%;
@@ -313,19 +359,12 @@
   border-radius: 50%;
 }
 .subCategory {
-  position: absolute;
-  right: 0;
-  color: white;
-  top: 64px;
-  height: 3rem;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-  border-bottom-left-radius: 18px;
-  padding: 12px 7px 10px 7px;
-  font-size: 18px;
-  background-color: rgb(22, 129, 129);
+  font-size: 28px;
+  font-family: 500;
+  font-weight: 600;
+  color: rgb(142 135 65);
 }
-.btn1{
+.btn1 {
   background: none;
   display: flex;
   justify-content: center;
@@ -343,9 +382,31 @@
   text-decoration: none;
   font-size: 1.2rem;
   transition: all 0.3s ease-out;
-  
 }
 .btn1:hover {
   box-shadow: 0 0 10px black;
   background-color: transparent;
+}
+.containImg{
+  margin: 0 auto;
+  width: 100%;  }
+    
+  
+/* ////////////////////////////// */
+@media (max-width:1400px) {
+  .center{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  .left{
+    width: 100%;
+  }
+  .right{
+    width: 100%;
+  }
+  .containImg{
+margin: 0 auto;
+width: 100%;  }
+  
 }

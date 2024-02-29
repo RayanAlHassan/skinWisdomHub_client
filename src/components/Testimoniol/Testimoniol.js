@@ -6,6 +6,7 @@ import axios from "axios";
 function Testimoniol() {
   const [isLoadingTestimoniol, setIsLoadingTestimoniol] = useState(true);
   const [testimoniolData, setTestimoniolData] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -13,8 +14,11 @@ function Testimoniol() {
         if (!response.data) {
           throw new Error("Failed to fetch testimoniol");
         }
-        console.log(response.data);
-        setTestimoniolData(response.data);
+        
+        // Filter testimonials with status "pending"
+        const pendingTestimonials = response.data.filter(testimonial => testimonial.status === "pending");
+
+        setTestimoniolData(pendingTestimonials);
         setIsLoadingTestimoniol(false);
       } catch (error) {
         console.error(error);
@@ -24,15 +28,18 @@ function Testimoniol() {
 
     fetchData();
   }, []);
+
   return (
     <section id="ourproducts" className={style.content}>
       <h2 className={style.title}>Testimoniol From Our Users</h2>
       <div className={style.cards}>
-        {testimoniolData.map((element) => {
-          return (
+        {isLoadingTestimoniol ? (
+          <p>Loading...</p>
+        ) : (
+          testimoniolData.map((element) => (
             <div className={style.card} key={element._id}>
               <div className={style.detail}>
-                <h4>namee :{element?.userID?.name}</h4>
+                <h4 className={style.name}>{element?.userID?.name}</h4>
                 <p className={style.feedback}>{element.feedback}</p>
               </div>
               {/* <div className={style.topLeft}>
@@ -44,11 +51,9 @@ function Testimoniol() {
               <p className={style.name}>{element.userID?.name}</p>
             </div> */}
             </div>
-            
-          );
-        })}
+          ))
+        )}
       </div>
-     
     </section>
   );
 }

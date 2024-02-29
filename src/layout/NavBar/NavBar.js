@@ -61,22 +61,15 @@ const navigate = useNavigate();
 
 
   const handleScrollToAbout = () => {
-    setMenuOpen(false);
-    if (location.pathname === "/") {
-      document.getElementById("aboutus").scrollIntoView({ behavior: "smooth" });
-    } else {
-      navigate("/");
-      setTimeout(() => {
-        document
-          .getElementById("aboutus")
-          .scrollIntoView({ behavior: "smooth" });
-      }, 1000);
-    }
+    setMenuOpen(false); // Close the menu if it's open
+  
+    // Use JavaScript to scroll to the "About Us" section smoothly
+    document.getElementById("aboutus").scrollIntoView({ behavior: "smooth" });
   };
 
 
   return (
-<header className={`${styles.header} ${visible ? "" : styles.hidden}`} style={{ backgroundColor: scrollY > 0 ? 'var(--main-color)' : '' }}>
+<header className={`${styles.header} ${visible ? "" : styles.hidden}`} style={{ backgroundColor: scrollY > 0 ? 'var(--bcg--top)' : '' }}>
       <nav className={styles.nav}>
         <div className={styles.logoContainer}>
           <Link className={styles.logo} to={"/"}>
@@ -144,13 +137,13 @@ const navigate = useNavigate();
           </li>
 
           <li className={styles.li}>
-            <NavLink
-              to={location.pathname === "/" ? "#" : "/"}
-              className={styles.link}
-              onClick={() => handleScrollToAbout()}
-            >
-              About Us{" "}
-            </NavLink>
+          <NavLink
+  to={location.pathname === "/" ? "#" : "/"}
+  className={styles.link}
+  onClick={handleScrollToAbout} // Call handleScrollToAbout when clicked
+>
+  About Us
+</NavLink>
           </li>
         </ul>
         <div className={styles.containBtn} >
@@ -175,7 +168,7 @@ const navigate = useNavigate();
             )}
           </button>
           {user ? (<Link  to="./userP" style={{backgroundColor:"transparent"}} >
-      <FaUser  style={{ color: 'var(--grays-color)' ,backgroundColor:"transparent",fontSize: "24px"}} />
+      <FaUser  style={{ color: 'white' ,backgroundColor:"transparent",fontSize: "24px"}} />
       {/* Add text if needed */}
       {/* <span>Profile</span> */}
     </Link> ):("")}

@@ -131,16 +131,14 @@ const data = [
 ];
 function QuestionAndAnswer() {
   const [displayedAnswers, setDisplayedAnswers] = useState({});
-  const [upArrowVisible, setUpArrowVisible] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   const toggleAnswer = (id) => {
     setDisplayedAnswers((prevState) => ({
-      ...prevState,
-      [id]: !prevState[id],
+      ...Object.fromEntries(Object.keys(prevState).map(key => [key, false])), // Close all other answers
+      [id]: !prevState[id], // Toggle the current answer
     }));
-    setUpArrowVisible(!upArrowVisible);
-    setSelectedQuestion(id);
+    setSelectedQuestion(prevState => prevState === id ? null : id); // Toggle selected question
   };
 
   return (
@@ -152,12 +150,7 @@ function QuestionAndAnswer() {
             {displayedAnswers[item.id] ? (
               <BsCaretUpFill
                 onClick={() => toggleAnswer(item.id)}
-                style={{
-                  width: "24px",
-                  height: "24px",
-                  cursor: "pointer",
-                  display: upArrowVisible ? "block" : "none",
-                }}
+                style={{ width: "24px", height: "24px", cursor: "pointer" }}
               />
             ) : (
               <BsCaretDownFill
@@ -172,11 +165,6 @@ function QuestionAndAnswer() {
             }`}
           >
             <p>{item.answer}</p>
-            {selectedQuestion === item.id && (
-              <div className={style.slug}>
-                <p>{item.benefit}</p>
-              </div>
-            )}
           </div>
         </div>
       ))}

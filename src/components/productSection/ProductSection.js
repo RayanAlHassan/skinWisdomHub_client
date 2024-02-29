@@ -42,7 +42,9 @@ const ProductSection = () => {
     infinite: true,
     arrows: true ,
     autoplaySpeed: 2500,
+    autoplay:true,
     pauseOnHover: true,
+    
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [

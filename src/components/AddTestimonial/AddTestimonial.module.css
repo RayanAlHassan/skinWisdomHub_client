@@ -57,10 +57,6 @@
   background-color: transparent;
   font-size: 16px;
 }
-.options{
-  color: #472042;
-  background-color: transparent;
-}
 .inputFieldd {
   width: 100%;
   padding: 10px;
@@ -68,7 +64,6 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   color: white;
-  background-color: transparent;
   background-color: transparent;
   font-size: 16px;
 }

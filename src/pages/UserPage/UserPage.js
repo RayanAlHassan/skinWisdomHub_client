@@ -10,12 +10,14 @@ import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import pfUser from "../../assets/images/pexels-polina-kovaleva-6543263.jpg";
-import { FaUser, FaEnvelope } from 'react-icons/fa';
+import { FaComment, FaEnvelope } from 'react-icons/fa';
 import AddPost from "../../components/AddPost/AddPost";
+import AddTestimonial from "../../components/AddTestimonial/AddTestimonial";
 
 
 function UserPage() {
   const [addPostVisible, setAddPostVisible] = useState(false); // State variable to manage the visibility of AddPost
+  const [addTestimonialVisible, setAddTestimonialVisible] = useState(false); // State variable to manage the visibility of AddTestimonial
 
   const [comments, setComments] = useState([]);
   const { user } = useContext(AuthContext);
@@ -59,6 +61,9 @@ function UserPage() {
   }, [ user && user._id]);
   const toggleAddPost = () => {
     setAddPostVisible(!addPostVisible);
+  };
+  const toggleAddTestimonial = () => {
+    setAddTestimonialVisible(!addTestimonialVisible);
   };
   const filteredReviews = reviews.filter(
     (review) =>
@@ -142,20 +147,7 @@ function UserPage() {
       console.error("Error updating rating:", error);
     }
   };
-  const handleChange = (value, id) => {
-    setReviews(
-      reviews.map((review) => {
-        if (review._id === id) {
-          return {
-            ...review,
-            selectedRating: value,
-          };
-        }
-        return review;
-      })
-    );
-    handleSubmit(value, id);
-  };
+
   const handleAddComment = async () => {
     try {
       const response = await axios.post(
@@ -178,11 +170,13 @@ function UserPage() {
   return (
     <section className={style.container}>
       <div className={style.top}> 
-      
-        <img
+      <div className={style.containImg}>
+      <img
           src={`http://localhost:5000/images/${user?.image}`}
           className={style.pfImg}
         />
+      </div>
+       
         {/* {console.log(`http://localhost:5000/${user?.image}`)} */}
       </div>
       <div className={style.center}>
@@ -198,9 +192,11 @@ function UserPage() {
       
       <button className={style.btn2} onClick={toggleAddPost}>Add Post</button>
       {addPostVisible && <AddPost setAddPost={setAddPostVisible} />} {/* Render AddPost conditionally */}
-             <button className={style.btn2}>Add Testimonials</button>
-          </div>
 
+      <button className={style.btn2} onClick={toggleAddTestimonial}>Add Testimonial</button>
+             
+          </div>
+          {addTestimonialVisible && <AddTestimonial setAddTestimonial={setAddTestimonialVisible} />} {/* Render AddTestimonial conditionally */}
         </div>
         <div className={style.right}>
          
@@ -233,14 +229,21 @@ function UserPage() {
                       <p className={style.time}>
                         {formatTimeSince(rev.createdAt)}
                       </p>
-                      {console.log("recc",rev.subCategoryID.name)}
+                      {console.log("subCategory name",rev.subCategoryID.name)}
                     </div>
                   </div>
                   <div className={style.topCenter}>
-                    <p className={style.productName}>{rev.productName}</p>
-                    <p className={style.subCategory}>{rev.subCategoryID.name}</p>
+              <p
+                className={style.productName}
+                // style={{ fontWeight: "900", fontSize: "22px" }}
+              >
+                {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
+                {rev.subCategoryID.name}
+             
+              </p>
+              <p className={style.subCategory}>   {rev.productName}</p>
 
-                  </div>
+            </div>
                 </div>
                 <div className={style.centerPost}>
                   <p className={style.skinType}>{rev.skinType}</p>
@@ -253,33 +256,18 @@ function UserPage() {
                   />
                 </div>
                 <div className={style.rating}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
-                    {/* <Rating
-                  name={`simple-controlled-${rev._id}`}
-                  value={rev.selectedRating}
-                  onChange={(e, value) => handleChange(value, rev._id)}
-                  max={5}
-                  precision={1}
-                />
-                <span>{rev.selectedRating}</span> */}
-                  </Box>
-                  <span style={{ display: "flex", alignItems: "center" }}>
+            
+                  <span style={{ display: "flex", alignItems: "center" ,height:"fitContent"}}>
                     <span style={{ fontWeight: "900", fontSize: "20px" }}>
                       ( {Math.round(rev.rate * 100) / 100} )
                     </span>
-                    <StarIcon style={{ color: "yellow" }} /> 
+                    <StarIcon style={{ color: "yellow" , fontSize:"20px" }} />
                   </span>
                   <button
                     className={style.commentButton}
                     onClick={() => handleOpenModal(rev._id)}
                   >
-                    View Comments
+                    <FaComment color="var(--Font-color)"/>
                   </button>
                 </div>
               </div>

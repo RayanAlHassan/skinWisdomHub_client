@@ -77,10 +77,17 @@
 .ingredients li {
   list-style-type: none;
 }
-
-
-
-
+/* nput, textarea {
+  width: 16%;
+  padding: 1%;
+  top: 15%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: absolute; */
+.skinType{
+  font-size: 18px;
+  color: var(--bcg--top);
+}
 .hoverDetails {
   opacity: 0;
   position: absolute;
@@ -89,8 +96,9 @@
     height: 100%;
     gap: 5%;
     top: 0;
+    backdrop-filter: blur(8px);
     padding: 20px;
-    background-color: rgba(0, 0, 0, 90%);
+    background-color:var(--bcg--top);
     color:white;
     border-radius: 0px;
     /* transition: opacity 0.5s ease-in-outn; */

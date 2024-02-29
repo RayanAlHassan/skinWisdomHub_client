@@ -195,9 +195,9 @@ const AddPost = ({ setAddPost, fetchData }) => {
               className={Styles.inputFieldd}
               required
             >
-              <option value="">Select Category.</option>
+              <option className={Styles.options} value="">Select Category.</option>
               {categories && categories.map((category) => (
-            <option key={category._id} value={category._id}>
+            <option  className={Styles.options} key={category._id} value={category._id}>
               {category.name}
             </option>
           ))}
@@ -210,10 +210,10 @@ const AddPost = ({ setAddPost, fetchData }) => {
               className={Styles.inputFieldd}
               required
             >
-              <option value="">Select subCategory...</option>
+              <option  className={Styles.options} value="">Select subCategory...</option>
               {subCategories &&
             subCategories.map((subCategory) => (
-              <option key={subCategory._id} value={subCategory._id}>
+              <option className={Styles.options} key={subCategory._id} value={subCategory._id}>
                 {subCategory.name}
               </option>
             ))}
@@ -237,10 +237,10 @@ const AddPost = ({ setAddPost, fetchData }) => {
               value={skinTypes || ""}
               onChange={handleChange}
             >
-              <option value="">Select Skin Type</option>
+              <option className={Styles.options} value="">Select Skin Type</option>
               {skinTypes.map((type, key) => (
-                <option key={key} value={type}>
-                  {type}
+                <option key={key} value={type}  className={Styles.options}>
+                  {type} 
                 </option>
               ))}
             </select>

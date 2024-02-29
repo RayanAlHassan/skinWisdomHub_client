@@ -4,7 +4,7 @@ import style from "./AboutUs.module.css"; // Import the CSS module
 // import trust from "../../assets/images/"
 function AboutUs() {
   return (
-    <section className={style.all}>
+    <section id="aboutus" className={style.all}>
    
     <h1 className={style.header}>About Us</h1> {/* Apply the 'header' class */}
 

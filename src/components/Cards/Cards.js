@@ -234,11 +234,11 @@ if (searchQuery) {
               />
               <div className={styles.details}>
                 <p className={styles.brand}>{item.name}</p>
-                <p className={styles.skinType}>Skin Type: {item.skinType}</p>
+                <p className={styles.skinType}> {item.skinType}</p>
               </div>
             </div>
             <div className={styles.hoverDetails}>
-              desc: <span className={styles.desc}>{item.description}</span>
+             <span className={styles.desc}>{item.description}</span>
             </div>
           </div>
         ))

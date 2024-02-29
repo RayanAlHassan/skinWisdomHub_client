@@ -10,7 +10,17 @@
   width: 100%;
   position: relative;
   z-index: 4;
-  background:linear-gradient(to right red purple);
+  background-color: var(--bcg--top);
+  /* background:linear-gradient(to right red purple); */
+}
+.heroBackgrd {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(163 92 153 / 51%); 
 }
 .img {
   object-fit: cover;
@@ -56,7 +66,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  width: 50%;
+  width: 40%;
   height: 100%;
   justify-content: flex-start;
 }
@@ -64,7 +74,7 @@
   padding: 1rem;
   display: flex;
   height: 100%;
-  width: 50%;
+  width: 60%;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -102,16 +112,24 @@
   color: var(--grays-color);
   display: flex;
   position: relative;
+  gap: 1rem;
+  margin-left: 3rem;
+  height: fit-content;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
 }
 .desc {
-  width: 100%;
-  max-height: 10rem;
+  
+  width: 90%;
+  max-height: 3rem;
   color: var(--grays-color);
-  /* padding: 1rem; */
-  margin-left: 1.3rem;
-}
+  overflow-y: scroll;
+  padding: 12px;
+  margin: 0 auto 1rem auto;}
+ 
 .name {
   font-weight: 500;
   font-size: 18px;
@@ -121,15 +139,18 @@
 
 }
 .productName{
-  position: absolute;
-  right: 0;
-  color: white;
-  height: 3rem;
-  max-width: fit-content;
-  border-bottom-left-radius: 18px;
-  padding: 12px 7px 10px 7px;
-  font-size: 18px;
-  background-color: rgb(22, 129, 129);
+
+    position: absolute;
+    right: 0;
+    color: white;
+    text-align: center;
+    max-width: 50%;
+    min-width: 7rem;
+    border-bottom-left-radius: 18px;
+    padding: 12px 7px 10px 7px;
+    font-size: 18px;
+    background-color: var(--Font-color);
+
 
 }
 .modalBackdrop {
@@ -181,7 +202,7 @@
 }
 .commentTextArea {
   height: 16%;
-  width: 88%;
+  width: 87%;
   margin: 1rem 3rem;
 }
 .submitButton {
@@ -189,31 +210,60 @@
   bottom: 0rem;
   left: 3rem;
   cursor: pointer;
-  color: var(--grays-color);
-
   color: white;
-  background-color: #ff758d;
-}
-.skinType{
-  margin-top: 1rem;
-  margin-left: 1.3rem;
-  margin-bottom: 1rem;
+  background-color: var(--Font-color);
 
+  /* background-color: rgb(232, 225, 225); */
+  border-radius: 0;
+  height: 3rem;
+  transition: all 0.3s ease;
+  border: none;
+  margin: 14px;
+  font-size: 18px;
+  padding: 11px;
+  width: 11rem;
+}
+.skinType {
+  margin-top: 1rem;
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  color: var(--Font-color);
+  font-size: 18px;
+}
+.submitButton:hover{
+  box-shadow: 0 0 8px var(--grays-color);
+  background-color: transparent;
+  color: var(--Font-color);
 }
 .closee {
   position: absolute;
   top: -0.5rem;
-  color: #ff758d;
+  /* color: #ff758d; */
   right: 1rem;
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 600;
+  font-weight: 400;
   background-color: transparent;
   z-index: 1000;
+  background-color: var(--Font-color);
+  color: white;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  margin: 14px;
+  font-size: 14px;
+  padding: 6px;
+}
+.closee:hover{
+  box-shadow: 0 0 8px var(--grays-color);
+  background-color: transparent;
+  color: var(--Font-color);
 }
 .titleCmnt {
   position: absolute;
   top: 0.5rem;
-  color: #ff758d;
+  color: var(--Font-color);
   left: 3rem;
   cursor: pointer;
   font-weight: 800;
@@ -222,19 +272,18 @@
 }
 .commentButton {
   cursor: pointer;
-
   /* position: absolute; */
   bottom: 0rem;
   /* right: 100%; */
-  height: 3rem;
-  width: 12rem;
-  font-size: 17px;
+  border: none;
+  height: 1rem;
+  width: 2rem;
+  font-size: 20px;
   /* font-size: 12px; */
+  margin-right: 5%;
   color: white;
-
   /* background-color: var(--main-color); */
-  background-color: rgb(32, 117, 114);
-  border-radius: 20px;
+  background-color: transparent;
 }
 .searchbar {
   width: 18%;
@@ -248,4 +297,18 @@
   bottom: 3px;
   right: 25%;
   font-size: 18px;
+}
+.subCategory {
+  font-size: 28px;
+  font-family: 500;
+  font-weight: 600;
+  color: rgb(142 135 65);
+}
+.rateStuff{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
 }

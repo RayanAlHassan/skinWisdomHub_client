@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import image from "../../assets/images/top.jpg";
@@ -12,6 +11,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import { FaComment } from 'react-icons/fa';
+import { Divide } from "hamburger-react";
+
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const { user } = useContext(AuthContext);
@@ -35,7 +37,7 @@ function Reviews() {
               selectedRating: 0,
             }))
           );
-          console.log("reviews",reviewsResponse.data)
+          console.log("reviews", reviewsResponse.data);
           setComments(commentsResponse.data);
         }
       } catch (error) {
@@ -45,7 +47,7 @@ function Reviews() {
 
     fetchData();
   }, []);
-  console.log("reviewsss",reviews)
+  console.log("reviewsss", reviews);
 
   const handleSubmit = async (value, id) => {
     try {
@@ -67,7 +69,7 @@ function Reviews() {
             return review;
           })
         );
-        
+
         // Fetch and update average rating
         const averageRating = await fetchAverageRating(id);
         if (averageRating !== undefined) {
@@ -89,31 +91,6 @@ function Reviews() {
     }
   };
 
-  // const handleSubmit = async (value, id) => {
-  //   try {
-  //     const response = await axios.post("http://localhost:5000/rate/create", {
-  //       reviewID: id,
-  //       value: value,
-  //       userID: user._id,
-  //     });
-  //     if (response) {
-  //       console.log("Response:", response.data);
-  //       setReviews(
-  //         reviews.map((review) => {
-  //           if (review._id === id) {
-  //             return {
-  //               ...review,
-  //               rate: response.data.rate,
-  //             };
-  //           }
-  //           return review;
-  //         })
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.error("Error updating rating:", error);
-  //   }
-  // };
 
   const handleChange = (value, id) => {
     setReviews(
@@ -190,7 +167,9 @@ function Reviews() {
   }
   const fetchAverageRating = async (reviewId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/reviews/${reviewId}/averageRating`);
+      const response = await axios.get(
+        `http://localhost:5000/reviews/${reviewId}/averageRating`
+      );
       if (response) {
         return response.data.averageRating;
       }
@@ -204,6 +183,8 @@ function Reviews() {
       {/* Background Image */}
       <div className={style.top}>
         <img src={image} className={style.img} alt="background" />
+        <div className={style.heroBackgrd}></div>
+
         <input
           type="text"
           placeholder="Search For Products Name Or Skin Type"
@@ -213,7 +194,6 @@ function Reviews() {
         />
       </div>
 
-
       {/* Posts */}
       {filteredReviews.map((rev) => (
         <div key={rev._id} className={style.post}>
@@ -222,12 +202,10 @@ function Reviews() {
               {rev.userID.image ? (
                 <img
                   src={`http://localhost:5000/images/${rev.userID.image}`}
-
                   className={style.profileUser}
                   alt="profile user"
                 />
-
-            ) : (
+              ) : (
                 <img
                   src={image}
                   className={style.profileUser}
@@ -244,15 +222,16 @@ function Reviews() {
                 className={style.productName}
                 // style={{ fontWeight: "900", fontSize: "22px" }}
               >
-                                {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
-
-                {rev.productName}
+                {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
+                {rev.subCategoryID.name}
+             
               </p>
+              <p className={style.subCategory}>   {rev.productName}</p>
+
             </div>
           </div>
           <div className={style.center}>
-
-          <p className={style.skinType}>{rev.skinType}</p>
+            <p className={style.skinType}>{rev.skinType}</p>
             <p className={style.desc}>{rev.description}</p>
 
             <img
@@ -262,6 +241,7 @@ function Reviews() {
             />
           </div>
           <div className={style.rating}>
+            <div className={style.rateStuff}>
             <Box
               sx={{
                 display: "flex",
@@ -279,16 +259,18 @@ function Reviews() {
               <span>{rev.selectedRating}</span>
             </Box>
             <span style={{ display: "flex", alignItems: "center" }}>
-              <span style={{ fontWeight: "900", fontSize: "20px" }}>
+              <span style={{ fontWeight: "400", fontSize: "20px" }}>
                 ( {Math.round(rev.rate * 100) / 100} )
               </span>
-              <StarIcon style={{ color: "yellow" }} /> 
+              <StarIcon style={{ color: "yellow" , fontSize:"20px" }} />
             </span>
+            </div>
+           
             <button
               className={style.commentButton}
               onClick={() => handleOpenModal(rev._id)}
             >
-              View Comments
+                    <FaComment color="var(--Font-color)"/>
             </button>
           </div>
         </div>
@@ -308,21 +290,19 @@ function Reviews() {
                   .map((comment) => (
                     <Card key={comment._id} className={style.commentCard}>
                       <CardContent>
-                      {console.log("comments img", comment.userID.image)}
+                        {console.log("comments img", comment.userID.image)}
 
-                      {/* <p>{comment.USERid}</p> */}
-                      <div className={style.userComented}>
-                      <img
-              src={`http://localhost:5000/images/${comment.userID.image}`}
-              className={style.imgComment}
-              alt="rev"
-            />
-                      <p>{comment.userID.name}</p>
-                      </div>
-                     
+                        {/* <p>{comment.USERid}</p> */}
+                        <div className={style.userComented}>
+                          <img
+                            src={`http://localhost:5000/images/${comment.userID.image}`}
+                            className={style.imgComment}
+                            alt="rev"
+                          />
+                          <p>{comment.userID.name}</p>
+                        </div>
 
                         <p>{comment.feedback}</p>
-
                       </CardContent>
                     </Card>
                   ))}

@@ -30,7 +30,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(171, 185, 209, 0.507); 
+  background: rgb(163 92 153 / 51%); 
 }
 .filterIcon {
   cursor: pointer;

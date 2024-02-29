@@ -11,7 +11,15 @@
   position: relative;
   height: 18rem;
 }
-
+.heroBackgrd {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(163 92 153 / 51%); 
+}
 .bottom {
   display: flex;
   height: 100%;
