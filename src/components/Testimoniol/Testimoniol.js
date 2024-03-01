@@ -11,6 +11,7 @@ function Testimoniol() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${process.env.APP_BACKEND}testimoniol/`);
+        
         if (!response.data) {
           throw new Error("Failed to fetch testimoniol");
         }
