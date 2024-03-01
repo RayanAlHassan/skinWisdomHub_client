@@ -31,7 +31,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
   }, []);
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/category/getall`);
+      const response = await axios.get(`${process.env.REACT_APP_PATH}category/getall`);
       console.log("Response data:", response.data); // Add this line for debugging
       if (response && Array.isArray(response.data.categories)) {
         setCategories(response.data.categories);
@@ -58,7 +58,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
   const fetchSubCategories = async (id) => {
     try {
       let res = await axios.get(
-        `http://localhost:5000/subCategory/getsubbycategory/${id}`
+        `${process.env.REACT_APP_PATH}subCategory/getsubbycategory/${id}`
       );
       setSubCategories(res.data.subCategories);
     } catch (error) {
@@ -98,7 +98,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
       formDataToSend.append("userID", formData.userId);
 
       const response = await axios.post(
-        "http://localhost:5000/reviews",
+        `${process.env.REACT_APP_PATH}reviews`,
         formDataToSend, {
           headers: { "Content-Type": "multipart/form-data" },
 

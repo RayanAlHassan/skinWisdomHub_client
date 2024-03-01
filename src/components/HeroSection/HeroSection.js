@@ -10,9 +10,7 @@ function HeroSection() {
 
   return (
     <section className={style.container}>
-      {/* <div className={style.left}>
-        <img className={style.mainImg} src={main} alt="main" />
-      </div> */}
+  
       <div className={style.right}>
         <div className={style.div}>
           <h1 className={style.header}>
@@ -33,7 +31,6 @@ function HeroSection() {
            
           </p>
         </div>
-        {/* <img className={style.cremImg} src={crem} alt="main" /> */}
       </div>
     </section>
   );

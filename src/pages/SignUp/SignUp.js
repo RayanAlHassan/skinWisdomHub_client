@@ -262,7 +262,7 @@ const SignUpForm = () => {
       try {
         setLoading(true);
         const addUser = await axios.post(
-          "http://localhost:5000/user/create",
+          `${process.env.REACT_APP_PATH}user/create`,
           formDataToSubmit,
           {
             headers: {

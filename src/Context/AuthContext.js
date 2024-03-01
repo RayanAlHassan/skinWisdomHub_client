@@ -132,7 +132,7 @@ export const AuthProvider = ({ children }) => {
     
     try {
       setCheckUser(true)
-      const response = await axios.get(`http://localhost:5000/user/loggedIn`,
+      const response = await axios.get(`${process.env.REACT_APP_PATH}user/loggedIn`,
       {withCredentials:true}
       )
       setUser(response.data.user)
@@ -151,7 +151,7 @@ export const AuthProvider = ({ children }) => {
     try{
 
   
-          await axiosInstance.post("http://localhost:5000/user/logout");
+          await axiosInstance.post(`${process.env.REACT_APP_PATH}user/logout`);
     setUser(null);
       } catch (error) {
       console.error("Error logging out:", error);

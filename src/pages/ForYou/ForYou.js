@@ -23,7 +23,7 @@ function ForYou() {
   console.log("data",filteredData)
   const handleSearch = async (filterState) => {
     try {
-        const response = await axios.post("http://localhost:5000/product/read/products",filterState);
+        const response = await axios.post(`${process.env.REACT_APP_PATH}product/read/products`,filterState);
         // onFilterChange(response.data);
         setFilteredData(response.data)
         console.log("result filter",filteredData)

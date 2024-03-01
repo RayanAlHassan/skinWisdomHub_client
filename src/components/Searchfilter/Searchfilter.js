@@ -1,147 +1,4 @@
-// import React, { useState, useEffect } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import Styles from '../Searchfilter/Searchfilter.module.css';
-// import { motion } from "framer-motion"
-// import magnifire from "../../assets/icons/magnifire.png"
-// import { FaFilter, FaSearch, FaSlidersH, FaTags } from "react-icons/fa";
 
-// const Searchfilter = () => {
-//     const navigate = useNavigate();
-
-//     const [brands, setProduct] = useState([]);
-//     const [models, setModels] = useState([]);
-//     const [years, setYears] = useState([]);
-//     const [filterState, setFilterState] = useState({});
-
-//     const handleChange = (e) => {
-//         if (e.target.name === "brand") {
-//             fetchModels(e.target.value)
-//         }
-//         if (e.target.name === "model") {
-//             fetchYears(e.target.value)
-//         }
-//         setFilterState((prev) => ({
-//             ...prev,
-//             [e.target.name]: e.target.value
-//         }))
-
-//     }
-
-//     useEffect(() => {
-//         fetchProductt();
-//     }, []);
-
-//     const fetchProductt = async () => {
-//         try {
-//             const response = await axios.get(`${process.env.APP_BACKEND}/product/products`);
-//             setProduct(response.data);
-//         } catch (error) {
-//             console.error('Error fetching brands:', error);
-//         }
-//     };
-
-//     const fetchModels = async (brandId) => {
-//         try {
-//             const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/model/byBrand/${brandId}`);
-//             setModels(response.data);
-//         } catch (error) {
-//             console.error('Error fetching models:', error);
-//         }
-//     };
-
-//     const fetchYears = async (modelId) => {
-//         try {
-//             const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/year/byModel/${modelId}`);
-//             setYears(response.data);
-//         } catch (error) {
-//             console.error('Error fetching years:', error);
-//         }
-//     };
-
-//     const handleSearch = () => {
-//         navigate('/product', { state: { filterState } })
-//     };
-
-//     return (
-//         <motion.div className={Styles.container}>
-//           <motion.div initial={{ opacity: 0.5, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-//                 <select
-//                     className={Styles.input}
-//                     id="brandSelect"
-//                     name="brand"
-//                     value={filterState.model && filterState.brand.brand}
-//                     onChange={handleChange}
-//                 >
-//                     <option className={Styles.option} value=''>Select category</option>
-//                     {brands.map((brand) => (
-//                         <option key={brand._id} value={brand._id}>
-//                             {brand.brand}
-//                         </option>
-//                     ))}
-//                 </select>
-//             </motion.div>
-//             <motion.div initial={{ opacity: 0.5, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}>
-//                 <select
-//                     className={Styles.input}
-//                     id="modukeSelect"
-//                     name="model"
-//                     value={filterState.model && filterState.model.name}
-//                     onChange={handleChange}
-//                 >
-//                     <option className={Styles.option} value=''>Select Product(sub)</option>
-//                     {models.map((model) => (
-//                         <option key={model._id} value={model._id}>
-//                             {model.name}
-//                         </option>
-//                     ))}
-//                 </select>
-//             </motion.div>
-//           {/* </div> */}
-
-//           {/* <div className={Styles.flexing}> */}
-//             <motion.div initial={{ opacity: 0.5, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} >
-//                 <select
-//                     className={Styles.input}
-//                     id="brandSelect"
-//                     name="brand"
-//                     value={filterState.model && filterState.brand.brand}
-//                     onChange={handleChange}
-//                 >
-//                     <option className={Styles.option} value=''>Type Of skin</option>
-//                     {brands.map((brand) => (
-//                         <option key={brand._id} value={brand._id}>
-//                             {brand.brand}
-//                         </option>
-//                     ))}
-//                 </select>
-//             </motion.div>
-//             <motion.div initial={{ opacity: 0.5, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} >
-//                 <select
-//                     className={Styles.input}
-//                     id="brandSelect"
-//                     name="brand"
-//                     value={filterState.model && filterState.brand.brand}
-//                     onChange={handleChange}
-//                 >
-//                     <option className={Styles.option} value=''>Ingrediants</option>
-//                     {brands.map((brand) => (
-//                         <option key={brand._id} value={brand._id}>
-//                             {brand.brand}
-//                         </option>
-//                     ))}
-//                 </select>
-//             </motion.div>
-
-//             <motion.button className={`${Styles.btn} ${Styles.hoverEffect}`} onClick={handleSearch} initial={{ opacity: 0.7, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-//   <FaSlidersH className={`${Styles.filterIcon} ${Styles.hoverEffect}`} />
-// </motion.button>
-
-//         </motion.div>
-//     );
-// };
-
-// export default Searchfilter;
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -174,7 +31,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
 
   const fetchSkinTypes = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/product/getall");
+      const response = await axios.get(`${process.env.APP_BACKEND}product/getall`);
       if (!response.data) {
         throw new Error("Failed to fetch products");
       }
@@ -202,7 +59,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/category/getall");
+      const response = await axios.get(`${process.env.APP_BACKEND}category/getall`);
       if (!response.data) {
         throw new Error("Failed to fetch category");
       }
@@ -217,7 +74,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
   const fetchSubCategories = async (id) => {
     try {
       let res = await axios.get(
-        `http://localhost:5000/subCategory/getsubbycategory/${id}`
+        `${process.env.APP_BACKEND}subCategory/getsubbycategory/${id}`
       );
       setSubCategories(res.data.subCategories);
     } catch (error) {
@@ -235,15 +92,6 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
     console.log("SELECTED", filterState);
   };
 
-  // const handleSearch = async () => {
-  //     try {
-  //         const response = await axios.post("http://localhost:5000/product/read/products",filterState);
-  //         onFilterChange(response.data);
-  //         console.log("result filter",response.data)
-  //     } catch (error) {
-  //         console.error('Error fetching products:', error);
-  //     }
-  // };
 
   const resetFilter = () => {
     setFilterState({});

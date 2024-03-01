@@ -10,7 +10,7 @@ function Testimoniol() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/testimoniol/");
+        const response = await axios.get(`${process.env.APP_BACKEND}testimoniol/`);
         if (!response.data) {
           throw new Error("Failed to fetch testimoniol");
         }

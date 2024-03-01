@@ -24,7 +24,7 @@ const AddTestimonial = ({ setAddTestimonial, fetchData }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/testimoniol/create",
+        `${process.env.REACT_APP_PATH}testimoniol/create`,
         formData
       );
 

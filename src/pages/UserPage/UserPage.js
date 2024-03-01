@@ -40,8 +40,8 @@ function UserPage() {
     async function fetchData() {
       try {
         const [reviewsResponse, commentsResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/reviews/byuser/${user._id}`),
-          axios.get("http://localhost:5000/comments/"),
+          axios.get(`${process.env.REACT_APP_PATH}reviews/byuser/${user._id}`),
+          axios.get(`${process.env.REACT_APP_PATH}comments/`),
         ]);
         if (reviewsResponse && commentsResponse) {
           setReviews(
@@ -96,7 +96,7 @@ function UserPage() {
   const fetchAverageRating = async (reviewId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/reviews/${reviewId}/averageRating`
+        `${process.env.REACT_APP_PATH}reviews/${reviewId}/averageRating`
       );
       if (response) {
         return response.data.averageRating;
@@ -107,7 +107,7 @@ function UserPage() {
   };
   const handleSubmit = async (value, id) => {
     try {
-      const response = await axios.post("http://localhost:5000/rate/create", {
+      const response = await axios.post(`${process.env.REACT_APP_PATH}rate/create`, {
         reviewID: id,
         value: value,
         userID: user._id,
@@ -151,7 +151,7 @@ function UserPage() {
   const handleAddComment = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/comments/create",
+        `${process.env.REACT_APP_PATH}comments/create`,
         {
           reviewID: selectedReviewId,
           feedback: newComment,
@@ -172,7 +172,7 @@ function UserPage() {
       <div className={style.top}> 
       <div className={style.containImg}>
       <img
-          src={`http://localhost:5000/images/${user?.image}`}
+          src={`${process.env.REACT_APP_PATH}images/${user?.image}`}
           className={style.pfImg}
         />
       </div>
@@ -213,7 +213,7 @@ function UserPage() {
                   <div className={style.topLeft}>
                     {rev.userID.image ? (
                       <img
-                        src={`http://localhost:5000/images/${rev.userID.image}`}
+                        src={`${process.env.REACT_APP_PATH}images/${rev.userID.image}`}
                         className={style.profileUser}
                         alt="profile user"
                       />
@@ -250,7 +250,7 @@ function UserPage() {
                   <p className={style.desc}>{rev.description}</p>
 
                   <img
-                    src={`http://localhost:5000/images/${rev.image}`}
+                    src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
                     className={style.posttt}
                     alt="rev"
                   />
@@ -290,7 +290,7 @@ function UserPage() {
                               {/* <p>{comment.userID}</p> */}
                               <div className={style.userComented}>
                                 <img
-                                  src={`http://localhost:5000/images/${comment.userID.image}`}
+                                  src={`${process.env.REACT_APP_PATH}images/${comment.userID.image}`}
                                   className={style.imgComment}
                                   alt="rev"
                                 />
