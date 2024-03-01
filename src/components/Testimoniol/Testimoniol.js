@@ -11,17 +11,17 @@ function Testimoniol() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${process.env.APP_BACKEND}testimoniol/`);
-        console.log("sssssssssssssssssssssssssssssss",response.data)
-        
-        if (!response.data) {
-          throw new Error("Failed to fetch testimoniol");
-        }
+      
+    if (!Array.isArray(response.data)) {
+      throw new Error("Testimonial data is not an array");
+    }
         
         // Filter testimonials with status "pending"
         const pendingTestimonials = response.data.filter(testimonial => testimonial.status === "pending");
 
         setTestimoniolData(pendingTestimonials);
         setIsLoadingTestimoniol(false);
+        console.log("testt",testimoniolData)
       } catch (error) {
         console.error(error);
         setIsLoadingTestimoniol(false);
