@@ -202,13 +202,13 @@ function UserPage() {
           </p>{" "}
           {/* Display only the date */}
           <div className={style.btns}>
-            <Button text={"  Add Post"}  onClick={toggleAddPost}>
+            <Button text={"+ Post"}  onClick={toggleAddPost}>
             
             </Button>
             {addPostVisible && <AddPost setAddPost={setAddPostVisible} />}{" "}
             {/* Render AddPost conditionally */}
             {/* <button className={style.btn2} onClick={toggleAddTestimonial}>Add Testimonial</button> */}
-            <Button text={"Add Testimoniol"} onClick={toggleAddTestimonial} />
+            <Button text={"+ Testimoniol"} onClick={toggleAddTestimonial} />
           </div>
           {addTestimonialVisible && (
             <AddTestimonial setAddTestimonial={setAddTestimonialVisible} />

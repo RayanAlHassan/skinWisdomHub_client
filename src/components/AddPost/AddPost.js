@@ -13,11 +13,11 @@ const AddPost = ({ setAddPost, fetchData }) => {
   const [formData, setFormData] = useState({
     productName: "",
     description: "",
-    image: "",
+    image: null,
     userId: user && user._id,
-    categoryID: "",
-    subCategoryID: "",
-    skinType: "",
+    categoryID: null,
+    subCategoryID: null,
+    skinType: null,
   });
   console.log(user);
   ////////////////////////////////////////////
@@ -102,8 +102,8 @@ const AddPost = ({ setAddPost, fetchData }) => {
       console.log("data to send",formDataToSend)
 
       const response = await axios.post(
-        `${process.env.REACT_APP_PATH}reviews`,
-        formData, {
+        `${process.env.REACT_APP_PATH}reviews/`,
+        formDataToSend, {
           headers: { "Content-Type": "multipart/form-data" },
 
         }
@@ -114,11 +114,11 @@ const AddPost = ({ setAddPost, fetchData }) => {
       setFormData({
         productName: "",
         description: "",
-        image: "",
+        image:null,
         userId: user && user._id,
-        categoryID: "",
-        subCategoryID: "",
-        skinType: "",
+        categoryID: null,
+        subCategoryID: null,
+        skinType: null,
       });
       setAddPost(false);
     } catch (error) {
@@ -145,6 +145,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
               onChange={handleChange}
               className={Styles.inputField}
               required
+              maxLength={450}
             />
           </div>
 

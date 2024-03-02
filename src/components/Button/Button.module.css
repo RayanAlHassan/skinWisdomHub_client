@@ -28,15 +28,15 @@
 
 }
 
-
-/* .btn {
-    background-color: rgb(232, 225, 225);
-    color: black;
-    border-radius: 0;
-    height: 3rem;
-    transition: all 0.3s ease;
+@media (max-width:1400px) {
+  .btnStyle{
+    font-size: 18px;
   }
-  .btn2:hover {
-    box-shadow: 0 0 10px black;
-    background-color: transparent;
-  } */
+}
+
+@media (max-width:280px) {
+  .btnStyle{
+    
+    font-size: 12px;
+  }
+}

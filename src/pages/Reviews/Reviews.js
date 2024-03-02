@@ -14,6 +14,7 @@ import CardContent from "@mui/material/CardContent";
 import { FaComment } from "react-icons/fa";
 import { Divide } from "hamburger-react";
 import LoadingPage from "../../components/LoadingPage";
+import { useMediaQuery } from "@mui/material";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -23,7 +24,9 @@ function Reviews() {
   const [selectedReviewId, setSelectedReviewId] = useState(null);
   const [newComment, setNewComment] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(true); // Added loading state
+  const [isLoading, setIsLoading] = useState(true);
+  const [showMore, setShowMore] = useState(false); // Add showMore state
+  const [isResponsive, setIsResponsive] = useState(window.innerWidth <= 970);
 
   useEffect(() => {
     async function fetchData() {
@@ -50,9 +53,19 @@ function Reviews() {
     }
 
     fetchData();
+    // Add event listener for window resize
+    window.addEventListener("resize", handleWindowResize);
+
+    // Cleanup function to remove the event listener when component unmounts
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
   console.log("reviewsss", reviews);
-  console.log("reviewsss", reviews);
+
+  const handleWindowResize = () => {
+    setIsResponsive(window.innerWidth <= 970);
+  };
 
   const handleSubmit = async (value, id) => {
     try {
@@ -184,6 +197,15 @@ function Reviews() {
       console.error("Error fetching average rating:", error);
     }
   };
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
+
+  // Function to toggle description expansion
+  const toggleDescriptionExpansion = (reviewId) => {
+    setExpandedDescriptions((prevState) => ({
+      ...prevState,
+      [reviewId]: !prevState[reviewId], // Toggle the value for the review ID
+    }));
+  };
 
   return (
     <main className={style.container}>
@@ -238,18 +260,45 @@ function Reviews() {
                     {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
                     {rev.subCategoryID.name}
                   </p>
-                  <p className={style.subCategory}> {rev.productName}</p>
                 </div>
               </div>
               <div className={style.center}>
-                <p className={style.skinType}>{rev.skinType}</p>
-                <p className={style.desc}>{rev.description}</p>
+                <div className={style.lefttSide}>
+                  <img
+                    src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
+                    className={style.posttt}
+                    alt="rev"
+                  />
+                </div>
 
-                <img
-                  src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
-                  className={style.posttt}
-                  alt="rev"
-                />
+                <div
+                  className={style.righttSide}
+           
+                >
+                  <p className={style.subCategory}> {rev.productName}</p>
+
+                  <p className={style.skinType}>Skin Type: {rev.skinType}</p>
+                  <div className={style.desc}>
+                    {isResponsive
+                      ? expandedDescriptions[rev._id]
+                        ? rev.description
+                        : rev.description.slice(0, 40)
+                      : expandedDescriptions[rev._id]
+                      ? rev.description
+                      : rev.description.slice(0, 100)}
+                    {rev.description.length > (isResponsive ? 40 : 100) && (
+                      <span
+                        className={style.viewMore}
+                        onClick={() => toggleDescriptionExpansion(rev._id)}
+                      >
+                        {expandedDescriptions[rev._id]
+                          ? " View Less"
+                          : "... View More"}
+                      </span>
+                    )}
+                  </div>
+                  {/* <p className={style.desc}>{rev.description}</p> */}
+                </div>
               </div>
               <div className={style.rating}>
                 <div className={style.rateStuff}>
@@ -345,5 +394,4 @@ function Reviews() {
     </main>
   );
 }
-
 export default Reviews;

@@ -68,7 +68,7 @@
 }
 .title {
   font-size: 2rem;
-  color: var(--grays-color);
+  color: var(--Font-color);
   font-weight: bold;
   margin-bottom: 100px;
 }
@@ -91,9 +91,9 @@
 }
 .desc {
   height: 96%;
-  width: 100%;
+  width: 83%;
   display: flex;
-  margin: 0 2rem;
+  margin: 0px 2rem;
   align-content: center;
   justify-content: center;
   align-items: flex-start;

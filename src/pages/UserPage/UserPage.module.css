@@ -4,7 +4,7 @@
   background-color: white;
 }
 .top {
-  height: 18rem;
+  height: 15rem;
   width: 100%;
   /* position: relative; */
   z-index: 4;
@@ -19,7 +19,7 @@
   width: 100%;
 }
 .left {
-  width: 25%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -31,7 +31,7 @@
 }
 
 .right {
-  width: 75%;
+  width: 65%;
   /* border:1px solid red ; */
   height: 100%;
   display: flex;
@@ -57,7 +57,7 @@
 .btns {
   display: flex;
   gap: 1rem;
-  width: 150px;
+  width: 378px;
   /* flex-direction: column; */
 }
 .btn {
@@ -259,7 +259,7 @@
   padding: 11px;
   width: 11rem;
 }
-.submitButton:hover{
+.submitButton:hover {
   box-shadow: 0 0 8px var(--grays-color);
   background-color: transparent;
   color: var(--Font-color);
@@ -285,7 +285,7 @@
   font-size: 14px;
   padding: 6px;
 }
-.closee:hover{
+.closee:hover {
   box-shadow: 0 0 8px var(--grays-color);
   background-color: transparent;
   color: var(--Font-color);
@@ -363,7 +363,7 @@
   font-weight: 600;
   color: rgb(142 135 65);
 }
-.btn1 {
+/* .btn1 {
   background: none;
   display: flex;
   justify-content: center;
@@ -374,9 +374,7 @@
   cursor: pointer;
   font-weight: 600;
   position: relative;
-  /* border: 1px solid var(--font-color); */
   background-color: var(--grays-color);
-  /* background-color: transparent; */
   overflow: hidden;
   text-decoration: none;
   font-size: 1.2rem;
@@ -385,34 +383,61 @@
 .btn1:hover {
   box-shadow: 0 0 10px black;
   background-color: transparent;
-}
-.containImg{
+} */
+.containImg {
   position: absolute;
   top: -161px;
-  left: 36%; }
-    
-  
+  left: 35%;
+}
+
 /* ////////////////////////////// */
-@media (max-width:1400px) {
-  .center{
+@media (max-width: 1200px) {
+  .center {
     display: flex;
     width: 100%;
     flex-direction: column;
   }
-  .left{
+  .top{
+    height: 12rem;
+  }
+  .left {
     width: 100%;
     height: 20%;
   }
-  .right{
+  .right {
     width: 100%;
     height: 100%;
   }
-  .containerPost{
+  .containerPost {
     width: 100%;
     height: 100%;
   }
-  .containImg{
-margin: 0 auto;
-width: 100%;  }
-  
+  .containImg {
+    margin: 0 auto;
+    text-align: center;
+    width: 31%;
+  }
+  .btns {
+    gap: 1rem;
+    width: 316px;
+  }
+}
+@media (max-width: 920px) {
+  .btns {
+    gap: 1rem;
+    width: 414px;
+  }
+}
+@media (max-width: 490px) {
+  .btns {
+    gap: 1rem;
+    width: 268px;
+  }
+}
+
+@media (max-width: 280px) {
+  .btns {
+    gap: 1rem;
+    width: 195px;
+  }
 }

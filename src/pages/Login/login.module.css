@@ -212,8 +212,7 @@ margin:0.5rem;  color: red;
     width: 50%;
     margin: 0 auto;
     z-index: 3;
-    /* left: 10%;
-    top: 25%; */
+  
     position: absolute;
   }
   .formbtnSignin,.line,.authContent {

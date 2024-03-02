@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
-import { FaUser } from 'react-icons/fa';
+import { FaUser } from "react-icons/fa";
 import styles from "./NavBar.module.css";
 import { Spin as Hamburger } from "hamburger-react";
 import { AuthContext } from "../../Context/AuthContext";
 import Button from "../../components/Button/Button";
 
 function NavBar() {
-  
   const { user, logout } = useContext(AuthContext);
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,17 +15,17 @@ function NavBar() {
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
   const [scrollY, setScrollY] = useState(0);
-const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Cleanup function
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
@@ -60,10 +59,9 @@ const navigate = useNavigate();
     setMenuOpen(!menuOpen);
   };
 
-
   const handleScrollToAbout = () => {
     setMenuOpen(false); // Close the menu if it's open
-  
+
     // Use JavaScript to scroll to the "About Us" section smoothly
     document.getElementById("aboutus").scrollIntoView({ behavior: "smooth" });
   };
@@ -75,9 +73,11 @@ const navigate = useNavigate();
     }
   }, [user]);
 
-
   return (
-<header className={`${styles.header} ${visible ? "" : styles.hidden}`} style={{ backgroundColor: scrollY > 0 ? 'var(--bcg--top)' : '' }}>
+    <header
+      className={`${styles.header} ${visible ? "" : styles.hidden}`}
+      style={{ backgroundColor: scrollY > 0 ? "var(--bcg--top)" : "" }}
+    >
       <nav className={styles.nav}>
         <div className={styles.logoContainer}>
           <Link className={styles.logo} to={"/"}>
@@ -145,45 +145,63 @@ const navigate = useNavigate();
           </li>
 
           <li className={styles.li}>
-          <NavLink
-  to={location.pathname === "/" ? "#" : "/"}
-  className={styles.link}
-  onClick={handleScrollToAbout} // Call handleScrollToAbout when clicked
->
-  About Us
-</NavLink>
+            <NavLink
+              to={location.pathname === "/" ? "#" : "/"}
+              className={styles.link}
+              onClick={handleScrollToAbout} // Call handleScrollToAbout when clicked
+            >
+              About Us
+            </NavLink>
           </li>
+          {user && window.innerWidth <= 1197 && (
+            <li className={styles.li} onClick={() => setMenuOpen(false)}>
+              <Link to="./userP" className={styles.userLink}>
+                <FaUser
+                  style={{
+                    color: "white",
+                    backgroundColor: "transparent",
+                    fontSize: "24px",
+                  }}
+                />
+              </Link>
+            </li>
+          )}
         </ul>
-        <div className={styles.containBtn} >
-          <button  className={styles.cart}>
+        <div className={styles.containBtn}>
+          <button className={styles.cart}>
             {!user ? (
               <NavLink
                 className={` ${styles.btn}`}
                 to="./login"
-                style={{ color: "var(--fonts-color)" }}
+                // style={{ color: "var(--fonts-color)" }}
               >
                 Login{" "}
               </NavLink>
             ) : (
               <NavLink
-                style={{ color: "var(--fonts-color)" }}
+                // style={{ color: "var(--fonts-color)" }}
                 className={` ${styles.btn}`}
-                to="./"
+                to="/"
                 onClick={logout}
               >
                 logout
               </NavLink>
             )}
           </button>
-          <button onClick={logout}>logggouttt</button>
-          {/* <Button onClick={user ? logout : () => {navigate("./login")}} text={user ? "Logout" : "Login"} /> */}
+          {/* <button onClick={logout}>logggouttt</button> */}
 
-          {user ? (<Link  to="./userP" style={{backgroundColor:"transparent"}} >
-      <FaUser  style={{ color: 'white' ,backgroundColor:"transparent",fontSize: "24px"}} />
-      {/* Add text if needed */}
-      {/* <span>Profile</span> */}
-    </Link> ):("")}
-         
+          {user && window.innerWidth > 1197 && (
+            <Link to="./userP" className={styles.li}>
+              <FaUser
+                className={styles.userIcon}
+                style={{
+                  color: "white",
+                  backgroundColor: "transparent",
+                  fontSize: "24px",
+                }}
+              />
+            </Link>
+          )}
 
           <div className={styles.hamburger} onClick={handleMenuClick}>
             <Hamburger
