@@ -67,6 +67,13 @@ const navigate = useNavigate();
     // Use JavaScript to scroll to the "About Us" section smoothly
     document.getElementById("aboutus").scrollIntoView({ behavior: "smooth" });
   };
+  useEffect(() => {
+    // Listen for changes in the user state
+    // and update local state accordingly
+    if (user) {
+      setVisible(true); // Ensure visibility when user is logged in
+    }
+  }, [user]);
 
 
   return (
@@ -148,7 +155,7 @@ const navigate = useNavigate();
           </li>
         </ul>
         <div className={styles.containBtn} >
-          <Button text={"  Add Post"} className={styles.cart}>
+          <button  className={styles.cart}>
             {!user ? (
               <NavLink
                 className={` ${styles.btn}`}
@@ -167,7 +174,10 @@ const navigate = useNavigate();
                 logout
               </NavLink>
             )}
-          </Button>
+          </button>
+          <button onClick={logout}>logggouttt</button>
+          {/* <Button onClick={user ? logout : () => {navigate("./login")}} text={user ? "Logout" : "Login"} /> */}
+
           {user ? (<Link  to="./userP" style={{backgroundColor:"transparent"}} >
       <FaUser  style={{ color: 'white' ,backgroundColor:"transparent",fontSize: "24px"}} />
       {/* Add text if needed */}

@@ -198,7 +198,7 @@ function Reviews() {
 
             <input
               type="text"
-              placeholder="Search For Products Name Or Skin Type"
+              placeholder="Search For Products Or Skin Type"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className={style.searchbar}

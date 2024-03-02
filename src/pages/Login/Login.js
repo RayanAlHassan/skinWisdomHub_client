@@ -1,17 +1,14 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import relaxing from "../../assets/images/relaxing.jpg"; // Fix the import path
-import tulip from "../../assets/images/tulip.webp";
 import style from "./login.module.css";
 import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
-import rose from "../../assets/images/sd.jpg"
+import rose from "../../assets/images/sd.jpg";
 import { AuthContext } from "../../Context/AuthContext";
 import axiosInstance from "../../Utils/AxiosInstance";
-
+import Button from "../../components/Button/Button";
 function Login() {
-  const { setUser, user , fetchOne} = useContext(AuthContext); // Use the useContext hook to access setUser and state
+  const { setUser, user, fetchOne } = useContext(AuthContext); // Use the useContext hook to access setUser and state
   const navigate = useNavigate();
   const [networkError, setNetworkError] = useState(false); //network err
   const [isLoading, setIsLoading] = useState(false);
@@ -55,9 +52,8 @@ function Login() {
       console.log(response);
 
       if (response) {
-        
         // setUser(response.data);
-        fetchOne()
+        fetchOne();
         console.log("role: " + response.data.role);
 
         if (response.data.role === "admin") {
@@ -81,17 +77,19 @@ function Login() {
   };
 
   return (
-
     <main className={style.container}>
-      <aside className={style.asidee}>
+      {/* <aside className={style.asidee}>
         <Link className={style.logo} to={"/"}>
           SkinWisdomHub
         </Link>
         <img src={rose} alt="bag" style={{ height: "100%", width: "100%",position:"fixed" }} />
-      </aside>
+      </aside> */}
+      <img src={rose} alt="bag" className={style.img} />
 
-      <main className={style.content}>
-        <div className={style.authContent}>
+      <section className={style.content}>
+      <Link className={style.toHome} to="/">  {"<"}</Link>
+
+        <div className={style.authContent} >
           <h1 className={style.title}>Sign In To Skin Wisdom Hub </h1>
           <form>
             <button className={style.google}>
@@ -136,27 +134,34 @@ function Login() {
               disabled={loading}
             />
           </div>
-          <button
+          {/* <button
+          
             type="submit"
             className={style.btnSignin}
             style={{ marginTop: "40px" }}
           >
             {loading ? "Signing In..." : "Sign In"}
-          </button>
-        
+          </button> */}
+          <div style={{margin:"0 auto", width:"100%"}}>
+          <Button  text={loading ? "Signing In..." : "Sign In"}  />
+
+          </div>
+
         </form>
         {error && <p className={style.error}>{errorMessage}</p>}
-        {networkError && <p className={style.error}>Network error. Please check your connection.</p>}
-        <div>
-              <p>
-                If you don't have account ? <Link to="/signup">create an account</Link>
-              </p>
-            </div>
-      </main>
-  
+        {networkError && (
+          <p className={style.error}>
+            Network error. Please check your connection.
+          </p>
+        )}
+        <div style={{marginTop:"1rem"}}>
+          <p>
+            If you don't have account ?{" "}
+            <Link to="/signup">create an account</Link>
+          </p>
+        </div>
+      </section>
     </main>
-
-  
   );
 }
 

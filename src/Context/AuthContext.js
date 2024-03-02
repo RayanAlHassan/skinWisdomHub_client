@@ -1,4 +1,3 @@
-
 // import { createContext, useReducer, useEffect } from "react";
 // import axiosInstance from "../Utils/AxiosInstance.js";
 
@@ -76,9 +75,9 @@
 //     try {
 //       await axiosInstance.post("http://localhost:5000/user/logout");
 //       dispatch({ type: "logout" });
-    // } catch (error) {
-    //   console.error("Error logging out:", error);
-    // } finally {
+// } catch (error) {
+//   console.error("Error logging out:", error);
+// } finally {
 //       localStorage.clear();
 //     }
 //   };
@@ -91,36 +90,35 @@
 
 // export default AuthProvider;
 ////////////////////////////////////////////////////
-// withe cookies not local storage 
+
+// withe cookies not local storage
 import React, { createContext, useState, useEffect } from "react";
 import axiosInstance from "../Utils/AxiosInstance.js";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [checkUser, setCheckUser] = useState(false);
-  const [userUpdated, setUserUpdated] = useState(false)
-
+  const [userUpdated, setUserUpdated] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
-    console.log(user)
+    console.log(user);
     if (!user || userUpdated) {
       // fetchUserData();
-      fetchOne()
+      fetchOne();
     } else {
-      console.log("user:",user);
+      console.log("user updatedd:", user);
     }
   }, [user, userUpdated]);
 
   const fetchUserData = async () => {
-    
     try {
       setCheckUser(true);
-      const response = await axiosInstance.get(
-        `/user/view-all`,
-        {withCredentials:true}
-      );
+      const response = await axiosInstance.get(`/user/view-all`, {
+        withCredentials: true,
+      });
       setUser(response.data.user);
     } catch (err) {
       setUser(null);
@@ -128,39 +126,37 @@ export const AuthProvider = ({ children }) => {
       setCheckUser(false);
     }
   };
-  const fetchOne=async()=>{
-    
+  const fetchOne = async () => {
     try {
-      setCheckUser(true)
-      const response = await axios.get(`${process.env.REACT_APP_PATH}user/loggedIn`,
-      {withCredentials:true}
-      )
-      setUser(response.data.user)
-      console.log(response.data.user)
-      setUserUpdated(false)
-  } catch (error) {
+      setCheckUser(true);
+      const response = await axios.get(
+        `${process.env.REACT_APP_PATH}user/loggedIn`,
+        { withCredentials: true }
+      );
+      setUser(response.data.user);
+      console.log(response.data.user);
+      setUserUpdated(false);
+    } catch (error) {
       setUser(null);
       console.log(error);
-  }
-  finally{
-      setCheckUser(false)
-  }
-  }
+    } finally {
+      setCheckUser(false);
+    }
+  };
 
   const logout = async () => {
-    try{
-
-  
-          await axiosInstance.post(`${process.env.REACT_APP_PATH}user/logout`);
-    setUser(null);
-      } catch (error) {
+    try {
+      await axios.post(`${process.env.REACT_APP_PATH}user/logout`);
+      setUser(null);
+      navigate("./");
+    } catch (error) {
       console.error("Error logging out:", error);
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, checkUser, fetchUserData,fetchOne, logout }}
+      value={{ user, setUser, checkUser, fetchUserData, fetchOne, logout }}
     >
       {children}
     </AuthContext.Provider>
