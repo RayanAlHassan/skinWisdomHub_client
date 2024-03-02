@@ -11,8 +11,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { FaComment } from 'react-icons/fa';
+import { FaComment } from "react-icons/fa";
 import { Divide } from "hamburger-react";
+import LoadingPage from "../../components/LoadingPage";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -22,6 +23,7 @@ function Reviews() {
   const [selectedReviewId, setSelectedReviewId] = useState(null);
   const [newComment, setNewComment] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // Added loading state
 
   useEffect(() => {
     async function fetchData() {
@@ -39,23 +41,29 @@ function Reviews() {
           );
           console.log("reviews", reviewsResponse.data);
           setComments(commentsResponse.data);
+          setIsLoading(false); // Set loading to false when data is fetched
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+        setIsLoading(false); // Set loading to false in case of error
       }
     }
 
     fetchData();
   }, []);
   console.log("reviewsss", reviews);
+  console.log("reviewsss", reviews);
 
   const handleSubmit = async (value, id) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_PATH}rate/create`, {
-        reviewID: id,
-        value: value,
-        userID: user._id,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_PATH}rate/create`,
+        {
+          reviewID: id,
+          value: value,
+          userID: user._id,
+        }
+      );
       if (response) {
         console.log("Response:", response.data);
         setReviews(
@@ -90,7 +98,6 @@ function Reviews() {
       console.error("Error updating rating:", error);
     }
   };
-
 
   const handleChange = (value, id) => {
     setReviews(
@@ -180,152 +187,161 @@ function Reviews() {
 
   return (
     <main className={style.container}>
-      {/* Background Image */}
-      <div className={style.top}>
-        <img src={image} className={style.img} alt="background" />
-        <div className={style.heroBackgrd}></div>
+      {isLoading ? (
+        <LoadingPage />
+      ) : (
+        <div>
+          {/* Background Image */}
+          <div className={style.top}>
+            <img src={image} className={style.img} alt="background" />
+            <div className={style.heroBackgrd}></div>
 
-        <input
-          type="text"
-          placeholder="Search For Products Name Or Skin Type"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className={style.searchbar}
-        />
-      </div>
-
-      {/* Posts */}
-      {filteredReviews.map((rev) => (
-        <div key={rev._id} className={style.post}>
-          <div className={style.postTop}>
-            <div className={style.topLeft}>
-              {rev.userID.image ? (
-                <img
-                  src={`${process.env.REACT_APP_PATH}images/${rev.userID.image}`}
-                  className={style.profileUser}
-                  alt="profile user"
-                />
-              ) : (
-                <img
-                  src={image}
-                  className={style.profileUser}
-                  alt="profile user"
-                />
-              )}
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <p className={style.name}>{rev?.userID?.name}</p>
-                <p className={style.time}>{formatTimeSince(rev.createdAt)}</p>
-              </div>
-            </div>
-            <div className={style.topCenter}>
-              <p
-                className={style.productName}
-                // style={{ fontWeight: "900", fontSize: "22px" }}
-              >
-                {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
-                {rev.subCategoryID.name}
-             
-              </p>
-              <p className={style.subCategory}>   {rev.productName}</p>
-
-            </div>
-          </div>
-          <div className={style.center}>
-            <p className={style.skinType}>{rev.skinType}</p>
-            <p className={style.desc}>{rev.description}</p>
-
-            <img
-              src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
-              className={style.posttt}
-              alt="rev"
+            <input
+              type="text"
+              placeholder="Search For Products Name Or Skin Type"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={style.searchbar}
             />
           </div>
-          <div className={style.rating}>
-            <div className={style.rateStuff}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <Rating
-                name={`simple-controlled-${rev._id}`}
-                value={rev.selectedRating}
-                onChange={(e, value) => handleChange(value, rev._id)}
-                max={5}
-                precision={1}
-              />
-              <span>{rev.selectedRating}</span>
-            </Box>
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <span style={{ fontWeight: "400", fontSize: "20px" }}>
-                ( {Math.round(rev.rate * 100) / 100} )
-              </span>
-              <StarIcon style={{ color: "yellow" , fontSize:"20px" }} />
-            </span>
-            </div>
-           
-            <button
-              className={style.commentButton}
-              onClick={() => handleOpenModal(rev._id)}
-            >
-                    <FaComment color="var(--Font-color)"/>
-            </button>
-          </div>
-        </div>
-      ))}
 
-      {/* Comments Modal */}
-      <Modal open={showModal} onClose={handleCloseModal}>
-        <div className={style.modalBackdrop}>
-          <div className={style.modalContent}>
-            <h2 className={style.titleCmnt}>Comments</h2>
-            <div className={style.commentsContainer}>
-              <div className={style.commentCards}>
-                {comments
-                  .filter(
-                    (comment) => comment.reviewID._id === selectedReviewId
-                  )
-                  .map((comment) => (
-                    <Card key={comment._id} className={style.commentCard}>
-                      <CardContent>
-                        {console.log("comments img", comment.userID.image)}
-
-                        {/* <p>{comment.USERid}</p> */}
-                        <div className={style.userComented}>
-                          <img
-                            src={`${process.env.REACT_APP_PATH}images/${comment.userID.image}`}
-                            className={style.imgComment}
-                            alt="rev"
-                          />
-                          <p>{comment.userID.name}</p>
-                        </div>
-
-                        <p>{comment.feedback}</p>
-                      </CardContent>
-                    </Card>
-                  ))}
+          {/* Posts */}
+          {filteredReviews.map((rev) => (
+            <div key={rev._id} className={style.post}>
+              <div className={style.postTop}>
+                <div className={style.topLeft}>
+                  {rev.userID.image ? (
+                    <img
+                      src={`${process.env.REACT_APP_PATH}images/${rev.userID.image}`}
+                      className={style.profileUser}
+                      alt="profile user"
+                    />
+                  ) : (
+                    <img
+                      src={image}
+                      className={style.profileUser}
+                      alt="profile user"
+                    />
+                  )}
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <p className={style.name}>{rev?.userID?.name}</p>
+                    <p className={style.time}>
+                      {formatTimeSince(rev.createdAt)}
+                    </p>
+                  </div>
+                </div>
+                <div className={style.topCenter}>
+                  <p
+                    className={style.productName}
+                    // style={{ fontWeight: "900", fontSize: "22px" }}
+                  >
+                    {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
+                    {rev.subCategoryID.name}
+                  </p>
+                  <p className={style.subCategory}> {rev.productName}</p>
+                </div>
               </div>
-              <textarea
-                className={style.commentTextArea}
-                multiline
-                rows={4}
-                variant="outlined"
-                placeholder="Add a comment..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-              />
-              <button className={style.submitButton} onClick={handleAddComment}>
-                Add Comment
-              </button>
+              <div className={style.center}>
+                <p className={style.skinType}>{rev.skinType}</p>
+                <p className={style.desc}>{rev.description}</p>
+
+                <img
+                  src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
+                  className={style.posttt}
+                  alt="rev"
+                />
+              </div>
+              <div className={style.rating}>
+                <div className={style.rateStuff}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Rating
+                      name={`simple-controlled-${rev._id}`}
+                      value={rev.selectedRating}
+                      onChange={(e, value) => handleChange(value, rev._id)}
+                      max={5}
+                      precision={1}
+                    />
+                    <span>{rev.selectedRating}</span>
+                  </Box>
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    <span style={{ fontWeight: "400", fontSize: "20px" }}>
+                      ( {Math.round(rev.rate * 100) / 100} )
+                    </span>
+                    <StarIcon style={{ color: "yellow", fontSize: "20px" }} />
+                  </span>
+                </div>
+
+                <button
+                  className={style.commentButton}
+                  onClick={() => handleOpenModal(rev._id)}
+                >
+                  <FaComment color="var(--Font-color)" />
+                </button>
+              </div>
             </div>
-            <button className={style.closee} onClick={handleCloseModal}>
-              Close
-            </button>
-          </div>
+          ))}
+
+          {/* Comments Modal */}
+          <Modal open={showModal} onClose={handleCloseModal}>
+            <div className={style.modalBackdrop}>
+              <div className={style.modalContent}>
+                <h2 className={style.titleCmnt}>Comments</h2>
+                <div className={style.commentsContainer}>
+                  <div className={style.commentCards}>
+                    {comments
+                      .filter(
+                        (comment) => comment.reviewID._id === selectedReviewId
+                      )
+                      .map((comment) => (
+                        <Card key={comment._id} className={style.commentCard}>
+                          <CardContent>
+                            {console.log("comments img", comment.userID.image)}
+
+                            {/* <p>{comment.USERid}</p> */}
+                            <div className={style.userComented}>
+                              <img
+                                src={`${process.env.REACT_APP_PATH}images/${comment.userID.image}`}
+                                className={style.imgComment}
+                                alt="rev"
+                              />
+                              <p>{comment.userID.name}</p>
+                            </div>
+
+                            <p>{comment.feedback}</p>
+                          </CardContent>
+                        </Card>
+                      ))}
+                  </div>
+                  <textarea
+                    className={style.commentTextArea}
+                    multiline
+                    rows={4}
+                    variant="outlined"
+                    placeholder="Add a comment..."
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                  />
+                  <button
+                    className={style.submitButton}
+                    onClick={handleAddComment}
+                  >
+                    Add Comment
+                  </button>
+                </div>
+                <button className={style.closee} onClick={handleCloseModal}>
+                  Close
+                </button>
+              </div>
+            </div>
+          </Modal>
         </div>
-      </Modal>
+      )}
     </main>
   );
 }

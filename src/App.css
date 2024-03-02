@@ -11,8 +11,7 @@
   background-color: gray;
 }
 
-/* .slick-slide {
-  outline: none;
-  width: 376px;
-  margin: 0 2rem;
-} */
+.slick-track{
+  display: flex !important; 
+  gap: 2rem !important;
+}

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import style from './SingleCard.module.css';
 import { useParams } from 'react-router-dom';
+import LoadingPage from '../LoadingPage';
 const SingleCard = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ const SingleCard = () => {
       try {
         // Extract the product ID from the URL parameters
         const productId = window.location.pathname.split('/').pop();
-        const response = await axios.get(`${process.env.APP_BACKEND}product/getone/${productId}`);
+        const response = await axios.get(`${process.env.REACT_APP_PATH}product/getone/${productId}`);
         console.log(productId)
 
         setProduct(response.data);
@@ -30,7 +31,7 @@ const SingleCard = () => {
   }, [id]); // Empty dependency array to ensure the effect runs only once
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingPage/>;
   }
 
   if (error) {
@@ -42,7 +43,7 @@ const SingleCard = () => {
     <div className={style.container}>
     <div key={product._id} className={style.content}>
       <div className={style.left}>
-        <img className={style.img} src={`${process.env.APP_BACKEND}images/${product.image}`} alt={product.name} />
+        <img className={style.img} src={`${process.env.REACT_APP_PATH}images/${product.image}`} alt={product.name} />
       </div>
       <div className={style.right}>
         <p className={style.subCategory}>  {product.subCategoryID.name}</p> {/* Accessing the name property */}

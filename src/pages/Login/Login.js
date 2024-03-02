@@ -141,10 +141,12 @@ function Login() {
             className={style.btnSignin}
             style={{ marginTop: "40px" }}
           >
-            Sign In
+            {loading ? "Signing In..." : "Sign In"}
           </button>
         
         </form>
+        {error && <p className={style.error}>{errorMessage}</p>}
+        {networkError && <p className={style.error}>Network error. Please check your connection.</p>}
         <div>
               <p>
                 If you don't have account ? <Link to="/signup">create an account</Link>

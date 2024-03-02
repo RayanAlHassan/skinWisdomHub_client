@@ -4,18 +4,17 @@ import Slider from "react-slick";
 import style from "./ProductSection.module.css";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useHistory from react-router-dom
-
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LoadingPage from "../LoadingPage";
 
 const ProductSection = () => {
-  console.log(process.env.REACT_APP_PATH);
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [productData, setProductData] = useState([]);
   const [expandedDescriptionId, setExpandedDescriptionId] = useState(null);
-  const navigate = useNavigate(); // Use useNavigate hook here
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +25,6 @@ const ProductSection = () => {
         if (!response.data) {
           throw new Error("Failed to fetch products");
         }
-        console.log(response.data);
         setProductData(response.data.products);
         setIsLoadingProducts(false);
       } catch (error) {
@@ -45,7 +43,6 @@ const ProductSection = () => {
     autoplaySpeed: 2500,
     autoplay: true,
     pauseOnHover: true,
-
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
@@ -82,56 +79,61 @@ const ProductSection = () => {
   return (
     <section id="ourproducts" className={style.contentsection}>
       <h2 className={style.title}>Most recent product</h2>
-      <div className={style.cards}>
-        <Slider {...settings}>
-          {productData.map((element) => {
-            const isDescriptionExpanded = expandedDescriptionId === element._id;
-            return (
-              <div className={style.card} key={element._id}>
-                <NavLink
-                  // to={`/singleProduct/${element.slug}`}
-                  className={style.productHolder}
-                  key={element._id}
-                  onClick={() => navigate(`/card/${element._id}`)} // Navigate to SingleCard on click
-                >
-                  <h1 className={style.subtitle}>
-                    {element.subCategoryID.name}
-                  </h1>{" "}
-                  <img
-                    className={style.imgg}
-                    src={`${process.env.REACT_APP_PATH}images/${element.image}`}
-                    alt="product"
-                  />
-                  <div className={style.details}>
-                    <div>
-                      <h4>{element.name}</h4>
-                      <p className={style.description}>
-                        {isDescriptionExpanded ? (
-                          element.description
-                        ) : (
-                          <>
-                            {element.description.slice(0, 30)}...{" "}
+      {isLoadingProducts ? (
+        <LoadingPage />
+      ) : (
+        <>
+          <div className={style.cards}>
+            <Slider {...settings}>
+              {productData.map((element) => {
+                const isDescriptionExpanded =
+                  expandedDescriptionId === element._id;
+                return (
+                  <div className={style.card} key={element._id}>
+                    <NavLink
+                      className={style.productHolder}
+                      key={element._id}
+                      onClick={() => navigate(`/card/${element._id}`)}
+                    >
+                      <h1 className={style.subtitle}>
+                        {element.subCategoryID.name}
+                      </h1>
+                      <p style={{ textAlign: "center" }}>{element.skinType}</p>
+                      <img
+                        className={style.imgg}
+                        src={`${process.env.REACT_APP_PATH}images/${element.image}`}
+                        alt="product"
+                      />
+                      <div className={style.details}>
+                        <div>
+                          <h4>{element.name}</h4>
+                          <p className={style.description}>
+                            {isDescriptionExpanded
+                              ? element.description
+                              : element.description.length > 35
+                              ? "..."+element.description.slice(0, 35) 
+                              : element.description}
+                          </p>
+                          {!isDescriptionExpanded && (
                             <span
                               className={style.viewMore}
-                              onClick={(e) => {
-                                e.preventDefault(); // Prevent default link behavior
-                                toggleDescriptionExpansion(element._id);
-                              }}
+                              onClick={() =>
+                                toggleDescriptionExpansion(element._id)
+                              }
                             >
                               View More
                             </span>
-                          </>
-                        )}
-                      </p>
-                      <p>{element.skinType}</p>
-                    </div>
+                          )}
+                        </div>
+                      </div>
+                    </NavLink>
                   </div>
-                </NavLink>
-              </div>
-            );
-          })}
-        </Slider>
-      </div>
+                );
+              })}
+            </Slider>
+          </div>
+        </>
+      )}
     </section>
   );
 };

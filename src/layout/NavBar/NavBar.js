@@ -4,6 +4,7 @@ import { FaUser } from 'react-icons/fa';
 import styles from "./NavBar.module.css";
 import { Spin as Hamburger } from "hamburger-react";
 import { AuthContext } from "../../Context/AuthContext";
+import Button from "../../components/Button/Button";
 
 function NavBar() {
   
@@ -147,7 +148,7 @@ const navigate = useNavigate();
           </li>
         </ul>
         <div className={styles.containBtn} >
-          <button className={styles.cart}>
+          <Button text={"  Add Post"} className={styles.cart}>
             {!user ? (
               <NavLink
                 className={` ${styles.btn}`}
@@ -166,7 +167,7 @@ const navigate = useNavigate();
                 logout
               </NavLink>
             )}
-          </button>
+          </Button>
           {user ? (<Link  to="./userP" style={{backgroundColor:"transparent"}} >
       <FaUser  style={{ color: 'white' ,backgroundColor:"transparent",fontSize: "24px"}} />
       {/* Add text if needed */}

@@ -10,10 +10,11 @@ import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import pfUser from "../../assets/images/pexels-polina-kovaleva-6543263.jpg";
-import { FaComment, FaEnvelope } from 'react-icons/fa';
+import { FaComment, FaEnvelope } from "react-icons/fa";
 import AddPost from "../../components/AddPost/AddPost";
 import AddTestimonial from "../../components/AddTestimonial/AddTestimonial";
-
+import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 function UserPage() {
   const [addPostVisible, setAddPostVisible] = useState(false); // State variable to manage the visibility of AddPost
@@ -58,7 +59,7 @@ function UserPage() {
     }
 
     fetchData();
-  }, [ user && user._id]);
+  }, [user && user._id]);
   const toggleAddPost = () => {
     setAddPostVisible(!addPostVisible);
   };
@@ -107,11 +108,14 @@ function UserPage() {
   };
   const handleSubmit = async (value, id) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_PATH}rate/create`, {
-        reviewID: id,
-        value: value,
-        userID: user._id,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_PATH}rate/create`,
+        {
+          reviewID: id,
+          value: value,
+          userID: user._id,
+        }
+      );
       if (response) {
         console.log("Response:", response.data);
         console.log("userr authontext", user);
@@ -169,43 +173,54 @@ function UserPage() {
   };
   return (
     <section className={style.container}>
-      <div className={style.top}> 
-      <div className={style.containImg}>
-      <img
-          src={`${process.env.REACT_APP_PATH}images/${user?.image}`}
-          className={style.pfImg}
-        />
-      </div>
+      <div className={style.top}>
        
+
         {/* {console.log(`http://localhost:5000/${user?.image}`)} */}
       </div>
       <div className={style.center}>
         <div className={style.left}>
+        <div className={style.containImg}>
+          <img
+            src={`${process.env.REACT_APP_PATH}images/${user?.image}`}
+            className={style.pfImg}
+          />
+        </div>
           {/* <div className={style.cardInfo}> */}
           <h2 className={style.nameLeft}> {user?.name}</h2>
-          <p className={style.mail}> <FaEnvelope style={{fontSize:"24px"}} color="rgb(232, 225, 225)"  />{user?.email}</p>
-
+          <p className={style.mail}>
+            {" "}
+            <FaEnvelope
+              style={{ fontSize: "24px" }}
+              color="rgb(232, 225, 225)"
+            />
+            {user?.email}
+          </p>
           {/* </div> */}
-         
-          <p className={style.DOB}>{user && new Date(user?.dob).toLocaleDateString()}</p> {/* Display only the date */}
+          <p className={style.DOB}>
+            {user && new Date(user?.dob).toLocaleDateString()}
+          </p>{" "}
+          {/* Display only the date */}
           <div className={style.btns}>
-      
-      <button className={style.btn2} onClick={toggleAddPost}>Add Post</button>
-      {addPostVisible && <AddPost setAddPost={setAddPostVisible} />} {/* Render AddPost conditionally */}
-
-      <button className={style.btn2} onClick={toggleAddTestimonial}>Add Testimonial</button>
-             
+            <Button text={"  Add Post"}  onClick={toggleAddPost}>
+            
+            </Button>
+            {addPostVisible && <AddPost setAddPost={setAddPostVisible} />}{" "}
+            {/* Render AddPost conditionally */}
+            {/* <button className={style.btn2} onClick={toggleAddTestimonial}>Add Testimonial</button> */}
+            <Button text={"Add Testimoniol"} onClick={toggleAddTestimonial} />
           </div>
-          {addTestimonialVisible && <AddTestimonial setAddTestimonial={setAddTestimonialVisible} />} {/* Render AddTestimonial conditionally */}
+          {addTestimonialVisible && (
+            <AddTestimonial setAddTestimonial={setAddTestimonialVisible} />
+          )}{" "}
+          {/* Render AddTestimonial conditionally */}
         </div>
         <div className={style.right}>
-         
-
           {/* /////////////////////posts/////////////// */}
           <div className={style.containerPost}>
             {/* Posts */}
-            {console.log("rrrrrrrrrrrrrrrrrrrrrrrrrr",reviews)}
-            {console.log("fffffffffffffffffffff",filteredReviews)}
+            {console.log("rrrrrrrrrrrrrrrrrrrrrrrrrr", reviews)}
+            {console.log("fffffffffffffffffffff", filteredReviews)}
 
             {reviews.map((rev) => (
               <div key={rev._id} className={style.post}>
@@ -229,21 +244,19 @@ function UserPage() {
                       <p className={style.time}>
                         {formatTimeSince(rev.createdAt)}
                       </p>
-                      {console.log("subCategory name",rev.subCategoryID.name)}
+                      {console.log("subCategory name", rev.subCategoryID.name)}
                     </div>
                   </div>
                   <div className={style.topCenter}>
-              <p
-                className={style.productName}
-                // style={{ fontWeight: "900", fontSize: "22px" }}
-              >
-                {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
-                {rev.subCategoryID.name}
-             
-              </p>
-              <p className={style.subCategory}>   {rev.productName}</p>
-
-            </div>
+                    <p
+                      className={style.productName}
+                      // style={{ fontWeight: "900", fontSize: "22px" }}
+                    >
+                      {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
+                      {rev.subCategoryID.name}
+                    </p>
+                    <p className={style.subCategory}> {rev.productName}</p>
+                  </div>
                 </div>
                 <div className={style.centerPost}>
                   <p className={style.skinType}>{rev.skinType}</p>
@@ -256,18 +269,23 @@ function UserPage() {
                   />
                 </div>
                 <div className={style.rating}>
-            
-                  <span style={{ display: "flex", alignItems: "center" ,height:"fitContent"}}>
+                  <span
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: "fitContent",
+                    }}
+                  >
                     <span style={{ fontWeight: "900", fontSize: "20px" }}>
                       ( {Math.round(rev.rate * 100) / 100} )
                     </span>
-                    <StarIcon style={{ color: "yellow" , fontSize:"20px" }} />
+                    <StarIcon style={{ color: "yellow", fontSize: "20px" }} />
                   </span>
                   <button
                     className={style.commentButton}
                     onClick={() => handleOpenModal(rev._id)}
                   >
-                    <FaComment color="var(--Font-color)"/>
+                    <FaComment color="var(--Font-color)" />
                   </button>
                 </div>
               </div>

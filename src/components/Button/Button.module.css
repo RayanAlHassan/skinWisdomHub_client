@@ -1,0 +1,41 @@
+.btnStyle{
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 2.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 400;
+    position: relative;
+    background-color: var(--Font-color);
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    border: none;
+    
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+.btnStyle:hover{
+    backdrop-filter: blur(6px);
+    filter: brightness(1.2);
+    box-shadow: 0 0 3px black;
+
+    background-color:var(--grays-color);
+
+}
+
+
+/* .btn {
+    background-color: rgb(232, 225, 225);
+    color: black;
+    border-radius: 0;
+    height: 3rem;
+    transition: all 0.3s ease;
+  }
+  .btn2:hover {
+    box-shadow: 0 0 10px black;
+    background-color: transparent;
+  } */

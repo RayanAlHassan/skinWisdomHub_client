@@ -86,6 +86,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
   };
   
   const handleSubmit = async (e) => {
+    console.log("handle submittt")
     e.preventDefault();
     try {
       const formDataToSend = new FormData();
@@ -96,14 +97,18 @@ const AddPost = ({ setAddPost, fetchData }) => {
       formDataToSend.append("subCategoryID", formData.subCategoryID);
       formDataToSend.append("skinType", formData.skinType);
       formDataToSend.append("userID", formData.userId);
+      console.log("handle submittt form dataa", formData)
+      console.log("env", process.env.REACT_APP_PATH)
+      console.log("data to send",formDataToSend)
 
       const response = await axios.post(
         `${process.env.REACT_APP_PATH}reviews`,
-        formDataToSend, {
+        formData, {
           headers: { "Content-Type": "multipart/form-data" },
 
         }
       );
+    console.log(formDataToSend)
 
       console.log("Server response:", response.data);
       setFormData({
@@ -120,30 +125,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
       console.error("Error submitting form data:", error.message);
     }
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log("submitting form data:", formData);
-  //   try {
-  //     const response = await axios.post(`http://localhost:5000/reviews`, formData, {
-  //       headers: { "Content-Type": "multipart/form-data" },
-  //     });
-  //     console.log("Server response:", response.data); // Log the server response
-  //     // Reset form data if submission is successful
-  //     setFormData({
-  //       productName: "",
-  //       description: "",
-  //       image: "",
-  //       userId: user && user._id,
-  //       categoryID: "",
-  //       subCategoryID: "",
-  //       skinType: "",
-  //     });
-  //     // Close the form or handle as needed
-  //     onclose();
-  //   } catch (error) {
-  //     console.log("Error submitting form data:", error.message);
-  //   }
-  // };
+
   
   const onclose = () => {
     setAddPost(false);

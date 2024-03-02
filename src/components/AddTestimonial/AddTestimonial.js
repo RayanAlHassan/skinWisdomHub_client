@@ -12,6 +12,9 @@ const AddTestimonial = ({ setAddTestimonial, fetchData }) => {
     status: "pending", // Set default status as "pending"
   });
 
+  const [isLoading, setIsLoading] = useState(false); // State for loading
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -22,6 +25,7 @@ const AddTestimonial = ({ setAddTestimonial, fetchData }) => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading to true while submitting
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_PATH}testimoniol/create`,
@@ -35,9 +39,12 @@ const AddTestimonial = ({ setAddTestimonial, fetchData }) => {
         userID: user && user._id,
         status: "pending",
       });
+      setSubmissionSuccess(true);
       setAddTestimonial(false);
     } catch (error) {
       console.error("Error submitting form data:", error.message);
+    } finally {
+      setIsLoading(false); // Reset loading state regardless of success or failure
     }
   };
   
@@ -61,11 +68,16 @@ const AddTestimonial = ({ setAddTestimonial, fetchData }) => {
               required
             />
           </div>
-          <button className={Styles.submitButton}>Submit</button>
+          <button className={Styles.submitButton} disabled={isLoading}>
+            {isLoading ? "Submitting..." : "Submit"}
+          </button>
         </form>
         <button className={Styles.cancelButton} onClick={onClose}>
           Cancel
         </button>
+        {submissionSuccess && (
+          <p className={Styles.successMessage}>Testimonial submitted successfully!</p>
+        )}
       </div>
     </>
   );

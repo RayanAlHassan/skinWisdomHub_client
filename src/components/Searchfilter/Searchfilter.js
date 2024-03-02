@@ -31,7 +31,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
 
   const fetchSkinTypes = async () => {
     try {
-      const response = await axios.get(`${process.env.APP_BACKEND}product/getall`);
+      const response = await axios.get(`${process.env.REACT_APP_PATH}product/getall`);
       if (!response.data) {
         throw new Error("Failed to fetch products");
       }
@@ -59,7 +59,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(`${process.env.APP_BACKEND}category/getall`);
+      const response = await axios.get(`${process.env.REACT_APP_PATH}category/getall`);
       if (!response.data) {
         throw new Error("Failed to fetch category");
       }
@@ -74,7 +74,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
   const fetchSubCategories = async (id) => {
     try {
       let res = await axios.get(
-        `${process.env.APP_BACKEND}subCategory/getsubbycategory/${id}`
+        `${process.env.REACT_APP_PATH}subCategory/getsubbycategory/${id}`
       );
       setSubCategories(res.data.subCategories);
     } catch (error) {

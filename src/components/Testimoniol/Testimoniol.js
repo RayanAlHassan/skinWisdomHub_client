@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import img from "../../assets/images/hero.jpg";
 import style from "./Testimoniol.module.css";
 import axios from "axios";
+import LoadingPage from "../LoadingPage";
 
 function Testimoniol() {
   const [isLoadingTestimoniol, setIsLoadingTestimoniol] = useState(true);
@@ -10,18 +11,22 @@ function Testimoniol() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.APP_BACKEND}testimoniol/`);
-      
-    if (!Array.isArray(response.data)) {
-      throw new Error("Testimonial data is not an array");
-    }
-        
+        const response = await axios.get(
+          `${process.env.REACT_APP_PATH}testimoniol/`
+        );
+        console.log("tset", response.data);
+
+        if (!response.data) {
+          throw new Error("Failed to fetch testimoniol");
+        }
+
         // Filter testimonials with status "pending"
-        const pendingTestimonials = response.data.filter(testimonial => testimonial.status === "pending");
+        const pendingTestimonials = response.data.filter(
+          (testimonial) => testimonial.status === "pending"
+        );
 
         setTestimoniolData(pendingTestimonials);
         setIsLoadingTestimoniol(false);
-        console.log("testt",testimoniolData)
       } catch (error) {
         console.error(error);
         setIsLoadingTestimoniol(false);
@@ -36,13 +41,20 @@ function Testimoniol() {
       <h2 className={style.title}>Testimoniol From Our Users</h2>
       <div className={style.cards}>
         {isLoadingTestimoniol ? (
-          <p>Loading...</p>
+          // <p>Loading...</p>
+          <LoadingPage />
         ) : (
           testimoniolData.map((element) => (
             <div className={style.card} key={element._id}>
               <div className={style.detail}>
-                <h4 className={style.name}>{element?.userID?.name}</h4>
+                <div className={style.head}>
+                  {" "}
+                  <h4 className={style.name}>{element?.userID?.name}</h4>
+                </div>
+                <div className={style.desc}>
                 <p className={style.feedback}>{element.feedback}</p>
+
+                </div>
               </div>
               {/* <div className={style.topLeft}>
               <img

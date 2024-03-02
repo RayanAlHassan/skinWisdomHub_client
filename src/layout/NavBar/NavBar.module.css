@@ -132,7 +132,6 @@
 .btn:hover {
   backdrop-filter: blur(6px);
   filter: brightness(1.2);
-  box-shadow: 0cm red;
 }
 .logoContainer {
   display: flex;
