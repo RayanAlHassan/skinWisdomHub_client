@@ -1,104 +1,159 @@
 .container {
   height: 100%;
-  width: 89%;
+  width: 100%;
   margin: 0 auto;
+  background-color: #00000026;
+}
+
+.content {
+  width: 100%;
+  height: 80vh;
+  display: flex;
   padding: 6rem;
+  gap: 1rem;
   border-radius: 30px;
+}
+.left {
+  width: 50vw;
+  border-radius: 30px;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-grow: 1;
+  border-radius: 30px;
+}
+.right {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  padding: 2rem;
+  height: 100%;
+  background-color: whitesmoke;
+  position: relative;
+}
+.subCategory {
+  position: absolute;
+  right: 0;
+  color: white;
+  text-align: center;
+  max-width: 50%;
+  min-width: 7rem;
+  border-bottom-left-radius: 18px;
+  padding: 12px 7px 10px 7px;
+  font-size: 18px;
+  background-color: var(--Font-color);
+}
+.name {
+  font-size: 28px;
+  font-family: 500;
+  font-weight: 600;
+  color: var(--Font-color);
+  margin-top: 0.2rem;
+  margin-left: 2rem;
+}
+.description {
+  font-size: 18px;
+  width: 90%;
+  max-height: 24rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  color: var(--grays-color);
+}
 
+.skinType {
+  margin-top: 0.2rem;
+  margin-left: 2rem;
+  color: rgb(163 92 153 / 88%);
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+.ingredientsTitle {
+  color: var(--Font-color);
+  margin-top: 0.2rem;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.nameIng {
+  font-weight: 500;
+  font-size: 18px;
+  width: 90%;
+  max-height: 24rem;
+  color: var(--grays-color);
+  list-style-type: circle;
+}
+.li {
+  list-style-type: circle;
+  margin: 0 auto;
+  width: 100%;
+  line-height: 1.5rem;
+}
+.ingredients {
+  color: var(--Font-color);
+  width: 90%;
+  margin-left: 2rem;
+}
+.descIng {
+  color: var(--grays-color);
+  font-size: 18px;
+}
+@media (max-width: 1100px) {
+  .container {
+    background-color: #00000026;
   }
-
-  .content{
+  .content {
     width: 100%;
-    height: 80vh;
+    height: 100%;
     display: flex;
-    gap: 1rem;
+    padding: 0rem;
     border-radius: 30px;
-
+    flex-direction: column;
   }
-  .left{
-    width: 50vw;
+  .left {
+    width: 74vw;
+    height: 45vh;
+    margin: 7rem auto 1rem;
     border-radius: 30px;
-
   }
-  .img{
+  .img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     flex-grow: 1;
-    border-radius: 30px;
-
+    border-radius: 30px 0px;
   }
-  .right{
-    width: 50vw;
+  .right {
+    width: 100vw;
+    height: 50%;
     display: flex;
     flex-direction: column;
     border-radius: 30px;
-    padding: 2rem;
-    background: linear-gradient(to left, rgb(120 126 126), rgb(96 90 78));
-    height: 100%;
+    width: 75vw;
+    margin: 0rem auto 1rem;
+    border-radius: 30px 0px;
+    background-color: whitesmoke;
+    position: relative;
   }
-  .subCategory{
-    font-size: 60px;
-    font-weight: 600;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-    color: rgb(90, 89, 89);
-    /* background: linear-gradient(to right, rgb(245, 168, 2), rgb(241, 241, 241)); */
-    color: lightgrey;
-    /* -webkit-background-clip: text;
-    -webkit-text-fill-color:transparent ; */
-  }
-  .name{
-    font-size: 40px;
-    font-weight: 500;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-    color: rgb(90, 89, 89);
-    /* background: linear-gradient(to right, rgb(245, 168, 2), rgb(241, 241, 241)); */
-    color: lightgrey;
-  }
-  .description{
-    font-size: 15px;
-    margin-left: 1rem;
-    font-weight: 400;
-    margin-left: 1rem;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-    color: lightgray;
-  }
+}
 
-  .skinType{
-    font-size: 25px;
-    margin-left: 1rem;
-    font-weight: 500;
-    margin-left: 1rem;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-    color: rgb(56, 54, 54);
+@media (max-width: 700px) {
+  .right {
+    width: 100vw;
+    background-color: transparent;
   }
-
-  .ingredientsTitle{
-    font-size: 10px;
-    margin-left: 1rem;
-    font-size: 40px;
-    font-weight: 500;
-    margin-left: 1rem;
-    color: rgb(56, 54, 54);
-    margin-bottom: 1rem;
+}
+@media (max-width: 700px) {
+  .right {
+    padding: 0rem;
   }
-  .li{
-    list-style-type: none;
-  
-    color: blacrgba(0, 0, 0, 0.375)
-
+}
+@media (max-width: 280px) {
+  .right {
+    width: 96vw;
   }
-  .nameIng{
-    font-weight: 500;
-    margin-left: 1rem;
-    font-size: 22px;
-    color: lightgray;
-  }
-  .descIng{
-    color: lightgray;
-        font-size:18px;
-  }
+}

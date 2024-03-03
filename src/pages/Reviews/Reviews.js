@@ -255,7 +255,6 @@ function Reviews() {
                 <div className={style.topCenter}>
                   <p
                     className={style.productName}
-                    // style={{ fontWeight: "900", fontSize: "22px" }}
                   >
                     {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
                     {rev.subCategoryID.name}
