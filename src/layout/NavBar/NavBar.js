@@ -153,6 +153,20 @@ function NavBar() {
               About Us
             </NavLink>
           </li>
+
+           {window.innerWidth <= 480 && (
+      <li className={styles.li} onClick={() => setMenuOpen(false)}>
+        {!user ? (
+          <NavLink  className={styles.link}  to="./login">
+            Login
+          </NavLink>
+        ) : (
+          <NavLink   className={styles.link} to="/" onClick={logout}>
+            Logout
+          </NavLink>
+        )}
+      </li>
+    )}
           {user && window.innerWidth <= 1197 && (
             <li className={styles.li} onClick={() => setMenuOpen(false)}>
               <Link to="./userP" className={styles.userLink}>
@@ -168,26 +182,19 @@ function NavBar() {
           )}
         </ul>
         <div className={styles.containBtn}>
-          <button className={styles.cart}>
-            {!user ? (
-              <NavLink
-                className={` ${styles.btn}`}
-                to="./login"
-                // style={{ color: "var(--fonts-color)" }}
-              >
-                Login{" "}
-              </NavLink>
-            ) : (
-              <NavLink
-                // style={{ color: "var(--fonts-color)" }}
-                className={` ${styles.btn}`}
-                to="/"
-                onClick={logout}
-              >
-                logout
-              </NavLink>
-            )}
-          </button>
+        {window.innerWidth > 480 && (
+      <button className={styles.cart}>
+        {!user ? (
+          <NavLink className={` ${styles.btn}`} to="./login">
+            Login
+          </NavLink>
+        ) : (
+          <NavLink className={` ${styles.btn}`} to="/" onClick={logout}>
+            Logout
+          </NavLink>
+        )}
+      </button>
+    )}
           {/* <button onClick={logout}>logggouttt</button> */}
 
           {user && window.innerWidth > 1197 && (

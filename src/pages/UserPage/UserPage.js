@@ -176,7 +176,6 @@ function UserPage() {
       <div className={style.top}>
        
 
-        {/* {console.log(`http://localhost:5000/${user?.image}`)} */}
       </div>
       <div className={style.center}>
         <div className={style.left}>
@@ -186,7 +185,6 @@ function UserPage() {
             className={style.pfImg}
           />
         </div>
-          {/* <div className={style.cardInfo}> */}
           <h2 className={style.nameLeft}> {user?.name}</h2>
           <p className={style.mail}>
             {" "}
@@ -206,7 +204,6 @@ function UserPage() {
             
             </Button>
             {addPostVisible && <AddPost setAddPost={setAddPostVisible} />}{" "}
-            {/* Render AddPost conditionally */}
             {/* <button className={style.btn2} onClick={toggleAddTestimonial}>Add Testimonial</button> */}
             <Button text={"+ Testimoniol"} onClick={toggleAddTestimonial} />
           </div>
