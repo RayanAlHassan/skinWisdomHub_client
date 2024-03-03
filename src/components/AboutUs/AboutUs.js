@@ -15,9 +15,9 @@ function AboutUs() {
         
         </div> {/* Apply the 'left' class */}
       <div className={style.right}>
-        <div className={style.div}>
+        {/* <div className={style.div}> */}
           <p className={style.action}> {/* Apply the 'action' class */}
-            Welcome to <span>SkinWiz</span>, where we're here to help you understand
+            Welcome to <span className={style.span}>SkinWiz</span>, where we're here to help you understand
             your skin better and find the right products for you. In today's world,
             it's easy to get caught up in trends and influencer recommendations, but
             we're here to provide clear, straightforward advice. Our team of
@@ -26,11 +26,11 @@ function AboutUs() {
             type. We believe in transparency and safety, ensuring that the products
             we recommend are effective and suitable for your skin. Join us in our
             mission to promote healthy, happy skin – let's navigate the world of
-            skincare together. Thank you for choosing <span>SkinWiz</span> as your
+            skincare together. Thank you for choosing <span  className={style.span}>SkinWiz</span> as your
             trusted skincare advisor.
           </p>
         </div>
-      </div>
+      {/* </div> */}
     </div>
     </section>
   );
