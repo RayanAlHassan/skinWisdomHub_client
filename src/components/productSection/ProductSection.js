@@ -46,13 +46,13 @@ const ProductSection = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
-      // {
-      //   breakpoint:1200,
-      //   settings: {
-      //     slidesToShow: 3,
-      //     slidesToScroll: 1,
-      //   },
-      // },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
       {
         breakpoint: 1024,
         settings: {
@@ -76,6 +76,7 @@ const ProductSection = () => {
       },
     ],
   };
+  
 
   const toggleDescriptionExpansion = (productId) => {
     setExpandedDescriptionId(
@@ -97,7 +98,8 @@ const ProductSection = () => {
                   expandedDescriptionId === element._id;
                 return (
                   <div className={style.card} key={element._id}>
-                    <NavLink
+                    <div
+                      // to={`/card/${element._id}`}
                       className={style.productHolder}
                       key={element._id}
                       onClick={() => navigate(`/card/${element._id}`)}
@@ -118,7 +120,7 @@ const ProductSection = () => {
                             {isDescriptionExpanded
                               ? element.description
                               : element.description.length > 35
-                              ? "..."+element.description.slice(0, 35) 
+                              ? "..." + element.description.slice(0, 35)
                               : element.description}
                           </p>
                           {!isDescriptionExpanded && (
@@ -133,7 +135,7 @@ const ProductSection = () => {
                           )}
                         </div>
                       </div>
-                    </NavLink>
+                    </div>
                   </div>
                 );
               })}

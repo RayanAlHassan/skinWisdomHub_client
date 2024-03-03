@@ -28,6 +28,8 @@ function UserPage() {
 
   const [reviews, setReviews] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isResponsive, setIsResponsive] = useState(window.innerWidth <= 970);
+
   const handleOpenModal = (id) => {
     setSelectedReviewId(id);
     setShowModal(true);
@@ -53,6 +55,12 @@ function UserPage() {
           );
           setComments(commentsResponse.data);
         }
+        window.addEventListener("resize", handleWindowResize);
+
+        // Cleanup function to remove the event listener when component unmounts
+        return () => {
+          window.removeEventListener("resize", handleWindowResize);
+        };
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -60,6 +68,9 @@ function UserPage() {
 
     fetchData();
   }, [user && user._id]);
+  const handleWindowResize = () => {
+    setIsResponsive(window.innerWidth <= 970);
+  };
   const toggleAddPost = () => {
     setAddPostVisible(!addPostVisible);
   };
@@ -171,20 +182,25 @@ function UserPage() {
       console.error("Error adding comment:", error);
     }
   };
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
+
+  const toggleDescriptionExpansion = (reviewId) => {
+    setExpandedDescriptions((prevState) => ({
+      ...prevState,
+      [reviewId]: !prevState[reviewId], // Toggle the value for the review ID
+    }));
+  };
   return (
     <section className={style.container}>
-      <div className={style.top}>
-       
-
-      </div>
+      <div className={style.top}></div>
       <div className={style.center}>
         <div className={style.left}>
-        <div className={style.containImg}>
-          <img
-            src={`${process.env.REACT_APP_PATH}images/${user?.image}`}
-            className={style.pfImg}
-          />
-        </div>
+          <div className={style.containImg}>
+            <img
+              src={`${process.env.REACT_APP_PATH}images/${user?.image}`}
+              className={style.pfImg}
+            />
+          </div>
           <h2 className={style.nameLeft}> {user?.name}</h2>
           <p className={style.mail}>
             {" "}
@@ -200,9 +216,7 @@ function UserPage() {
           </p>{" "}
           {/* Display only the date */}
           <div className={style.btns}>
-            <Button text={"+ Post"}  onClick={toggleAddPost}>
-            
-            </Button>
+            <Button text={"+ Post"} onClick={toggleAddPost}></Button>
             {addPostVisible && <AddPost setAddPost={setAddPostVisible} />}{" "}
             {/* <button className={style.btn2} onClick={toggleAddTestimonial}>Add Testimonial</button> */}
             <Button text={"+ Testimoniol"} onClick={toggleAddTestimonial} />
@@ -219,6 +233,7 @@ function UserPage() {
             {console.log("rrrrrrrrrrrrrrrrrrrrrrrrrr", reviews)}
             {console.log("fffffffffffffffffffff", filteredReviews)}
 
+            {/* Posts */}
             {reviews.map((rev) => (
               <div key={rev._id} className={style.post}>
                 <div className={style.postTop}>
@@ -236,48 +251,62 @@ function UserPage() {
                         alt="profile user"
                       />
                     )}
+                    {console.log(
+                      `${process.env.REACT_APP_PATH}images/${rev.userID.image}`
+                    )}
+
                     <div style={{ display: "flex", flexDirection: "column" }}>
                       <p className={style.name}>{rev?.userID?.name}</p>
                       <p className={style.time}>
                         {formatTimeSince(rev.createdAt)}
                       </p>
-                      {console.log("subCategory name", rev.subCategoryID.name)}
                     </div>
                   </div>
                   <div className={style.topCenter}>
-                    <p
-                      className={style.productName}
-                      // style={{ fontWeight: "900", fontSize: "22px" }}
-                    >
-                      {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
+                    <p className={style.productName}>
                       {rev.subCategoryID.name}
                     </p>
-                    <p className={style.subCategory}> {rev.productName}</p>
                   </div>
                 </div>
                 <div className={style.centerPost}>
-                  <p className={style.skinType}>{rev.skinType}</p>
-                  <p className={style.desc}>{rev.description}</p>
-
-                  <img
-                    src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
-                    className={style.posttt}
-                    alt="rev"
-                  />
+                  <div className={style.lefttSide}>
+                    <img
+                      src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
+                      className={style.posttt}
+                      alt="rev"
+                    />
+                  </div>
+                  <div className={style.righttSide}>
+                    <p className={style.subCategory}> {rev.productName}</p>
+                    <p className={style.skinType}>Skin Type: {rev.skinType}</p>
+                    <div className={style.desc}>
+                      {isResponsive
+                        ? expandedDescriptions[rev._id]
+                          ? rev.description
+                          : rev.description.slice(0, 40)
+                        : expandedDescriptions[rev._id]
+                        ? rev.description
+                        : rev.description.slice(0, 100)}
+                      {rev.description.length > (isResponsive ? 40 : 100) && (
+                        <span
+                          className={style.viewMore}
+                          onClick={() => toggleDescriptionExpansion(rev._id)}
+                        >
+                          {expandedDescriptions[rev._id]
+                            ? " View Less"
+                            : "... View More"}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
                 <div className={style.rating}>
-                  <span
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "fitContent",
-                    }}
-                  >
-                    <span style={{ fontWeight: "900", fontSize: "20px" }}>
-                      ( {Math.round(rev.rate * 100) / 100} )
+                  <div className={style.rateStuff}>
+                    <span style={{ fontWeight: "400", fontSize: "20px" }}>
+                      Average Rating: {Math.round(rev.rate * 100) / 100}
                     </span>
                     <StarIcon style={{ color: "yellow", fontSize: "20px" }} />
-                  </span>
+                  </div>
                   <button
                     className={style.commentButton}
                     onClick={() => handleOpenModal(rev._id)}

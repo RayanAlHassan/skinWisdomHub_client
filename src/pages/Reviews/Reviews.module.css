@@ -94,28 +94,21 @@
   height: 60%;
 }
 .posttt {
-  /* object-fit: cover;
-    height: 20rem;
-    width: 100%; */
+ 
   object-fit: cover;
-  /* position: relative; */
   max-height: 20rem;
   width: 91%;
   border-radius: 18px;
   margin: 1rem auto;
   display: flex;
-  /* text-align: center; */
   justify-content: center;
 }
 .bottom {
   width: 100%;
   padding: 10px;
   color: white;
-  /* min-height: 5rem;
-    max-height: 15rem; */
   display: flex;
   height: 100%;
-  /* flex-direction: column; */
   justify-content: space-between;
 }
 .rating {
@@ -134,7 +127,6 @@
   width: 90%;
   max-height: 24rem;
   color: var(--grays-color);
-  /* overflow-y: scroll; */
   padding: 12px;
   margin: 0 auto 1rem auto;
 }
@@ -144,8 +136,7 @@
   font-size: 18px;
   color: black;
 }
-.time {
-}
+
 .productName {
   position: absolute;
   right: 0;
@@ -168,14 +159,11 @@
   backdrop-filter: blur(10px);
   width: 40%;
   height: 60%;
-  /* overflow-y: auto;  */
 }
 
 .commentCard {
-  /* background-color: bisque; */
   margin-bottom: 1rem;
   background-color: #e9e4e7;
-  /* padding-bottom: 24px; */
 }
 .commentCards {
   padding: 3rem;
@@ -361,7 +349,10 @@
   width: 22%;
   font-size: 12px;
 }
-
+.center{
+  display: flex;
+  flex-direction: row;
+}
 }
 
 @media (max-width: 970px) {
@@ -500,3 +491,37 @@
   width: 100%;
   background-color: transparent;
 }}
+
+
+
+
+/* ////////////////////////// *//* Add this media query for responsiveness */
+@media (max-width: 1200px) {
+  .commentCards {
+    max-height: 60%; /* Adjust the max-height as needed */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+  }
+}
+
+@media (max-width: 970px) {
+  .commentsContainer {
+    padding: 2rem; /* Adjust padding as needed */
+  }
+  .commentTextArea {
+    height: 12%; /* Adjust the height of the textarea */
+    margin: 1rem 0; /* Adjust margin as needed */
+    width: 90%; /* Adjust width as needed */
+  }
+}
+
+@media (max-width: 670px) {
+  .commentTextArea {
+    height: 10%; /* Adjust the height of the textarea */
+  }
+}
+
+@media (max-width: 480px) {
+  .commentTextArea {
+    height: 8%; /* Adjust the height of the textarea */
+  }
+}
