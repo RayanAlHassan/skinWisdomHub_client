@@ -35,8 +35,9 @@
 
 .header {
   color: var(--Font-color);
-  font-size: 5rem;
+  font-size: 3rem;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .div {

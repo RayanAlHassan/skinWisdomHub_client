@@ -6,6 +6,8 @@
   height: 100vh;
   align-content: center;
   justify-content: center;
+  margin-bottom: 4rem;
+
 }
 
 .h1{
@@ -14,10 +16,12 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 3rem;
   color: var(--Font-color);
   font-weight: bold;
   margin-bottom: 100px;
+  margin-bottom: 2rem;
+
 }
 .subtitle{
   text-align: center;

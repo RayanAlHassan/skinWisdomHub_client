@@ -66,6 +66,7 @@ const AddTestimonial = ({ setAddTestimonial, fetchData }) => {
               onChange={handleChange}
               className={Styles.inputField}
               required
+              maxLength={150}
             />
           </div>
           <button className={Styles.submitButton} disabled={isLoading}>

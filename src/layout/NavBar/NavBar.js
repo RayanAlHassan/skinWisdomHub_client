@@ -5,6 +5,7 @@ import styles from "./NavBar.module.css";
 import { Spin as Hamburger } from "hamburger-react";
 import { AuthContext } from "../../Context/AuthContext";
 import Button from "../../components/Button/Button";
+import logoo from "../../assets/images/logoo.jpeg"
 
 function NavBar() {
   const { user, logout } = useContext(AuthContext);
@@ -82,6 +83,7 @@ function NavBar() {
         <div className={styles.logoContainer}>
           <Link className={styles.logo} to={"/"}>
             SkinWiz
+
           </Link>
         </div>
 

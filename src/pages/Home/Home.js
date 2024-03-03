@@ -3,15 +3,17 @@ import HeroSection from '../../components/HeroSection/HeroSection'
 import AboutUs from '../../components/AboutUs/AboutUs'
 import SearchForU from '../../components/SearchForU/SearchForU'
 import ProductSection from '../../components/productSection/ProductSection'
-import Testimoniol from '../../components/Testimoniol/Testimoniol'
+import Testimonial from '../../components/Testimonial/Testimonial'
 function Home() {
   return (
-    <main>
+    <main 
+    // style={{width:"100vw"}}
+    >
    
 
 <HeroSection/>
 <ProductSection/>
-<Testimoniol/>
+<Testimonial/>
 <AboutUs/>
     </main>
   )

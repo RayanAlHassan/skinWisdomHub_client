@@ -10,8 +10,9 @@
 .container {
   position: relative;
   height: 100%;
+  width: 99vw;
   margin-bottom: 3rem;
-  background-color: white;
+  background-color:white;
 }
 
 .top {
