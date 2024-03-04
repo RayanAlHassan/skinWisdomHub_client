@@ -104,7 +104,10 @@
 /* For screens less than 900px */
 @media (max-width: 900px) {
   .testimonial-card {
-    width: 100%; /* Full width for single card */
+    width: 100vw; /* Full width for single card */
     margin: 10px 0; /* Add some vertical space between cards */
+  }
+  .testimonial-cards{
+    padding: 0;
   }
 }
