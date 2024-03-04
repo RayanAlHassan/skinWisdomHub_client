@@ -7,11 +7,15 @@ import rose from "../../assets/images/sd.jpg";
 import { AuthContext } from "../../Context/AuthContext";
 import axiosInstance from "../../Utils/AxiosInstance";
 import Button from "../../components/Button/Button";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
 function Login() {
   const { setUser, user, fetchOne } = useContext(AuthContext); // Use the useContext hook to access setUser and state
   const navigate = useNavigate();
   const [networkError, setNetworkError] = useState(false); //network err
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   // LOGIN form handle input change
   const [formData, setFormData] = useState({
     email: "",
@@ -75,7 +79,11 @@ function Login() {
       }
     }
   };
+  const passwordInputType = showPassword ? "text" : "password";
 
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <main className={style.container}>
       {/* <aside className={style.asidee}>
@@ -123,16 +131,26 @@ function Login() {
             <label htmlFor="password" className={style.label}>
               Password
             </label>
+            <div className={style["password-input-container"]}>
+
+          
             <input
               className={style.input}
               id="password"
               name="password"
-              type="password"
+              type={passwordInputType}
               value={formData.password}
               onChange={handleChange}
               required
               disabled={loading}
             />
+              <div
+                    className={style["password-toggle"]}
+                    onClick={handleTogglePassword}
+                  >
+                    {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                  </div>
+                  </div>
           </div>
           {/* <button
           

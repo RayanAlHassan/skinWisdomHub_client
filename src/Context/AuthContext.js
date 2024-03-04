@@ -103,15 +103,21 @@ export const AuthProvider = ({ children }) => {
   const [checkUser, setCheckUser] = useState(false);
   const [userUpdated, setUserUpdated] = useState(false);
   const navigate = useNavigate();
+
+
+
   useEffect(() => {
     console.log(user);
-    if (!user || userUpdated) {
+    if ( checkUser) {
       // fetchUserData();
       fetchOne();
     } else {
       console.log("user updatedd:", user);
     }
-  }, [user, userUpdated]);
+  }, [checkUser,user, userUpdated]);
+
+
+
 
   const fetchUserData = async () => {
     try {

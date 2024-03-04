@@ -156,7 +156,7 @@ function NavBar() {
             </NavLink>
           </li>
 
-           {window.innerWidth <= 570 && (
+           {window.innerWidth <=1200 && (
       <li className={styles.li} onClick={() => setMenuOpen(false)}>
         {!user ? (
           <NavLink  className={styles.link}  to="./login">
@@ -184,7 +184,7 @@ function NavBar() {
           )}
         </ul>
         <div className={styles.containBtn}>
-        {window.innerWidth > 480 && (
+        {window.innerWidth > 1200 && (
       <button className={styles.cart}>
         {!user ? (
           <NavLink className={` ${styles.btn}`} to="./login">

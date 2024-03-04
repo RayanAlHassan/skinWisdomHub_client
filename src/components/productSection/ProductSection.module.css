@@ -102,8 +102,7 @@
 } */
 @media (max-width:1200px) {
   .title{
-    font-size: 24px;
-  }
+    font-size: 3rem;  }
   .skinType {
     font-size: 14px;
   }

@@ -15,6 +15,15 @@
   position: absolute;
   left: 0;
 } */
+.password-input-container {
+  position: relative;
+}
+.password-toggle {
+
+  position: absolute;
+  top: 30%;
+  right: 2rem;
+}
 .container {
   height: 99vh;
   width: 100vw;

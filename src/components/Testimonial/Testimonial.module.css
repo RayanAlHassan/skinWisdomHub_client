@@ -103,8 +103,7 @@
 
 @media (max-width:1200px) {
   .title{
-    font-size: 24px;
-  }
+    font-size: 3rem;  }
 }
 @media (max-width:450px) {
   .title{
@@ -112,7 +111,7 @@
   }
 }
 
-@media (max-width:3700px) {
+@media (max-width:370px) {
   .title{
     font-size: 18px;
   }

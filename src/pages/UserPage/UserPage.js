@@ -236,6 +236,7 @@ function UserPage() {
             {/* Posts */}
             {reviews.map((rev) => (
               <div key={rev._id} className={style.post}>
+                {console.log("sssssssssssssssssssssssss",reviews)}
                 <div className={style.postTop}>
                   <div className={style.topLeft}>
                     {rev.userID.image ? (
