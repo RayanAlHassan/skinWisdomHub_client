@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,7 +5,8 @@ import Styles from "../Searchfilter/Searchfilter.module.css";
 import { motion } from "framer-motion";
 import { FaSlidersH } from "react-icons/fa";
 import useFilterStore from "../filterStore";
-
+import Button from "../Button/Button";
+import styled from "@emotion/styled";
 const Searchfilter = ({ onFilterChange, handleSearch }) => {
   const navigate = useNavigate();
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
@@ -31,7 +31,9 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
 
   const fetchSkinTypes = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_PATH}product/getall`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_PATH}product/getall`
+      );
       if (!response.data) {
         throw new Error("Failed to fetch products");
       }
@@ -59,7 +61,9 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_PATH}category/getall`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_PATH}category/getall`
+      );
       if (!response.data) {
         throw new Error("Failed to fetch category");
       }
@@ -91,7 +95,6 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
     setFilterState((prevState) => ({ ...prevState, [name]: value }));
     console.log("SELECTED", filterState);
   };
-
 
   const resetFilter = () => {
     setFilterState({});
@@ -167,7 +170,14 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
       >
         <FaSlidersH className={`${Styles.filterIcon} ${Styles.hoverEffect}`} />
       </motion.button>
-      <button onClick={resetFilter}>Reset</button>
+      <motion.button>
+      
+        <div className={Styles.resetBtn}>
+          <Button text={"Reset"} onClick={resetFilter}>
+            Reset
+          </Button>
+        </div>
+      </motion.button>
     </motion.div>
   );
 };

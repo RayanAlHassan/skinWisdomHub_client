@@ -41,13 +41,13 @@ const ProductSection = () => {
     infinite: true,
     arrows: true,
     autoplaySpeed: 2500,
-    autoplay: true,
+    autoplay: false,
     pauseOnHover: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1200,
+        breakpoint: 1300,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -107,7 +107,8 @@ const ProductSection = () => {
                       <h1 className={style.subtitle}>
                         {element.subCategoryID.name}
                       </h1>
-                      <p style={{ textAlign: "center" }}>{element.skinType}</p>
+                      <p className={style.skinType}>{element.skinType}</p>
+
                       <img
                         className={style.imgg}
                         src={`${process.env.REACT_APP_PATH}images/${element.image}`}
@@ -115,7 +116,9 @@ const ProductSection = () => {
                       />
                       <div className={style.details}>
                         <div>
-                          <h4>{element.name}</h4>
+                        <h4 className={style.namePd}>{element.name}</h4>
+
+
                           <p className={style.description}>
                             {isDescriptionExpanded
                               ? element.description

@@ -24,7 +24,35 @@
 
 }
 .subtitle{
-  text-align: center;
+  /* text-align: center;
+  margin-bottom: 1rem;
+  color: var(--Font-color); */
+  
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: white;
+    text-align: center;
+    max-width: 50%;
+    min-width: 7rem;
+    border-bottom-left-radius: 18px;
+    padding: 12px 7px 10px 7px;
+    font-size: 18px;
+    background-color: var(--Font-color);
+  
+}
+.skinType{
+  margin-bottom: 1rem;
+  margin-top: 0rem;text-align: center;
+  color: rgb(163 92 153 / 88%);
+  font-size: 18px;
+}
+.namePd{
+  font-size: 20px;
+  font-family: 500;
+  font-weight: 600;
+  color: var(--Font-color);
+  margin-top: 0rem;
   margin-bottom: 1rem;
 }
 .cards {
@@ -72,7 +100,44 @@
   height: 1rem;
   text-align: center;
 } */
+@media (max-width:1200px) {
+  .title{
+    font-size: 24px;
+  }
+  .skinType {
+    font-size: 14px;
+  }
+  .subtitle {
+    font-size: 22px;
 
+  }
+}
+@media (max-width:450px) {
+  .title{
+    font-size: 24px;
+  }
+}
+
+@media (max-width:370px) {
+  .title{
+    font-size: 18px;
+  }
+  .namePd{
+    font-size: 16px;
+  }
+  .subtitle{
+    font-size: 16px;
+    min-width: 5rem;
+  }
+  .productHolder{
+    height: 447px;
+  }
+  .imgg{
+    height: 39%;
+    width: 90%;
+  }
+
+}
 @media (max-width: 768px) {
   .cardContainer {
     display: flex;
@@ -156,19 +221,10 @@
 .shopContainer {
   margin-right: 280px;
 }
+.skinType{
+  margin-top: 0.2rem;
+}
 
-/* .productHolder {
-  background-color:var(--main-color);
-  display: inline-block;
-  position: relative;
-  text-decoration: none;
-  color: rgba(43, 43, 43, 0.63);
-  height: 470px;
-  margin-right: 10px;
-  padding: 20px;
-  overflow: hidden;
-  transition: all 0.3s;
-} */
 .productHolder:hover {
   box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.1);
   transform: scale3d(1.05, 1.05, 1.05);
@@ -198,4 +254,19 @@
 .collapse {
   display: flex;
   position: relative;
+}
+
+@media (max-width:350px) {
+  .skinType{
+    text-align: left;
+  }
+  .span{
+    font-size: 12px;
+  }
+  .description{
+    font-size: 14px;
+  }
+  .namePd{
+    font-size: 15px;
+  }
 }

@@ -61,10 +61,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  height: 4rem;
+  height:fit-content;
   align-items: center;
   background-color: blure;
-  /* top: 10rem; */
   align-content: center;
 }
 .flexing {
@@ -90,7 +89,14 @@
 .maginife {
   background-color: transparent;
 }
-@media screen and (max-width: 1500px) {
+.resetBtn{
+  width: 5rem;
+  display: flex;
+  height: 0rem;
+  font-size: 12px;
+  align-items: center;
+}
+@media screen and (max-width: 1200px) {
     .header{
         width: 35%;
     }
@@ -98,7 +104,7 @@
     width: 15rem;
   }
   .input {
-    width: 15rem; /* Ensure each select takes up the full width on smaller screens */
+    width: 15rem; 
   }
   .option {
     background-color: #ecebf1;

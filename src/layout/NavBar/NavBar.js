@@ -156,7 +156,7 @@ function NavBar() {
             </NavLink>
           </li>
 
-           {window.innerWidth <= 480 && (
+           {window.innerWidth <= 570 && (
       <li className={styles.li} onClick={() => setMenuOpen(false)}>
         {!user ? (
           <NavLink  className={styles.link}  to="./login">
