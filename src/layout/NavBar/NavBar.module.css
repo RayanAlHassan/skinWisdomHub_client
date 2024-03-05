@@ -24,10 +24,20 @@
   transition: transform 0.5s ease;
   background-color: transparent;
 }
-.imgLogo{
+.divImgLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
-  width: 38px;
-  height: 55px;
+.imgLogo {
+  position: absolute;
+  top: 50%;
+  width: 24%;
+  height: 70%;
+  left: 54%;
+  transform: translate(-50%, -50%);
 }
 .nav {
   height: 90px;

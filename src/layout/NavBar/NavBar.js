@@ -83,8 +83,15 @@ function NavBar() {
       <nav className={styles.nav}>
         <div className={styles.logoContainer}>
           <Link className={styles.logo} to={"/"}>
-            <img width={"155px"} height={"70px"} src={logoo}style={{position:"relative"}}/>
-<img src={starLogo} width={"30px"} height={"20px"} className={styles.imgLogo}/>
+            <div className={styles.divImgLogo}>
+            <img width={"119px"} height={"36px"} src={logoo}style={{position:"relative"}}/>
+            <img src={starLogo}className={styles.imgLogo}/>
+
+           
+
+            </div>
+          
+
           </Link>
         </div>
 
