@@ -5,7 +5,7 @@ import { AuthContext } from "../../Context/AuthContext";
 
 const AddPost = ({ setAddPost, fetchData }) => {
   const { user } = useContext(AuthContext);
-  const skinTypes = ["Dry", "Oily", "Mix", "All Skin"];
+  const skinTypes = ["Dry", "Oily", "All Skin"];
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // State for loading

@@ -6,7 +6,7 @@ import { Spin as Hamburger } from "hamburger-react";
 import { AuthContext } from "../../Context/AuthContext";
 import Button from "../../components/Button/Button";
 import logoo from "../../assets/icons/purpleLogo.png";
-import starLogo from "../../assets/icons/star.png"
+import starLogo from "../../assets/icons/star.png";
 
 function NavBar() {
   const { user, logout } = useContext(AuthContext);
@@ -83,15 +83,13 @@ function NavBar() {
       <nav className={styles.nav}>
         <div className={styles.logoContainer}>
           <Link className={styles.logo} to={"/"}>
-            <div className={styles.divImgLogo}>
-            <img width={"119px"} height={"36px"} src={logoo}style={{position:"relative"}}/>
+            {/* <div className={styles.divImgLogo}> */}
+            {/* <img width={"119px"} height={"36px"} src={logoo}style={{position:"relative"}}/>
             <img src={starLogo}className={styles.imgLogo}/>
 
-           
-
-            </div>
-          
-
+            */}
+            {/* </div> */}
+            skinWiz
           </Link>
         </div>
 
@@ -164,19 +162,19 @@ function NavBar() {
             </NavLink>
           </li>
 
-           {window.innerWidth <=1200 && (
-      <li className={styles.li} onClick={() => setMenuOpen(false)}>
-        {!user ? (
-          <NavLink  className={styles.link}  to="./login">
-            Login
-          </NavLink>
-        ) : (
-          <NavLink   className={styles.link} to="/" onClick={logout}>
-            Logout
-          </NavLink>
-        )}
-      </li>
-    )}
+          {window.innerWidth <= 1200 && (
+            <li className={styles.li} onClick={() => setMenuOpen(false)}>
+              {!user ? (
+                <NavLink className={styles.link} to="./login">
+                  Login
+                </NavLink>
+              ) : (
+                <NavLink className={styles.link} to="/" onClick={logout}>
+                  Logout
+                </NavLink>
+              )}
+            </li>
+          )}
           {user && window.innerWidth <= 1197 && (
             <li className={styles.li} onClick={() => setMenuOpen(false)}>
               <Link to="./userP" className={styles.userLink}>
@@ -192,19 +190,19 @@ function NavBar() {
           )}
         </ul>
         <div className={styles.containBtn}>
-        {window.innerWidth > 1200 && (
-      <button className={styles.cart}>
-        {!user ? (
-          <NavLink className={` ${styles.btn}`} to="./login">
-            Login
-          </NavLink>
-        ) : (
-          <NavLink className={` ${styles.btn}`} to="/" onClick={logout}>
-            Logout
-          </NavLink>
-        )}
-      </button>
-    )}
+          {window.innerWidth > 1200 && (
+            <button className={styles.cart}>
+              {!user ? (
+                <NavLink className={` ${styles.btn}`} to="./login">
+                  Login
+                </NavLink>
+              ) : (
+                <NavLink className={` ${styles.btn}`} to="/" onClick={logout}>
+                  Logout
+                </NavLink>
+              )}
+            </button>
+          )}
           {/* <button onClick={logout}>logggouttt</button> */}
 
           {user && window.innerWidth > 1197 && (

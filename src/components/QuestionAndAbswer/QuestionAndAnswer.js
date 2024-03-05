@@ -158,6 +158,14 @@ function QuestionAndAnswer() {
         <h1 className={style.h1}>What is the best skincare routine for beginners ?</h1>
         <p className={style.p}>Start with a gentle cleanser, followed by a moisturizer with SPF during the day and a heavier moisturizer at night. Incorporate a vitamin C serum for daytime and a retinol or hyaluronic acid serum at night.,
 </p>
+
+      </div>
+      <div className={style.faq}>
+        <h1 className={style.h1}>Can I use skincare products during pregnancy?</h1>
+        <p className={style.p}>Some skincare ingredients, like retinoids and salicylic acid, may not be safe during pregnancy. It's best to consult with your healthcare provider and avoid potentially harmful ingredients.,
+
+</p>
+
       </div>
       {/* {data.map((item) => (
         <div className={style.content} key={item.id}>

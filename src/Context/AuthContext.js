@@ -123,10 +123,6 @@ export const AuthProvider = ({ children }) => {
   //   }
   // }, [user, userUpdated]);
 
-  //   useEffect(()=>{
-  // if(!user)
-  //   },[])
-
   // const fetchUserData = async () => {
   //   try {
   //     setCheckUser(true);

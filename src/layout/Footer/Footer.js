@@ -28,12 +28,14 @@ const Footer = () => {
               {/* <div className={styles.logo}>
                 <img src={confluence} alt="" />
               </div> */}
-              <p className={styles.logo__name}>Homedy</p>
+              <p className={styles.logo__name}>skinWis</p>
             </div>
           </Link>
           <p className={styles.slogan}>
-            Homedy aims to celebrate and empower local artisans by showcasing
-            their unique creations to a broader audience.
+            SkinWiz is your go-to destination for comprehensive skincare product
+            reviews. Our expert team meticulously analyzes a wide range of
+            skincare products, providing you with honest and unbiased
+            assessments.
           </p>
         </div>
         <div className={styles.company}>
