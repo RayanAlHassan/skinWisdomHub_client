@@ -29,6 +29,7 @@ const Cards = (props) => {
           throw new Error("Failed to fetch products");
         }
         setProductData(response.data);
+        console.log("object", productData)
         setIsLoadingProducts(false);
       } catch (error) {
         console.error(error);
@@ -66,7 +67,7 @@ const Cards = (props) => {
   } else {
     productsToDisplay = productData;
   }
-
+  console.log(process.env.REACT_APP_PATH)
   return (
     <div className={styles.container}>
       <input
@@ -100,13 +101,14 @@ const Cards = (props) => {
           >
             <div className={styles.cardContent}>
               <p className={styles.subCategory}>
-                Subcategory: {item.subCategoryID?.name}
+               {item.subCategoryID?.name}
               </p>
               <img
                 className={styles.img}
                 src={`${process.env.REACT_APP_PATH}images/${item.image}`}
                 alt={item.name}
               />
+             
               <div className={styles.details}>
                 <p className={styles.brand}>{item.name}</p>
                 <p className={styles.skinType}> {item.skinType}</p>

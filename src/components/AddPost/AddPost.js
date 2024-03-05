@@ -8,6 +8,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
   const skinTypes = ["Dry", "Oily", "Mix", "All Skin"];
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // State for loading
 
   console.log("sssssssssssssssssssssssssssssssssssss", user);
   const [formData, setFormData] = useState({
@@ -88,6 +89,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
   const handleSubmit = async (e) => {
     console.log("handle submittt")
     e.preventDefault();
+    setIsLoading(true)
     try {
       const formDataToSend = new FormData();
       formDataToSend.append("productName", formData.productName);
@@ -123,6 +125,9 @@ const AddPost = ({ setAddPost, fetchData }) => {
       setAddPost(false);
     } catch (error) {
       console.error("Error submitting form data:", error.message);
+    }
+    finally {
+      setIsLoading(false); // Reset loading state regardless of success or failure
     }
   };
 
@@ -217,7 +222,7 @@ const AddPost = ({ setAddPost, fetchData }) => {
             <select
               className={Styles.inputFieldd}
               name="skinType"
-              value={skinTypes || ""}
+              value={formData.skinType || ""}
               onChange={handleChange}
             >
               <option className={Styles.options} value="">Select Skin Type</option>
@@ -228,8 +233,9 @@ const AddPost = ({ setAddPost, fetchData }) => {
               ))}
             </select>
           </div>
-          <button className={Styles.submitButton}>Submit</button>
-        </form>
+          <button className={Styles.submitButton} disabled={isLoading}>
+            {isLoading ? "Submitting..." : "Submit"}
+          </button>        </form>
         <button className={Styles.cancelButton} onClick={onclose}>
           cancel
         </button>

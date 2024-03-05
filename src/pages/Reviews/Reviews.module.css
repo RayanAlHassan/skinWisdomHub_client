@@ -162,11 +162,12 @@
 }
 
 .commentCard {
+    min-height: 7rem;
   margin-bottom: 1rem;
-  background-color: #e9e4e7;
+  background-color: var(--main-color);
 }
 .commentCards {
-  padding: 3rem;
+  padding-top: 3rem;
   overflow-y: auto;
   max-height: 70%;
 }
@@ -178,8 +179,8 @@
   margin-bottom: 1rem;
 }
 .imgComment {
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
   object-fit: cover;
 
   border-radius: 50%;
@@ -194,8 +195,7 @@
 }
 .commentTextArea {
   height: 16%;
-  width: 87%;
-  margin: 1rem 3rem;
+  width: 100%;
 }
 .submitButton {
   position: absolute;
@@ -203,10 +203,11 @@
   left: 3rem;
   cursor: pointer;
   color: white;
+
   background-color: var(--Font-color);
 
   /* background-color: rgb(232, 225, 225); */
-  border-radius: 0;
+  border-radius: 30px;
   height: 3rem;
   transition: all 0.3s ease;
   border: none;
@@ -238,7 +239,7 @@
   z-index: 1000;
   background-color: var(--Font-color);
   color: white;
-  border-radius: 0;
+  border-radius: 30px;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
@@ -498,30 +499,30 @@
 /* ////////////////////////// *//* Add this media query for responsiveness */
 @media (max-width: 1200px) {
   .commentCards {
-    max-height: 60%; /* Adjust the max-height as needed */
-    overflow-y: auto; /* Enable vertical scrolling if needed */
+    max-height: 60%;
+    overflow-y: auto; 
   }
 }
 
 @media (max-width: 970px) {
-  .commentsContainer {
-    padding: 2rem; /* Adjust padding as needed */
-  }
-  .commentTextArea {
-    height: 12%; /* Adjust the height of the textarea */
-    margin: 1rem 0; /* Adjust margin as needed */
-    width: 90%; /* Adjust width as needed */
-  }
+  /* .commentsContainer {
+    padding: 2rem; 
+  } */
+  /* .commentTextArea {
+    height: 12%; 
+    margin: 1rem 0; 
+    width: 90%; 
+  } */
 }
 
 @media (max-width: 670px) {
   .commentTextArea {
-    height: 10%; /* Adjust the height of the textarea */
+    height: 10%; 
   }
 }
 
 @media (max-width: 480px) {
   .commentTextArea {
-    height: 8%; /* Adjust the height of the textarea */
+    height: 8%; 
   }
 }

@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import placeholder from "../../assets/images/model.jpg";
 import Slider from "react-slick";
 import style from "./ProductSection.module.css";
 import { motion } from "framer-motion";
+import { UIMatch } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LoadingPage from "../LoadingPage";
-
+import { AuthContext } from "../../Context/AuthContext";
 const ProductSection = () => {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [productData, setProductData] = useState([]);
   const [expandedDescriptionId, setExpandedDescriptionId] = useState(null);
   const navigate = useNavigate();
-
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -76,13 +77,13 @@ const ProductSection = () => {
       },
     ],
   };
-  
 
   const toggleDescriptionExpansion = (productId) => {
     setExpandedDescriptionId(
       productId === expandedDescriptionId ? null : productId
     );
   };
+  // console.log("user login", user)
 
   return (
     <section id="ourproducts" className={style.contentsection}>
@@ -116,8 +117,7 @@ const ProductSection = () => {
                       />
                       <div className={style.details}>
                         <div>
-                        <h4 className={style.namePd}>{element.name}</h4>
-
+                          <h4 className={style.namePd}>{element.name}</h4>
 
                           <p className={style.description}>
                             {isDescriptionExpanded

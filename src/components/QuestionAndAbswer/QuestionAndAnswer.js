@@ -143,7 +143,23 @@ function QuestionAndAnswer() {
 
   return (
     <main className={style.container}>
-      {data.map((item) => (
+      <div className={style.faq}>
+        <h1 className={style.h1}>What is the best skincare routine for beginners ?</h1>
+        <p className={style.p}>Start with a gentle cleanser, followed by a moisturizer with SPF during the day and a heavier moisturizer at night. Incorporate a vitamin C serum for daytime and a retinol or hyaluronic acid serum at night.,
+</p>
+      </div>
+      <div className={style.faq}>
+        <h1 className={style.h1}>What's the best way to remove makeup ?</h1>
+        <p className={style.p}>      "Use a gentle makeup remover or cleansing oil to dissolve makeup, followed by a water-based cleanser to remove any remaining residue. Avoid harsh rubbing or scrubbing, especially around the delicate eye area.",
+
+</p>
+      </div>
+      <div className={style.faq}>
+        <h1 className={style.h1}>What is the best skincare routine for beginners ?</h1>
+        <p className={style.p}>Start with a gentle cleanser, followed by a moisturizer with SPF during the day and a heavier moisturizer at night. Incorporate a vitamin C serum for daytime and a retinol or hyaluronic acid serum at night.,
+</p>
+      </div>
+      {/* {data.map((item) => (
         <div className={style.content} key={item.id}>
           <div className={style.question}>
             <p>{item.question}</p>
@@ -167,7 +183,7 @@ function QuestionAndAnswer() {
             <p>{item.answer}</p>
           </div>
         </div>
-      ))}
+      ))} */}
     </main>
   );
 }

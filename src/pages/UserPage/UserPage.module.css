@@ -220,11 +220,12 @@
 }
 
 .commentCard {
+  min-height: 7rem;
   margin-bottom: 1rem;
   background-color: #e9e4e7;
 }
 .commentCards {
-  padding: 3rem;
+  padding-top: 3rem;
   overflow-y: auto;
   max-height: 70%;
 }
@@ -239,8 +240,7 @@
 }
 .commentTextArea {
   height: 16%;
-  width: 87%;
-  margin: 1rem 3rem;
+  width: 100%;
 }
 .submitButton {
   position: absolute;
@@ -251,7 +251,7 @@
   background-color: var(--Font-color);
 
   /* background-color: rgb(232, 225, 225); */
-  border-radius: 0;
+  border-radius: 30px;
   height: 3rem;
   transition: all 0.3s ease;
   border: none;
@@ -278,7 +278,7 @@
   z-index: 1000;
   background-color: var(--Font-color);
   color: white;
-  border-radius: 0;
+  border-radius: 30px;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
@@ -351,8 +351,8 @@
   margin-bottom: 1rem;
 }
 .imgComment {
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
   object-fit: cover;
 
   border-radius: 50%;
@@ -413,6 +413,10 @@
 }
 /* ////////////////////////////// */
 @media (max-width: 1200px) {
+  .commentCards {
+    max-height: 60%;
+    overflow-y: auto; 
+  }
   .center {
     display: flex;
     width: 100%;

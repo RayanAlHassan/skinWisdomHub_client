@@ -104,34 +104,42 @@ export const AuthProvider = ({ children }) => {
   const [userUpdated, setUserUpdated] = useState(false);
   const navigate = useNavigate();
 
-
+  // console.log(user);
 
   useEffect(() => {
-    console.log(user);
-    if ( checkUser) {
+    // console.log(user);
+    if (checkUser) {
       // fetchUserData();
+      console.log("tryy");
       fetchOne();
     } else {
-      console.log("user updatedd:", user);
+      console.log("user updatedd");
     }
-  }, [checkUser,user, userUpdated]);
+  }, [checkUser, user]);
 
+  // useEffect(() => {
+  //   if (!user && user === null) {
+  //     fetchOne();
+  //   }
+  // }, [user, userUpdated]);
 
+  //   useEffect(()=>{
+  // if(!user)
+  //   },[])
 
-
-  const fetchUserData = async () => {
-    try {
-      setCheckUser(true);
-      const response = await axiosInstance.get(`/user/view-all`, {
-        withCredentials: true,
-      });
-      setUser(response.data.user);
-    } catch (err) {
-      setUser(null);
-    } finally {
-      setCheckUser(false);
-    }
-  };
+  // const fetchUserData = async () => {
+  //   try {
+  //     setCheckUser(true);
+  //     const response = await axiosInstance.get(`/user/view-all`, {
+  //       withCredentials: true,
+  //     });
+  //     setUser(response.data.user);
+  //   } catch (err) {
+  //     setUser(null);
+  //   } finally {
+  //     setCheckUser(false);
+  //   }
+  // };
   const fetchOne = async () => {
     try {
       setCheckUser(true);
@@ -140,7 +148,7 @@ export const AuthProvider = ({ children }) => {
         { withCredentials: true }
       );
       setUser(response.data.user);
-      console.log(response.data.user);
+      // console.log(response.data.user);
       setUserUpdated(false);
     } catch (error) {
       setUser(null);
@@ -152,9 +160,13 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post(`${process.env.REACT_APP_PATH}user/logout`);
+      console.log("user beforrr logout", user);
+
+      const response = await axios.post(`http://localhost:5000/user/logout`);
       setUser(null);
-      navigate("./");
+      console.log(response.data);
+      navigate("/");
+      console.log("user after logout", user);
     } catch (error) {
       console.error("Error logging out:", error);
     }
@@ -162,7 +174,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, checkUser, fetchUserData, fetchOne, logout }}
+      value={{ user, setUser, checkUser, fetchOne, logout }}
     >
       {children}
     </AuthContext.Provider>

@@ -361,7 +361,7 @@ function Reviews() {
                               <p>{comment.userID.name}</p>
                             </div>
 
-                            <p>{comment.feedback}</p>
+                            <p className={style.feedb}>{comment.feedback}</p>
                           </CardContent>
                         </Card>
                       ))}
@@ -369,7 +369,7 @@ function Reviews() {
                   <textarea
                     className={style.commentTextArea}
                     multiline
-                    rows={4}
+                    // rows={4}
                     variant="outlined"
                     placeholder="Add a comment..."
                     value={newComment}

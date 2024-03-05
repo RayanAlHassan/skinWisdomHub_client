@@ -52,7 +52,17 @@
 }
 
 .subCategory {
-  font-size: 28px;
+  position: absolute;
+  right: 0;
+  color: white;
+  text-align: center;
+  max-width: 50%;
+  min-width: 7rem;
+  border-bottom-left-radius: 18px;
+  padding: 12px 7px 10px 7px;
+  font-size: 18px;
+  background-color: var(--Font-color);
+  /* font-size: 28px;
   height: 7vh;
   font-weight: 800;
   text-align: center;
@@ -60,7 +70,7 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  color: rgba(43, 43, 43, 0.63)  ;
+  color: rgba(43, 43, 43, 0.63)  ; */
 }
 
 .img {
@@ -119,4 +129,19 @@
 .cardContent {
   height: 100%;
   width: 100%;
+}
+
+@media (max-width:560px) {
+  .card{
+    height: 35rem;
+    width: 25rem;
+    /* background-color: hsl(0deg 0% 92.54% / 30%); */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    /* border: 1px solid gray; */
+    padding: 0rem;
+  }
 }

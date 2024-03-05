@@ -1,19 +1,19 @@
 .container {
   position: fixed;
-  top: 50%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 500px;
-  width: 90%;
+  width: 71%;
   padding: 20px;
-  background-image: linear-gradient(to bottom right, #472042, rgb(253 152 152));
+  background-image: linear-gradient(to bottom right, #472042, white);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border: 1px solid #ccc;
   border-radius: 5px;
   z-index: 20;
   border-radius: 30px;
-  height: 50rem;
+  height: 87%;
   gap: 2rem;
   padding: 2rem;
   border: none;
@@ -84,7 +84,7 @@
   background-color: #990186b3;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
 }
@@ -94,7 +94,7 @@
   background-color: #e9e3e3;
   color: #990186b3;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
   margin-top: 1rem;
   font-size: 16px;

@@ -5,7 +5,10 @@
   }
   .title{
     margin-bottom: 0.5rem;
-
+color: var(--Font-color);
+  }
+  .label{
+    color: var(--main-color);
   }
   /* For full-width design */
   .sign-up-container {

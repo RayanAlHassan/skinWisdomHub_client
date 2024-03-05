@@ -17,7 +17,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
   const [subCategories, setSubCategories] = useState([]);
   const [filterState, setFilterState] = useState({});
   const filterData = useFilterStore((state) => state.filterData);
-  const skinTypes = ["Dry", "Oily", "Mix", "All Skin"];
+  const skinTypes = ["Dry", "Oily", "All Skin"];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,7 +93,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
     }
 
     setFilterState((prevState) => ({ ...prevState, [name]: value }));
-    console.log("SELECTED", filterState);
+    console.log("SELECTED", filterState.skinType);
   };
 
   const resetFilter = () => {
@@ -107,7 +107,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
         <select
           className={Styles.input}
           name="skinType"
-          value={skinTypes || ""}
+          value={filterState.skinType || ""}
           onChange={handleChange}
         >
           <option value="">Select Skin Type</option>

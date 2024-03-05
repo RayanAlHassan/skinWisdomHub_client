@@ -1,10 +1,10 @@
 .container {
-  gap: 16px;
+  gap: 11rem;
   display: flex;
   /* gap: 5rem; */
   /* width: fit-content; */
   /* max-width: 66.8vw; */
-  width: 34%;
+  width: 100%;
   margin: auto;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,10 @@
 .content {
 
   height: 28rem;
-  width: 92rem;
+  /* width: 92rem; */
+  /* width: 100%; */
+  min-width: 30rem;
+  /* width: 90rem; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -42,6 +45,30 @@
     padding: 13px;
 
 }
+.faq{
+  width: 70%;
+  background-color: rgb(255, 255, 255);
+  height: fit-content;
+  padding: 0 10px ;
+  padding-left: 3rem;
+  border-left: 2px solid purple;
+  /* border: 1px solid red; */
+
+}
+h1{
+  font-size: 55px;
+  font-weight: 400;
+  color: #540d54;
+}
+.p{
+  font-size: 22px;
+  margin-top: 2rem;
+  width: 80%;
+  color: #540d54;
+
+
+}
+
 .answer p {
     font-weight: 300;
     padding: 13px;

@@ -4,6 +4,7 @@ import AboutUs from '../../components/AboutUs/AboutUs'
 import SearchForU from '../../components/SearchForU/SearchForU'
 import ProductSection from '../../components/productSection/ProductSection'
 import Testimonial from '../../components/Testimonial/Testimonial'
+import { useContext } from 'react'
 function Home() {
   return (
     <main 

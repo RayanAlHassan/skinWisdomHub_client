@@ -11,7 +11,7 @@ root.render(
   <React.StrictMode>
       <BrowserRouter>
   
-    <AuthProvider>
+    <AuthProvider >
     {/* <ToastContainer
           position="top-center"
           autoClose={3000}

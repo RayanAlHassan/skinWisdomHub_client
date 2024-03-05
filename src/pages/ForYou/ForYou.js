@@ -31,6 +31,12 @@ function ForYou() {
         console.error('Error fetching products:', error);
     }
 };
+const [filterState, setFilterState] = useState({});
+
+const resetFilter = () => {
+  setFilterState({});
+  handleSearch();
+};
 
   return (
     <main className={style.container}>
@@ -59,7 +65,7 @@ function ForYou() {
         <div className={style.headContainer}>
           <h1 className={style.header}>
             Find Your Skin's Perfect Fit
-            <FaFilter className={style.filterIcon} onClick={toggleFilter} />
+            <FaSearch className={style.filterIcon} onClick={toggleFilter} />
           </h1>
         </div>
 

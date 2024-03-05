@@ -16,9 +16,9 @@
     flex-direction: row;
   }
 .header{
-  height: 32px;
-  width:50%;
-  font-weight: 600;
+  width: 80%;
+  font-weight: 200;
+  font-size: 2.5rem;
   color: var(--grays-color);
   text-align: center;
   
@@ -33,6 +33,9 @@
   background: rgb(163 92 153 / 51%); 
 }
 .filterIcon {
+  width: 20px;
+  height: 35px;
+  margin-left:1rem ;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add transition for smooth scaling effect */
 }
@@ -102,7 +105,12 @@
   }} */
   @media screen and (max-width: 805px) {
     .header{
-        width: 50%;
+        /* width: 50%; */
         font-size: 24px;
         font-weight: 400;
     }} 
+    @media screen and (max-width: 369px) {
+     .top{
+      height: 20rem;
+     }
+    }

@@ -20,7 +20,7 @@
     align-items: flex-start;
     padding-top: 50px;
     backdrop-filter: blur(37px);
-    background-color: var(--bcg--top);
+    background-color: var(--main-color);
     padding-bottom: 50px;
     gap: 10px;
     padding: 1rem;

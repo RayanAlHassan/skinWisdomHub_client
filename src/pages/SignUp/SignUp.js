@@ -349,20 +349,20 @@ const SignUpForm = () => {
           <div className={styles.flexing}>
             <div className={styles.left}>
               <div className={styles["form-group"]}>
-                <label htmlFor="firstName"> name</label>
+                <label className={styles.label} htmlFor="firstName"> name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
+                  reqclassName={styles.label}uired
                 
                 />
               </div>
 
               <div className={styles["form-group"]}>
-                <label htmlFor="dob">Date of Birth</label>
+                <label htmlFor="dob" className={styles.label}>Date of Birth</label>
                 <input
                   type="date"
                   id="dob"
@@ -370,12 +370,13 @@ const SignUpForm = () => {
                   value={formData.dob}
                   onChange={handleChange}
                   required
+                  className={styles.label}
                 />
               </div>
             </div>
             <div className={styles.right}>
               <div className={styles["form-group"]}>
-                <label htmlFor="email">Email</label>
+                <label className={styles.label} htmlFor="email">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -383,12 +384,13 @@ const SignUpForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  className={styles.label}
                 />
               </div>
               <div className={styles["form-group"]}>
-                <label>Password</label>
+                <label className={styles.label}>Password</label>
                 <div className={styles["password-input-container"]}>
-                  <input
+                  <input className={styles.label} 
                     type={passwordInputType}
                     id="password"
                     name="password"
@@ -409,7 +411,7 @@ const SignUpForm = () => {
                 )}
               </div>
               <div className={styles["form-group"]}>
-                <label>Role</label>
+                <label className={styles.label}>Role</label>
 
                 <div className={styles.flexingRadioBtn}>
                   <div className={styles["role-radio-group"]}>
@@ -443,7 +445,7 @@ const SignUpForm = () => {
                 </div>
               </div>
               <div className={styles["form-group"]}>
-                <label>Image</label>
+                <label className={styles.label}>Image</label>
 
                 {/* <input
                   type="file"
@@ -461,7 +463,7 @@ const SignUpForm = () => {
                 <h3>Upload Files</h3>
                 <div className={styles.drop_box}>
                   <header>
-                    <h4>Uplaod an image here </h4>
+                    <h4 className={styles.title}>Uplaod an image here </h4>
                   </header>
                   <div className={styles.imggFile}>
                   {fileName &&  <p ><span className={styles.fileName}>
@@ -503,7 +505,7 @@ const SignUpForm = () => {
                 margin: "10px auto",
               }}
             >
-              <p>You've Successfully Registred</p>
+              <p className={styles.title}>You've Successfully Registred</p>
               <button
                 type="submit"
                 onClick={handleLogin}

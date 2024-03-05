@@ -5,7 +5,8 @@ import styles from "./NavBar.module.css";
 import { Spin as Hamburger } from "hamburger-react";
 import { AuthContext } from "../../Context/AuthContext";
 import Button from "../../components/Button/Button";
-import logoo from "../../assets/images/logoo.jpeg"
+import logoo from "../../assets/icons/purpleLogo.png";
+import starLogo from "../../assets/icons/star.png"
 
 function NavBar() {
   const { user, logout } = useContext(AuthContext);
@@ -82,8 +83,8 @@ function NavBar() {
       <nav className={styles.nav}>
         <div className={styles.logoContainer}>
           <Link className={styles.logo} to={"/"}>
-            SkinWiz
-
+            <img width={"155px"} height={"70px"} src={logoo}style={{position:"relative"}}/>
+<img src={starLogo} width={"30px"} height={"20px"} className={styles.imgLogo}/>
           </Link>
         </div>
 
@@ -115,7 +116,7 @@ function NavBar() {
               to="/reviews"
               onClick={() => setMenuOpen(false)}
             >
-              reviews{" "}
+              Reviews{" "}
             </NavLink>
           </li>
 
@@ -129,7 +130,7 @@ function NavBar() {
               to="/forYou"
               onClick={() => setMenuOpen(false)}
             >
-              forYou{" "}
+              ForYou{" "}
             </NavLink>
           </li>
           <li className={styles.li}>
