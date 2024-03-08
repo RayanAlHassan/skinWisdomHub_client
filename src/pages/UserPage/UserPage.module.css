@@ -480,11 +480,17 @@
   width: 22%;
   font-size: 12px;
 }
+.modalBackdrop{
+  width: 60%;
+}
 }
 @media (max-width: 920px) {
   .btns {
     gap: 1rem;
     width: 414px;
+  }
+  .modalBackdrop{
+    width: 93%;
   }
 }
 @media (max-width: 490px) {

@@ -352,6 +352,9 @@
   width: 22%;
   font-size: 12px;
 }
+.modalBackdrop{
+  width: 60%;
+}
 .center{
   display: flex;
   flex-direction: row;
@@ -374,6 +377,9 @@
     align-content: center;
     justify-content: flex-start;
     align-items: flex-start;
+  }
+  .modalBackdrop{
+    width: 93%;
   }
   .desc{
     width: 90%;
