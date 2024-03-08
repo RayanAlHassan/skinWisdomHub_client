@@ -5,7 +5,6 @@ import bcg from "../../assets/images/top.jpg";
 import Cards from "../../components/Cards/Cards";
 import { FaFilter, FaSearch, FaSlidersH, FaTags } from "react-icons/fa";
 // import SearchBar from "../../components/SearchBar/SearchBar";
-import useFilterStore from "../../components/filterStore";
 import axios from "axios";
 function ForYou() {
   const [filteredData, setFilteredData] = useState([]);
@@ -70,8 +69,11 @@ const resetFilter = () => {
         </div>
 
         <div className={style.card}>
-        <Cards filteredData={filteredData} /> {/* Pass filtered data to Cards */}
-        </div>
+        {filteredData.length > 0 ? (
+            <Cards filteredData={filteredData} />//pass filtred data to card
+          ) : (
+            <p className={style.notFound} >No products found !</p>
+          )}        </div>
       </div>
     </main>
   );

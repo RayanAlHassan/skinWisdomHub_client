@@ -4,7 +4,6 @@ import axios from "axios";
 import Styles from "../Searchfilter/Searchfilter.module.css";
 import { motion } from "framer-motion";
 import { FaSlidersH } from "react-icons/fa";
-import useFilterStore from "../filterStore";
 import Button from "../Button/Button";
 import styled from "@emotion/styled";
 const Searchfilter = ({ onFilterChange, handleSearch }) => {
@@ -16,7 +15,6 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [filterState, setFilterState] = useState({});
-  const filterData = useFilterStore((state) => state.filterData);
   const skinTypes = ["Dry", "Oily", "All Skin"];
 
   useEffect(() => {
@@ -93,7 +91,7 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
     }
 
     setFilterState((prevState) => ({ ...prevState, [name]: value }));
-    console.log("SELECTED", filterState.skinType);
+    console.log("SELECTED", filterState);
   };
 
   const resetFilter = () => {

@@ -163,8 +163,9 @@ import React, { useState } from "react";
 import styles from "./SignUp.module.css";
 import axios from "axios";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import rose from "../../assets/images/sd.jpg";
+import { Link, useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { app } from "../../firebase";
 
 // import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 // import { app } from "../../firebase";
@@ -232,7 +233,6 @@ const SignUpForm = () => {
     setImageUrl(imageUrl); // Set the URL of the selected image
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -297,72 +297,65 @@ const SignUpForm = () => {
     navigate("/login");
   };
 
-  // const handleOAuth = async () => {
-  //   try {
-  //     const provider = new GoogleAuthProvider();
-  //     const auth = getAuth(app);
+  const handleOAuth = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth(app);
 
-  //     const result = await signInWithPopup(auth, provider);
-  //     console.log(result);
+      const result = await signInWithPopup(auth, provider);
+      console.log(result);
 
-  //     const displayNameParts = result.user.displayName.split(" ");
-  //     const firstName = displayNameParts[0];
-  //     const lastName = displayNameParts.slice(1).join(" ");
+    
+      const res = await axios.post(`${process.env.REACT_APP_PATH}google/auth`, {
+        name: result.user.displayName,
+        email: result.user.email,
+        role: "user", // or "admin" depending on your application logic
+        dob: Date.now(),
+      },{withCredentials:true});
 
-  //     const res = await axios.post("http://localhost:5000/google/auth", {
-  //       firstName: firstName,
-  //       lastName: lastName,
-  //       email: result.user.email,
-  //       role: "user",
-  //       dob: Date.now(),
-  //       description: "Data Analytics",
-  //     });
-
-  //     console.log(res);
-  //     if (res) {
-  //       setLogBtn(true);
-  //       navigate("/login");
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
+      console.log(res);
+      if (res) {
+        setLogBtn(true);
+        navigate("/userP");
+      }
+    } catch (err) {
+      console.error("Error in sgnup google call", err);
+    }
   };
+
   return (
     <div className={styles["sign-up-container"]}>
-      
-      {/* <img
-        src={rose}
-        alt="bag"
-        style={{ height: "100%", width: "100%", position: "fixed", zIndex:"0" }}
-      /> */}
-     
-   
-
       <form onSubmit={handleSubmit} className={styles["sign-up-form"]}>
         <div style={{ margin: "0 auto" }}>
+          <Link className={styles.toHome} to="/">
+            {" "}
+            {"<"}
+          </Link>
+
           <h2 className={styles.title}>Rgistration</h2>
           <hr></hr>
           <div className={styles.flexing}>
             <div className={styles.left}>
               <div className={styles["form-group"]}>
-                <label className={styles.label} htmlFor="firstName"> name</label>
+                <label className={styles.label} htmlFor="firstName">
+                  {" "}
+                  name
+                </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  reqclassName={styles.label}uired
-                
+                  reqclassName={styles.label}
+                  uired
                 />
               </div>
 
               <div className={styles["form-group"]}>
-                <label htmlFor="dob" className={styles.label}>Date of Birth</label>
+                <label htmlFor="dob" className={styles.label}>
+                  Date of Birth
+                </label>
                 <input
                   type="date"
                   id="dob"
@@ -376,7 +369,9 @@ const SignUpForm = () => {
             </div>
             <div className={styles.right}>
               <div className={styles["form-group"]}>
-                <label className={styles.label} htmlFor="email">Email</label>
+                <label className={styles.label} htmlFor="email">
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -390,7 +385,8 @@ const SignUpForm = () => {
               <div className={styles["form-group"]}>
                 <label className={styles.label}>Password</label>
                 <div className={styles["password-input-container"]}>
-                  <input className={styles.label} 
+                  <input
+                    className={styles.label}
                     type={passwordInputType}
                     id="password"
                     name="password"
@@ -413,7 +409,7 @@ const SignUpForm = () => {
               <div className={styles["form-group"]}>
                 <label className={styles.label}>Role</label>
 
-                <div className={styles.flexingRadioBtn}>
+                {/* <div className={styles.flexingRadioBtn}>
                   <div className={styles["role-radio-group"]}>
                     <div className={styles.radios}>
                       <label htmlFor="user">User</label>
@@ -442,7 +438,7 @@ const SignUpForm = () => {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className={styles["form-group"]}>
                 <label className={styles.label}>Image</label>
@@ -466,13 +462,23 @@ const SignUpForm = () => {
                     <h4 className={styles.title}>Uplaod an image here </h4>
                   </header>
                   <div className={styles.imggFile}>
-                  {fileName &&  <p ><span className={styles.fileName}>
-                  {fileName} </span></p>} {/* Display file name */}
-                  {imageUrl && <img  className={styles.selectedImg} src={imageUrl} alt="Selected Image"  />} {/* Display selected image */}
-
+                    {fileName && (
+                      <p>
+                        <span className={styles.fileName}>{fileName} </span>
+                      </p>
+                    )}{" "}
+                    {/* Display file name */}
+                    {imageUrl && (
+                      <img
+                        className={styles.selectedImg}
+                        src={imageUrl}
+                        alt="Selected Image"
+                      />
+                    )}{" "}
+                    {/* Display selected image */}
                   </div>
-               
-                  <p style={{color:"white"}}> </p>
+
+                  <p style={{ color: "white" }}> </p>
                   <input
                     onChange={handleImageChange}
                     type="file"
@@ -488,7 +494,11 @@ const SignUpForm = () => {
             </div>
           </div>
           <div className={styles.flexingRadioBtn}>
-            <button className={styles.button} type="submit">Sign Up</button>
+            <button className={styles.button} type="submit">
+              Sign Up
+            </button>
+            <button onClick={handleOAuth}>sign up with google</button>
+
             {/* <button onClick={handleOAuth}>sign up with google</button> */}
           </div>
 

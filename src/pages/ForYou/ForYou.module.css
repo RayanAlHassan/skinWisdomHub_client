@@ -6,14 +6,23 @@
   /* background-color: var(--main-color); */
   width: 100%;
   }
-  .headContainer{
-    height: 2rem;
-    display: flex;
-    /* gap: 2rem; */
-    margin-top: 2rem;
+  .notFound{
+    width: 25vw;
+    color: var(--Font-color);
+    text-align: center;
     align-items: center;
-    justify-content: center;
-    flex-direction: row;
+    height: 10vh;
+    font-size: 20px;
+  }
+  .headContainer{
+    width: 25vw;
+    background-color: var(--main-color);
+    color: var(--Font-color);
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    height: 10vh;
   }
 .header{
   width: 80%;

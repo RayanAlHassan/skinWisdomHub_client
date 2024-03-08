@@ -15,7 +15,9 @@ import { FaComment } from "react-icons/fa";
 import { Divide } from "hamburger-react";
 import LoadingPage from "../../components/LoadingPage";
 import { useMediaQuery } from "@mui/material";
+import badWordData from "../../components/BadWord.json";
 
+const badWords = badWordData.badWords;
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const { user } = useContext(AuthContext);
@@ -27,6 +29,7 @@ function Reviews() {
   const [isLoading, setIsLoading] = useState(true);
   const [showMore, setShowMore] = useState(false); // Add showMore state
   const [isResponsive, setIsResponsive] = useState(window.innerWidth <= 970);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -138,22 +141,37 @@ function Reviews() {
 
   const handleAddComment = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_PATH}comments/create`,
-        {
-          reviewID: selectedReviewId,
-          feedback: newComment,
-          userID: user._id,
+      if (!user) {
+        // If user is not logged in, display an alert
+        alert("You need to log in to add a comment.");
+        return; // Return early to prevent further execution of the function
+      }
+      if (containsBadWord(newComment)) {
+        setError("Your comment contains inappropriate language.");
+      } else {
+        setError(""); // Reset error state if no bad words are found
+        const response = await axios.post(
+          `${process.env.REACT_APP_PATH}comments/create`,
+          {
+            reviewID: selectedReviewId,
+            feedback: newComment,
+            userID: user && user._id,
+          }
+        );
+        if (response) {
+          console.log("Comment added:", response.data);
+          setComments([...comments, response.data]);
+          setNewComment("");
         }
-      );
-      if (response) {
-        console.log("Comment added:", response.data);
-        setComments([...comments, response.data]);
-        setNewComment("");
       }
     } catch (error) {
       console.error("Error adding comment:", error);
     }
+  };
+
+  const containsBadWord = (text) => {
+    const words = text.toLowerCase().split(/\s+/);
+    return words.some((word) => badWords.includes(word));
   };
 
   const filteredReviews = reviews.filter(
@@ -253,9 +271,7 @@ function Reviews() {
                   </div>
                 </div>
                 <div className={style.topCenter}>
-                  <p
-                    className={style.productName}
-                  >
+                  <p className={style.productName}>
                     {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
                     {rev.subCategoryID.name}
                   </p>
@@ -270,10 +286,7 @@ function Reviews() {
                   />
                 </div>
 
-                <div
-                  className={style.righttSide}
-           
-                >
+                <div className={style.righttSide}>
                   <p className={style.subCategory}> {rev.productName}</p>
 
                   <p className={style.skinType}>Skin Type: {rev.skinType}</p>
@@ -373,8 +386,10 @@ function Reviews() {
                     variant="outlined"
                     placeholder="Add a comment..."
                     value={newComment}
-                    onChange={(e) => setNewComment(e.target.value)}
+                    onChange={(e) => {setNewComment(e.target.value); setError("");}}
                   />
+                  {error && <p className={style.error}>{error}</p>}
+
                   <button
                     className={style.submitButton}
                     onClick={handleAddComment}

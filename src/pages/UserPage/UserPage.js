@@ -40,10 +40,25 @@ function UserPage() {
   };
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
+      console.log("yserr ", user)
+
       try {
+        if (!user || !user._id) {
+          return; // If user or user._id is null, exit early
+        }
+        let userID;
+        if (user.data && user.data.user && user.data.user._id) {
+          // User logged in via Google OAuth
+          userID = user.data.user._id;
+        } else {
+          // User logged in via regular sign-in
+          userID = user._id;
+        }
+        console.log("yserr ", userID)
+
         const [reviewsResponse, commentsResponse] = await Promise.all([
-          axios.get(`${process.env.REACT_APP_PATH}reviews/byuser/${user._id}`),
+          axios.get(`${process.env.REACT_APP_PATH}reviews/byuser/${userID}`),
           axios.get(`${process.env.REACT_APP_PATH}comments/`),
         ]);
         if (reviewsResponse && commentsResponse) {

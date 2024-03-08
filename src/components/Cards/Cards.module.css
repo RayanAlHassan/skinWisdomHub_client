@@ -130,7 +130,16 @@
   height: 100%;
   width: 100%;
 }
-
+@media (max-width:970px) {
+  .subCategory{
+    max-width: 50%;
+    min-width: 4rem;
+    border-bottom-left-radius: 18px;
+    padding: 12px 7px 10px 7px;
+    font-size: 12px;
+  }
+  
+}
 @media (max-width:560px) {
   .card{
     height: 35rem;

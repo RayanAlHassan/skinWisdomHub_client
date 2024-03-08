@@ -8,6 +8,9 @@ import { AuthContext } from "../../Context/AuthContext";
 import axiosInstance from "../../Utils/AxiosInstance";
 import Button from "../../components/Button/Button";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import axios from "axios";
+import { app } from "../../firebase";
 
 function Login() {
   const { setUser, user, fetchOne } = useContext(AuthContext); // Use the useContext hook to access setUser and state
@@ -15,6 +18,7 @@ function Login() {
   const [networkError, setNetworkError] = useState(false); //network err
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [logBtn, setLogBtn] = useState(false);
 
   // LOGIN form handle input change
   const [formData, setFormData] = useState({
@@ -84,23 +88,47 @@ function Login() {
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
+
+
+    // Google login process
+    const handleOAuth = async () => {
+      try {
+        const provider = new GoogleAuthProvider();
+        const auth = getAuth(app);
+  
+        const result = await signInWithPopup(auth, provider);
+        console.log(result);
+  
+      
+        const res = await axios.post(`${process.env.REACT_APP_PATH}google/auth`, {
+          name: result.user.displayName,
+          email: result.user.email,
+          role: "user", // or "admin" depending on your application logic
+          dob: Date.now(),
+        });
+  
+        console.log(res);
+        if (res) {
+          setLogBtn(true);
+          navigate("/userP");
+        }
+      } catch (err) {
+        console.error("Error in sgnup google call", err);
+      }
+    };
+
+
   return (
     <main className={style.container}>
-      {/* <aside className={style.asidee}>
-        <Link className={style.logo} to={"/"}>
-          SkinWisdomHub
-        </Link>
-        <img src={rose} alt="bag" style={{ height: "100%", width: "100%",position:"fixed" }} />
-      </aside> */}
       <img src={rose} alt="bag" className={style.img} />
 
       <section className={style.content}>
       <Link className={style.toHome} to="/">  {"<"}</Link>
 
         <div className={style.authContent} >
-          <h1 className={style.title}>Sign In To Skin Wisdom Hub </h1>
+      <h1 className={style.title}>Sign In To Skin Wisdom Hub </h1>
           <form>
-            <button className={style.google}>
+            <button className={style.google} onClick={handleOAuth}>
               <FcGoogle className={style.googleIcon} />
               Sign In With Google
             </button>
@@ -152,14 +180,7 @@ function Login() {
                   </div>
                   </div>
           </div>
-          {/* <button
-          
-            type="submit"
-            className={style.btnSignin}
-            style={{ marginTop: "40px" }}
-          >
-            {loading ? "Signing In..." : "Sign In"}
-          </button> */}
+         
           <div style={{margin:"0 auto", width:"100%"}}>
           <Button  text={loading ? "Signing In..." : "Sign In"}  />
 

@@ -100,28 +100,27 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [checkUser, setCheckUser] = useState(false);
+  const [checkUser, setCheckUser] = useState(null);
   const [userUpdated, setUserUpdated] = useState(false);
   const navigate = useNavigate();
 
   // console.log(user);
 
-  useEffect(() => {
-    // console.log(user);
-    if (checkUser) {
-      // fetchUserData();
-      console.log("tryy");
-      fetchOne();
-    } else {
-      console.log("user updatedd");
-    }
-  }, [checkUser, user]);
-
   // useEffect(() => {
-  //   if (!user && user === null) {
+  //   // console.log(user);
+  //   if (checkUser) {
+  //     console.log("tryy");
   //     fetchOne();
+  //   } else {QQQQQQQQQQQQQQQqqqqq~!
+  //     console.log("user exist");
   //   }
-  // }, [user, userUpdated]);
+  // }, [checkUser, user]);
+
+  useEffect(() => {
+    if (!user && user === null) {
+      fetchOne();
+    }
+  }, [user, userUpdated]);
 
   // const fetchUserData = async () => {
   //   try {
@@ -158,7 +157,11 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("user beforrr logout", user);
 
-      const response = await axios.post(`http://localhost:5000/user/logout`);
+      const response = await axios.post(
+        `http://localhost:5000/user/logout`,
+        {},
+        { withCredentials: true }
+      );
       setUser(null);
       console.log(response.data);
       navigate("/");
