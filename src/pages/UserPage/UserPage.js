@@ -48,14 +48,14 @@ function UserPage() {
           return; // If user or user._id is null, exit early
         }
         let userID;
-        if (user.data && user.data.user && user.data.user._id) {
+        if (user.data && user.data.user && user.data.data.user._id) {
           // User logged in via Google OAuth
-          userID = user.data.user._id;
+          userID = user.data.data.user._id;
         } else {
           // User logged in via regular sign-in
           userID = user._id;
         }
-        console.log("yserr ", userID)
+        console.log("usergoogle ", userID)
 
         const [reviewsResponse, commentsResponse] = await Promise.all([
           axios.get(`${process.env.REACT_APP_PATH}reviews/byuser/${userID}`),

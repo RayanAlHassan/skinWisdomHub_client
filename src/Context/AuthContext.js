@@ -135,6 +135,23 @@ export const AuthProvider = ({ children }) => {
   //     setCheckUser(false);
   //   }
   // };
+  // const fetchOne = async () => {
+  //   try {
+  //     setCheckUser(true);
+  //     const response = await axios.get(
+  //       `${process.env.REACT_APP_PATH}user/loggedIn`,
+  //       { withCredentials: true }
+  //     );
+  //     setUser(response.data.user);
+  //     // console.log(response.data.user);
+  //     setUserUpdated(false);
+  //   } catch (error) {
+  //     setUser(null);
+  //     console.log(error);
+  //   } finally {
+  //     setCheckUser(false);
+  //   }
+  // };
   const fetchOne = async () => {
     try {
       setCheckUser(true);
@@ -143,7 +160,24 @@ export const AuthProvider = ({ children }) => {
         { withCredentials: true }
       );
       setUser(response.data.user);
-      // console.log(response.data.user);
+  
+      // Check if the user is logged in with Google OAuth
+      const isGoogleOAuth = response.data.user.providerId === 'google.com';
+      if (isGoogleOAuth) {
+        // Fetch additional user information from Google OAuth
+        const googleUserInfoResponse = await axios.get(
+          'https://www.googleapis.com/oauth2/v3/userinfo',
+          { withCredentials: true }
+        );
+        // Update user object with additional information from Google OAuth
+        setUser(prevUser => ({
+          ...prevUser,
+          email: googleUserInfoResponse.data.email,
+          displayName: googleUserInfoResponse.data.name,
+          // Add other necessary properties from Google OAuth response
+        }));
+      }
+  console.log("hereeee",user)
       setUserUpdated(false);
     } catch (error) {
       setUser(null);
@@ -152,13 +186,13 @@ export const AuthProvider = ({ children }) => {
       setCheckUser(false);
     }
   };
-
+  
   const logout = async () => {
     try {
       console.log("user beforrr logout", user);
 
       const response = await axios.post(
-        `http://localhost:5000/user/logout`,
+        `${process.env.REACT_APP_PATH}user/logout`,
         {},
         { withCredentials: true }
       );

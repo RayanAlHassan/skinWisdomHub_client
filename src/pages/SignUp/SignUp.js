@@ -159,13 +159,14 @@
 //     }
 //   };
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./SignUp.module.css";
 import axios from "axios";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { app } from "../../firebase";
+import { AuthContext } from "../../Context/AuthContext";
 
 // import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 // import { app } from "../../firebase";
@@ -181,7 +182,7 @@ const SignUpForm = () => {
     role: "user",
     description: "Data Analytics",
   });
-
+const{setUser}=useContext(AuthContext)
   const [image, setImage] = useState(null);
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(""); // State to store the name of the selected file
@@ -315,7 +316,10 @@ const SignUpForm = () => {
 
       console.log(res);
       if (res) {
-        setLogBtn(true);
+
+setUser(res.user)  
+console.log("stuser",setUser)
+   setLogBtn(true);
         navigate("/userP");
       }
     } catch (err) {

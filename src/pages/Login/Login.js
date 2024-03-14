@@ -89,33 +89,32 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
+// google login 
+  const handleOAuth = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth(app);
 
-    // Google login process
-    const handleOAuth = async () => {
-      try {
-        const provider = new GoogleAuthProvider();
-        const auth = getAuth(app);
-  
-        const result = await signInWithPopup(auth, provider);
-        console.log(result);
-  
-      
-        const res = await axios.post(`${process.env.REACT_APP_PATH}google/auth`, {
-          name: result.user.displayName,
-          email: result.user.email,
-          role: "user", // or "admin" depending on your application logic
-          dob: Date.now(),
-        });
-  
-        console.log(res);
-        if (res) {
-          setLogBtn(true);
-          navigate("/userP");
-        }
-      } catch (err) {
-        console.error("Error in sgnup google call", err);
+      const result = await signInWithPopup(auth, provider);
+      console.log(result);
+
+    
+      const res = await axios.post(`${process.env.REACT_APP_PATH}google/auth`, {
+        name: result.user.displayName,
+        email: result.user.email,
+        role: "user", // or "admin" depending on your application logic
+        dob: Date.now(),
+      },{withCredentials:true});
+
+      console.log(res);
+      if (res) {
+        setLogBtn(true);
+        navigate("/userP");
       }
-    };
+    } catch (err) {
+      console.error("Error in sgnup google call", err);
+    }
+  };
 
 
   return (
