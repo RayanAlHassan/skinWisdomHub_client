@@ -67,12 +67,12 @@
 }
 .containBtn {
   display: flex;
-  width: 14%;
+  width: 15%;
 
   /* width: 26%; */
   height: 4rem;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 1rem;
 }
 .order {
@@ -156,8 +156,8 @@
 .logoContainer {
   display: flex;
   height: 155px;
-  width: 70px;
-  justify-content: center;
+  width: 15%;
+  justify-content: flex-start;
   align-items: center;
 }
 .logo {
@@ -288,9 +288,15 @@
     justify-content: flex-end;
   }
 }
-/* @media (max-width: 360px) {
-.dropdown.active{
+@media (max-width: 560px) {
+.logoContainer{
 
-  right: 4px;
+  width: 50%;
 }
-} */
+}
+
+@media (max-width: 1197px) {
+  .logoContainer{
+  
+    width: 21%;  }
+  }

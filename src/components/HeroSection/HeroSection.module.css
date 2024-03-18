@@ -35,7 +35,7 @@
 .header {
   color: var(--main-color);
   font-size: 4rem;
-  width: 60%;
+  width: 56%;
 }
 
 .div {
@@ -45,7 +45,7 @@
   align-items: flex-start;
   justify-content: center;
   row-gap: 1rem;
-  width: 93%;
+  width: 85%;
   z-index: 2;
 }
 .btnaction {
@@ -109,13 +109,16 @@
     width: 100%;
   }
   .header {
-    /* color: var(--Font-color); */
     font-size: 5.5vw;
-    width: 60%;
+    /* width: 60%; */
   }
-  .action {
-    /* color: #000000bd; */
+
+}
+@media (max-width: 1197px) {
+  .div {
+    width: 95%;
   }
+
 }
 @media (max-width: 957px) {
   .header {
