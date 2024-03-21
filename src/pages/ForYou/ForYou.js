@@ -69,11 +69,9 @@ const resetFilter = () => {
         </div>
 
         <div className={style.card}>
-        {filteredData.length > 0 ? (
-            <Cards filteredData={filteredData} />//pass filtred data to card
-          ) : (
-            <p className={style.notFound} >No products found !</p>
-          )}        </div>
+      
+            <Cards filteredData={filteredData} />
+           </div>
       </div>
     </main>
   );

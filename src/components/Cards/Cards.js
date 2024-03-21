@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "./Cards.module.css";
 import { useNavigate } from "react-router-dom";
 import LoadingPage from "../LoadingPage";
+import { FaSearch } from "react-icons/fa";
 
 const Cards = (props) => {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
@@ -29,7 +30,7 @@ const Cards = (props) => {
           throw new Error("Failed to fetch products");
         }
         setProductData(response.data);
-        console.log("object", productData)
+        console.log("object", productData);
         setIsLoadingProducts(false);
       } catch (error) {
         console.error(error);
@@ -67,59 +68,67 @@ const Cards = (props) => {
   } else {
     productsToDisplay = productData;
   }
-  console.log(process.env.REACT_APP_PATH)
+  console.log(process.env.REACT_APP_PATH);
   return (
     <div className={styles.container}>
+      <div  className={styles.searchInputDiv} >
+
       <input
         type="text"
-        placeholder="Search For A Product Name..."
+        placeholder={`Search For A Product Name... `}
         value={searchQuery}
         onChange={handleSearchChange}
         className={styles.searchInput}
+
       />
-      {showDropdown && (
-        <div className={styles.dropdown}>
-          {filteredProducts.map((item) => (
+      <span className={styles.searchIcon}>
+      <FaSearch />
+      </span>
+
+      </div>
+      <div className={styles.contentContainer}>
+        {showDropdown && (
+          <div className={styles.dropdown}>
+            {filteredProducts.map((item) => (
+              <div
+                key={item._id}
+                onClick={() => handleDropdownSelect(item.name)}
+                className={styles.dropdownItem}
+              >
+                {item.name}
+              </div>
+            ))}
+          </div>
+        )}
+        {isLoadingProducts ? (
+          <LoadingPage />
+        ) : (
+          productsToDisplay.map((item) => (
             <div
               key={item._id}
-              onClick={() => handleDropdownSelect(item.name)}
-              className={styles.dropdownItem}
+              className={styles.card}
+              onClick={() => navigate(`/card/${item._id}`)}
             >
-              {item.name}
-            </div>
-          ))}
-        </div>
-      )}
-      {isLoadingProducts ? (
-        <LoadingPage />
-      ) : (
-        productsToDisplay.map((item) => (
-          <div
-            key={item._id}
-            className={styles.card}
-            onClick={() => navigate(`/card/${item._id}`)}
-          >
-            <div className={styles.cardContent}>
-              <p className={styles.subCategory}>
-               {item.subCategoryID?.name}
-              </p>
-              <img
-                className={styles.img}
-                src={`${process.env.REACT_APP_PATH}images/${item.image}`}
-                alt={item.name}
-              />
-             
-              <div className={styles.details}>
-                <p className={styles.brand}>{item.name}</p>
-                <p className={styles.skinType}> {item.skinType}</p>
+              <div className={styles.cardContent}>
+                <p className={styles.subCategory}>{item.subCategoryID?.name}</p>
+                <img
+                  className={styles.img}
+                  src={`${process.env.REACT_APP_PATH}images/${item.image}`}
+                  alt={item.name}
+                />
+
+                <div className={styles.details}>
+                  <p className={styles.brand}>{item.name}</p>
+                  <p className={styles.skinType}> {item.skinType}</p>
+                </div>
+              </div>
+              <div className={styles.hoverDetails}>
+                <span className={styles.desc}>{item.description}</span>
               </div>
             </div>
-            <div className={styles.hoverDetails}>
-              <span className={styles.desc}>{item.description}</span>
-            </div>
-          </div>
-        ))
-      )}
+          ))
+        )}
+      </div>
     </div>
   );
 };

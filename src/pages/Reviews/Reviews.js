@@ -16,6 +16,7 @@ import { Divide } from "hamburger-react";
 import LoadingPage from "../../components/LoadingPage";
 import { useMediaQuery } from "@mui/material";
 import badWordData from "../../components/BadWord.json";
+import { FaSearch } from "react-icons/fa";
 
 const badWords = badWordData.badWords;
 function Reviews() {
@@ -234,8 +235,47 @@ function Reviews() {
           {/* Background Image */}
           <div className={style.top}>
             <img src={image} className={style.img} alt="background" />
-            <div className={style.heroBackgrd}></div>
+<div className={style.animatedHead}>
 
+
+            <div className={`${style.words} ${style["word-1"]}`}>
+              <span>A</span>
+              <span>u</span>
+              <span>t</span>
+              <span>h</span>
+              <span>e</span>
+              <span>n</span>
+              <span>t</span>
+              <span>i</span>
+              <span>c</span>
+            </div>
+
+            <div className={`${style.words} ${style["word-2"]}`}>
+              <span>R</span>
+              <span>e</span>
+              <span>v</span>
+              <span>i</span>
+              <span>e</span>
+              <span>w</span>
+              <span>s</span>
+            </div>
+
+            <div className={`${style.words} ${style["word-3"]}`}>
+              <span>H</span>
+              <span>u</span>
+              <span>b</span>
+            </div>
+            </div>
+            <div className={style.heroBackgrd}></div>
+            {/* <input
+              type="text"
+              placeholder="Search For Products Or Skin Type"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={style.searchbar}
+            /> */}
+          </div>
+          <div className={style.search}>
             <input
               type="text"
               placeholder="Search For Products Or Skin Type"
@@ -243,166 +283,186 @@ function Reviews() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className={style.searchbar}
             />
+            <span className={style.searchIcon}>
+      <FaSearch />
+      </span>
+
+      
           </div>
+          {/* <input
+        type="text"
+        placeholder="Search For Products Or Skin Type"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        // className={styles.searchInput}
+      /> */}
 
           {/* Posts */}
-          {filteredReviews.map((rev) => (
-            <div key={rev._id} className={style.post}>
-              <div className={style.postTop}>
-                <div className={style.topLeft}>
-                  {rev.userID.image ? (
-                    <img
-                      src={`${process.env.REACT_APP_PATH}images/${rev.userID.image}`}
-                      className={style.profileUser}
-                      alt="profile user"
-                    />
-                  ) : (
-                    <img
-                      src={image}
-                      className={style.profileUser}
-                      alt="profile user"
-                    />
-                  )}
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <p className={style.name}>{rev?.userID?.name}</p>
-                    <p className={style.time}>
-                      {formatTimeSince(rev.createdAt)}
+          <div>
+            {filteredReviews.map((rev) => (
+              <div key={rev._id} className={style.post}>
+                <div className={style.postTop}>
+                  <div className={style.topLeft}>
+                    {rev.userID.image ? (
+                      <img
+                        src={`${process.env.REACT_APP_PATH}images/${rev.userID.image}`}
+                        className={style.profileUser}
+                        alt="profile user"
+                      />
+                    ) : (
+                      <img
+                        src={image}
+                        className={style.profileUser}
+                        alt="profile user"
+                      />
+                    )}
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <p className={style.name}>{rev?.userID?.name}</p>
+                      <p className={style.time}>
+                        {formatTimeSince(rev.createdAt)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={style.topCenter}>
+                    <p className={style.productName}>
+                      {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
+                      {rev.subCategoryID.name}
                     </p>
                   </div>
                 </div>
-                <div className={style.topCenter}>
-                  <p className={style.productName}>
-                    {/* {console.log("heyyy",`http://localhost:5000/images/${rev.userID.image}`)} */}
-                    {rev.subCategoryID.name}
-                  </p>
-                </div>
-              </div>
-              <div className={style.center}>
-                <div className={style.lefttSide}>
-                  <img
-                    src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
-                    className={style.posttt}
-                    alt="rev"
-                  />
-                </div>
-
-                <div className={style.righttSide}>
-                  <p className={style.subCategory}> {rev.productName}</p>
-
-                  <p className={style.skinType}>Skin Type: {rev.skinType}</p>
-                  <div className={style.desc}>
-                    {isResponsive
-                      ? expandedDescriptions[rev._id]
-                        ? rev.description
-                        : rev.description.slice(0, 40)
-                      : expandedDescriptions[rev._id]
-                      ? rev.description
-                      : rev.description.slice(0, 100)}
-                    {rev.description.length > (isResponsive ? 40 : 100) && (
-                      <span
-                        className={style.viewMore}
-                        onClick={() => toggleDescriptionExpansion(rev._id)}
-                      >
-                        {expandedDescriptions[rev._id]
-                          ? " View Less"
-                          : "... View More"}
-                      </span>
-                    )}
-                  </div>
-                  {/* <p className={style.desc}>{rev.description}</p> */}
-                </div>
-              </div>
-              <div className={style.rating}>
-                <div className={style.rateStuff}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Rating
-                      name={`simple-controlled-${rev._id}`}
-                      value={rev.selectedRating}
-                      onChange={(e, value) => handleChange(value, rev._id)}
-                      max={5}
-                      precision={1}
+                <div className={style.center}>
+                  <div className={style.lefttSide}>
+                    <img
+                      src={`${process.env.REACT_APP_PATH}images/${rev.image}`}
+                      className={style.posttt}
+                      alt="rev"
                     />
-                    <span>{rev.selectedRating}</span>
-                  </Box>
-                  <span style={{ display: "flex", alignItems: "center" }}>
-                    <span style={{ fontWeight: "400", fontSize: "20px" }}>
-                      ( {Math.round(rev.rate * 100) / 100} )
-                    </span>
-                    <StarIcon style={{ color: "yellow", fontSize: "20px" }} />
-                  </span>
-                </div>
-
-                <button
-                  className={style.commentButton}
-                  onClick={() => handleOpenModal(rev._id)}
-                >
-                  <FaComment color="var(--Font-color)" />
-                </button>
-              </div>
-            </div>
-          ))}
-
-          {/* Comments Modal */}
-          <Modal open={showModal} onClose={handleCloseModal}>
-            <div className={style.modalBackdrop}>
-              <div className={style.modalContent}>
-                <h2 className={style.titleCmnt}>Comments</h2>
-                <div className={style.commentsContainer}>
-                  <div className={style.commentCards}>
-                    {comments
-                      .filter(
-                        (comment) => comment.reviewID._id === selectedReviewId
-                      )
-                      .map((comment) => (
-                        <Card key={comment._id} className={style.commentCard}>
-                          <CardContent>
-                            {console.log("comments img", comment.userID.image)}
-
-                            {/* <p>{comment.USERid}</p> */}
-                            <div className={style.userComented}>
-                              <img
-                                src={`${process.env.REACT_APP_PATH}images/${comment.userID.image}`}
-                                className={style.imgComment}
-                                alt="rev"
-                              />
-                              <p>{comment.userID.name}</p>
-                            </div>
-
-                            <p className={style.feedb}>{comment.feedback}</p>
-                          </CardContent>
-                        </Card>
-                      ))}
                   </div>
-                  <textarea
-                    className={style.commentTextArea}
-                    multiline
-                    // rows={4}
-                    variant="outlined"
-                    placeholder="Add a comment..."
-                    value={newComment}
-                    onChange={(e) => {setNewComment(e.target.value); setError("");}}
-                  />
-                  {error && <p className={style.error}>{error}</p>}
+
+                  <div className={style.righttSide}>
+                    <p className={style.subCategory}> {rev.productName}</p>
+
+                    <p className={style.skinType}>Skin Type: {rev.skinType}</p>
+                    <div className={style.desc}>
+                      {isResponsive
+                        ? expandedDescriptions[rev._id]
+                          ? rev.description
+                          : rev.description.slice(0, 40)
+                        : expandedDescriptions[rev._id]
+                        ? rev.description
+                        : rev.description.slice(0, 100)}
+                      {rev.description.length > (isResponsive ? 40 : 100) && (
+                        <span
+                          className={style.viewMore}
+                          onClick={() => toggleDescriptionExpansion(rev._id)}
+                        >
+                          {expandedDescriptions[rev._id]
+                            ? " View Less"
+                            : "... View More"}
+                        </span>
+                      )}
+                    </div>
+                    {/* <p className={style.desc}>{rev.description}</p> */}
+                  </div>
+                </div>
+                <div className={style.rating}>
+                  <div className={style.rateStuff}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Rating
+                        name={`simple-controlled-${rev._id}`}
+                        value={rev.selectedRating}
+                        onChange={(e, value) => handleChange(value, rev._id)}
+                        max={5}
+                        precision={1}
+                      />
+                      <span>{rev.selectedRating}</span>
+                    </Box>
+                    <span style={{ display: "flex", alignItems: "center" }}>
+                      <span style={{ fontWeight: "400", fontSize: "20px" }}>
+                        ( {Math.round(rev.rate * 100) / 100} )
+                      </span>
+                      <StarIcon style={{ color: "yellow", fontSize: "20px" }} />
+                    </span>
+                  </div>
 
                   <button
-                    className={style.submitButton}
-                    onClick={handleAddComment}
+                    className={style.commentButton}
+                    onClick={() => handleOpenModal(rev._id)}
                   >
-                    Add Comment
+                    <FaComment color="var(--Font-color)" />
                   </button>
                 </div>
-                <button className={style.closee} onClick={handleCloseModal}>
-                  Close
-                </button>
               </div>
-            </div>
-          </Modal>
+            ))}
+
+            {/* Comments Modal */}
+            <Modal open={showModal} onClose={handleCloseModal}>
+              <div className={style.modalBackdrop}>
+                <div className={style.modalContent}>
+                  <h2 className={style.titleCmnt}>Comments</h2>
+                  <div className={style.commentsContainer}>
+                    <div className={style.commentCards}>
+                      {comments
+                        .filter(
+                          (comment) => comment.reviewID._id === selectedReviewId
+                        )
+                        .map((comment) => (
+                          <Card key={comment._id} className={style.commentCard}>
+                            <CardContent>
+                              {console.log(
+                                "comments img",
+                                comment.userID.image
+                              )}
+
+                              {/* <p>{comment.USERid}</p> */}
+                              <div className={style.userComented}>
+                                <img
+                                  src={`${process.env.REACT_APP_PATH}images/${comment.userID.image}`}
+                                  className={style.imgComment}
+                                  alt="rev"
+                                />
+                                <p>{comment.userID.name}</p>
+                              </div>
+
+                              <p className={style.feedb}>{comment.feedback}</p>
+                            </CardContent>
+                          </Card>
+                        ))}
+                    </div>
+                    <textarea
+                      className={style.commentTextArea}
+                      multiline
+                      // rows={4}
+                      variant="outlined"
+                      placeholder="Add a comment..."
+                      value={newComment}
+                      onChange={(e) => {
+                        setNewComment(e.target.value);
+                        setError("");
+                      }}
+                    />
+                    {error && <p className={style.error}>{error}</p>}
+
+                    <button
+                      className={style.submitButton}
+                      onClick={handleAddComment}
+                    >
+                      Add Comment
+                    </button>
+                  </div>
+                  <button className={style.closee} onClick={handleCloseModal}>
+                    Close
+                  </button>
+                </div>
+              </div>
+            </Modal>
+          </div>
         </div>
       )}
     </main>

@@ -100,8 +100,11 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
   };
 
   return (
-    <motion.div className={Styles.container}>
-      <div>
+    <motion className={Styles.container}>
+      <div className={Styles.searchs}>
+        <div>
+
+   
         <select
           className={Styles.input}
           name="skinType"
@@ -162,21 +165,22 @@ const Searchfilter = ({ onFilterChange, handleSearch }) => {
             ))}
         </select>
       </div>
+      </div>
+      <div className={Styles.rest}>
+
+  
       <motion.button
         className={`${Styles.btn} ${Styles.hoverEffect}`}
         onClick={() => handleSearch(filterState)}
       >
         <FaSlidersH className={`${Styles.filterIcon} ${Styles.hoverEffect}`} />
       </motion.button>
-      <motion.button>
-      
+    
         <div className={Styles.resetBtn}>
-          <Button text={"Reset"} onClick={resetFilter}>
-            Reset
-          </Button>
+          <Button text={"Reset"} onClick={resetFilter}></Button>
         </div>
-      </motion.button>
-    </motion.div>
+        </div>
+    </motion>
   );
 };
 

@@ -162,7 +162,7 @@
 }
 .logo {
   text-decoration: none;
-  color: var(--grays-color);
+  color:white;
   font-size: 40px;
   font-family: var(--title-font-family);
 }

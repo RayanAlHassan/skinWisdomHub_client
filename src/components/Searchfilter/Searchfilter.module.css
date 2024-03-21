@@ -89,12 +89,25 @@
 .maginife {
   background-color: transparent;
 }
+.rest{
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+}
 .resetBtn{
-  width: 5rem;
+  width: 7rem;
   display: flex;
   height: 0rem;
   font-size: 12px;
   align-items: center;
+  border-radius: none;
+}
+.searchs{
+  display: flex;
 }
 @media screen and (max-width: 1200px) {
     .header{
@@ -125,19 +138,30 @@
   .container {
     /* align-items: center; */
   }
+  .searchs{
+    flex-wrap: wrap;
+    width: 71%;
+  }
 }
 @media (max-width:736px) {
     .btn{
 
     }
 }
-@media screen and (max-width: 557px) {
+@media (max-width: 557px) {
   .container{
+    flex-direction: column;
     justify-content: flex-start;
   }
   .input{
     width: 10rem;
 
+  }
+  .searchs{
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 }
 @media screen and (max-width: 369px) {
