@@ -284,6 +284,7 @@ const{setUser}=useContext(AuthContext)
 
         if (addUser) {
           setLogBtn(true);
+          navigate("/userP");
         }
       } catch (error) {
         setError(true);

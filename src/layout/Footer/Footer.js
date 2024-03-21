@@ -47,9 +47,6 @@ const Footer = () => {
             <Link style={{ textDecoration: "none" }} to="/Reviews">
               <li>Reviews</li>
             </Link>
-            <Link style={{ textDecoration: "none" }} to={"/workshop"}>
-              <li>Workshop </li>
-            </Link>
             <Link style={{ textDecoration: "none" }} to="/forYou">
               <li>ForYou</li>
             </Link>

@@ -237,8 +237,9 @@ function Reviews() {
             <img src={image} className={style.img} alt="background" />
 <div className={style.animatedHead}>
 
+<h1 className={style.h1}>Authentic Reviews Hub</h1>
 
-            <div className={`${style.words} ${style["word-1"]}`}>
+            {/* <div className={`${style.words} ${style["word-1"]}`}>
               <span>A</span>
               <span>u</span>
               <span>t</span>
@@ -264,7 +265,7 @@ function Reviews() {
               <span>H</span>
               <span>u</span>
               <span>b</span>
-            </div>
+            </div> */}
             </div>
             <div className={style.heroBackgrd}></div>
             {/* <input
