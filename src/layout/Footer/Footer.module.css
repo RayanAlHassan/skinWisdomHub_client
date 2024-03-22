@@ -47,7 +47,7 @@
     filter: brightness(0) invert(1);
   }
   .logo__name {
-    font-size: 30px;
+    font-size: 13px;
     text-transform: uppercase;
     font-weight: bold;
     color: var(--Font-color);
@@ -62,7 +62,7 @@
   }
   .logo__description .slogan {
     color: var(--grays-color);
-    font-size: 20px;
+    font-size: 13px;
     margin-top: 8px;
     text-align: left;
   }
@@ -78,7 +78,7 @@
   }
   .section__title {
     color: var(--Font-color);
-    font-size: 25px;
+    font-size: 16px;
   }
   .links {
     width: fit-content;
@@ -89,7 +89,7 @@
     align-items: center;
     gap: 8px;
     color: var(--grays-color);
-    font-size: 19px;
+    font-size: 14px;
     transition: var(--main-transition);
   }
   .links li:hover {
@@ -157,8 +157,9 @@
   }
   
   .copyright {
-    color: var(--white-color);
+    color: var(--grays-color);
     font-size: 18px;
+    background-color: var(--main-color);
     font-weight: 400;
     text-align: center;
     padding-bottom: calc(var(--main-section-spacing) / 2);
