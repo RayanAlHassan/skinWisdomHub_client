@@ -29,7 +29,7 @@ function NavBar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [user]); // Empty dependency array ensures this effect runs only once on mount
+  }, []); // Empty dependency array ensures this effect runs only once on mount
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,13 +67,14 @@ function NavBar() {
     // Use JavaScript to scroll to the "About Us" section smoothly
     document.getElementById("aboutus").scrollIntoView({ behavior: "smooth" });
   };
-  useEffect(() => {
-    // Listen for changes in the user state
-    // and update local state accordingly
-    if (user) {
-      setVisible(true); // Ensure visibility when user is logged in
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   // Listen for changes in the user state
+  //   // and update local state accordingly
+  //   if (user) {
+  //     console.log(user)
+  //     setVisible(true); // Ensure visibility when user is logged in
+  //   }
+  // }, [user]);
 
   return (
     <header
@@ -204,18 +205,19 @@ function NavBar() {
             </button>
           )}
           {/* <button onClick={logout}>logggouttt</button> */}
-
-          {user && window.innerWidth > 1197 && (
-            <Link to="./userP" className={styles.li}>
-              <FaUser
-                className={styles.userIcon}
-                style={{
-                  color: "white",
-                  backgroundColor: "transparent",
-                  fontSize: "24px",
-                }}
-              />
-            </Link>
+ {/* Conditional rendering of user icon */}
+ {user && window.innerWidth >1197 && (
+            <li className={styles.li} onClick={() => setMenuOpen(false)}>
+              <Link to="./userP" className={styles.userLink}>
+                <FaUser
+                  style={{
+                    color: "white",
+                    backgroundColor: "transparent",
+                    fontSize: "24px",
+                  }}
+                />
+              </Link>
+            </li>
           )}
 
           <div className={styles.hamburger} onClick={handleMenuClick}>
