@@ -284,7 +284,6 @@ const{setUser}=useContext(AuthContext)
 
         if (addUser) {
           setLogBtn(true);
-          navigate("/userP");
         }
       } catch (error) {
         setError(true);
@@ -502,7 +501,7 @@ console.log("stuser",setUser)
             <button className={styles.button} type="submit">
               Sign Up
             </button>
-            <button onClick={handleOAuth}>sign up with google</button>
+            {/* <button onClick={handleOAuth}>sign up with google</button> */}
 
             {/* <button onClick={handleOAuth}>sign up with google</button> */}
           </div>

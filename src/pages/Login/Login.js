@@ -126,18 +126,18 @@ function Login() {
 
         <div className={style.authContent} >
       <h1 className={style.title}>Sign In To Skin Wisdom Hub </h1>
-          <form>
-            <button className={style.google} onClick={handleOAuth}>
+          {/* <form> */}
+            {/* <button className={style.google} onClick={handleOAuth}>
               <FcGoogle className={style.googleIcon} />
               Sign In With Google
-            </button>
-          </form>
+            </button> */}
+          {/* </form> */}
         </div>
-        <div className={style.line}>
+        {/* <div className={style.line}>
           <hr className={style.line1} />
           <div className={style.statement}>Or Sign in with email</div>
           <hr className={style.line2} />
-        </div>
+        </div> */}
         <form onSubmit={handleLogin} className={style.formbtnSignin}>
           <div className={style.sect}>
             <label className={style.label} htmlFor="email">
