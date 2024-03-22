@@ -15,14 +15,13 @@
 
   
   .container__wrapper {
-    display: flex;
-    justify-content: space-between;
     align-items: flex-start;
-    padding-top: 50px;
+    -webkit-backdrop-filter: blur(37px);
     backdrop-filter: blur(37px);
     background-color: var(--main-color);
-    padding-bottom: 50px;
-    gap: 10px;
+    display: flex;
+    gap: 19rem;
+    justify-content: space-evenly;
     padding: 1rem;
   }
   .container__wrapper > div {

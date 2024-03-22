@@ -152,7 +152,7 @@ function NavBar() {
             </NavLink>
           </li>
 
-          <li className={styles.li}>
+          {/* <li className={styles.li}>
             <NavLink
               to={location.pathname === "/" ? "#" : "/"}
               className={styles.link}
@@ -160,7 +160,7 @@ function NavBar() {
             >
               About Us
             </NavLink>
-          </li>
+          </li> */}
 
           {window.innerWidth <= 1200 && (
             <li className={styles.li} onClick={() => setMenuOpen(false)}>

@@ -1,10 +1,9 @@
 .container {
   display: flex;
-  margin: auto;
   height: 66vh;
-  width: 95%;
   justify-content: center;
-  margin-bottom: 4rem;
+  margin: auto auto 4rem;
+  width: 100%;
 }
 
 .left {
