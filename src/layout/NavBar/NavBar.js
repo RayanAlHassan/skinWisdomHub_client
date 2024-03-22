@@ -29,7 +29,7 @@ function NavBar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, [user]); // Empty dependency array ensures this effect runs only once on mount
 
   useEffect(() => {
     const handleResize = () => {

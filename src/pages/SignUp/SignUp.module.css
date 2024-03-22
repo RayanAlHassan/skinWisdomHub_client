@@ -7,6 +7,9 @@
 .label {
   color: var(--main-color);
 }
+.error {
+  margin:0.5rem;  color: red;
+  }
 /* For full-width design */
 .sign-up-container {
   display: flex;

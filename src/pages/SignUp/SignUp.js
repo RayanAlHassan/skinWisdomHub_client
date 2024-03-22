@@ -167,6 +167,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { app } from "../../firebase";
 import { AuthContext } from "../../Context/AuthContext";
+import Button from "../../components/Button/Button";
 
 // import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 // import { app } from "../../firebase";
@@ -187,8 +188,9 @@ const{setUser}=useContext(AuthContext)
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(""); // State to store the name of the selected file
   const [imageUrl, setImageUrl] = useState(""); // State to store the URL of the selected image
-
+  const [networkError, setNetworkError] = useState(false); //network err
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const passwordRegex =
@@ -236,7 +238,12 @@ const{setUser}=useContext(AuthContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!navigator.onLine) {
+      setNetworkError(true);
+      setError(false);
+      setIsLoading(false);
+      return;
+    }
     if (
       !formData.name ||
       !formData.role ||
@@ -286,6 +293,10 @@ const{setUser}=useContext(AuthContext)
           setLogBtn(true);
         }
       } catch (error) {
+        if (error.message === "Network request failed") {
+          setNetworkError(true);
+          setIsLoading(false);
+        }
         setError(true);
         setErrorMessage("Something went wrong");
         setLoading(false);
@@ -407,11 +418,11 @@ console.log("stuser",setUser)
                   </div>
                 </div>
                 {error && (
-                  <p className={styles["error-message"]}>{errorMessage}</p>
+                  <p className={styles.error}>{errorMessage}</p>
                 )}
               </div>
               <div className={styles["form-group"]}>
-                <label className={styles.label}>Role</label>
+                {/* <label className={styles.label}>Role</label> */}
 
                 {/* <div className={styles.flexingRadioBtn}>
                   <div className={styles["role-radio-group"]}>
@@ -498,9 +509,13 @@ console.log("stuser",setUser)
             </div>
           </div>
           <div className={styles.flexingRadioBtn}>
-            <button className={styles.button} type="submit">
+            {/* <button className={styles.button} type="submit">
               Sign Up
-            </button>
+            </button> */}
+            <div style={{margin:"1rem auto 0rem auto", width:"50%"}}>
+          <Button text={loading ? "Signing up..." : "Sign Up"}  />
+
+          </div>
             {/* <button onClick={handleOAuth}>sign up with google</button> */}
 
             {/* <button onClick={handleOAuth}>sign up with google</button> */}
@@ -516,7 +531,7 @@ console.log("stuser",setUser)
 
                 textAlign: "center",
                 fontSize: "12px",
-                margin: "10px auto",
+                margin: "0px auto",
               }}
             >
               <p className={styles.title}>You've Successfully Registred</p>
