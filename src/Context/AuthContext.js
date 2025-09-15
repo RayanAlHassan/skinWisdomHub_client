@@ -1,157 +1,29 @@
-// import { createContext, useReducer, useEffect } from "react";
-// import axiosInstance from "../Utils/AxiosInstance.js";
-
-// export const AuthContext = createContext();
-
-// export const authReducer = (state, action) => {
-//   switch (action.type) {
-//     case "login":
-//       return { user: action.payload };
-//     case "logout":
-//       return { user: null };
-//     default:
-//       return state;
-//   }
-// };
-
-// export const AuthProvider = ({ children }) => {
-//   const [state, dispatch] = useReducer(authReducer, {
-//     user: null,
-//   });
-
-//   useEffect(() => {
-//     const storedUser = localStorage.getItem("authUser");
-//     if (storedUser) {
-//       dispatch({ type: "login", payload: JSON.parse(storedUser) });
-//     }
-//   }, []);
-
-//   useEffect(() => {
-//     localStorage.setItem("state", JSON.stringify(state.user));
-//   }, [state]);
-
-//   useEffect(() => {
-//     if (state.user) {
-//       localStorage.setItem("authUser", JSON.stringify(state.user));
-//     }
-//   }, [state.user]);
-
-//   const setUser = (userData) => {
-//     dispatch({ type: "login", payload: userData });
-//     localStorage.setItem("authUser", JSON.stringify(userData));
-//         localStorage.setItem("state", JSON.stringify(userData));
-
-//     console.log("userdata:", userData);
-//   };
-
-// const fetchUserData = async () => {
-//   try {
-//     const authUser = JSON.parse(localStorage.getItem("authUser"));
-
-//     if (!authUser || !authUser.user.id) {
-//       console.error("Invalid user data in local storage");
-//       return;
-//     }
-
-//     const response = await axiosInstance.get(
-//       `http://localhost:5000/user/view-one/${authUser.user.id}`
-//     );
-
-//     console.log("Response from server:", response);
-
-//     if (response.status === 200 && response.data && response.data.User) {
-//       setUser(response.data.User); // Update this line
-//       console.log("User data fetched successfully:", response.data.User);
-//     } else {
-//       console.error("Invalid user data in the response:", response);
-//     }
-//   } catch (error) {
-//     console.error("Error fetching user data:", error);
-//   }
-// };
-
-//   const logout = async () => {
-//     console.log("Logout function called");
-//     try {
-//       await axiosInstance.post("http://localhost:5000/user/logout");
-//       dispatch({ type: "logout" });
-// } catch (error) {
-//   console.error("Error logging out:", error);
-// } finally {
-//       localStorage.clear();
-//     }
-//   };
-//   return (
-//     <AuthContext.Provider value={{ ...state, setUser, fetchUserData, logout }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export default AuthProvider;
-////////////////////////////////////////////////////
-
-// withe cookies not local storage
+// AuthContext.js
 import React, { createContext, useState, useEffect } from "react";
-import axiosInstance from "../Utils/AxiosInstance.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [checkUser, setCheckUser] = useState(null);
-  const [userUpdated, setUserUpdated] = useState(false);
+  const [checkUser, setCheckUser] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // console.log(user);
-
-  // useEffect(() => {
-  //   // console.log(user);
-  //   if (checkUser) {
-  //     console.log("tryy");
-  //     fetchOne();
-  //   } else {QQQQQQQQQQQQQQQqqqqq~!
-  //     console.log("user exist");
-  //   }
-  // }, [checkUser, user]);
+  // Check token in cookies
+  const checkToken = () => {
+    const tokenExists = document.cookie.split("; ").some((c) =>
+      c.startsWith("token=")
+    );
+    setIsLoggedIn(tokenExists);
+  };
 
   useEffect(() => {
-    if (!user && user === null) {
-      fetchOne();
-    }
-  }, [user, userUpdated]);
+    checkToken();
+  }, []);
 
-  // const fetchUserData = async () => {
-  //   try {
-  //     setCheckUser(true);
-  //     const response = await axiosInstance.get(`/user/view-all`, {
-  //       withCredentials: true,
-  //     });
-  //     setUser(response.data.user);
-  //   } catch (err) {
-  //     setUser(null);
-  //   } finally {
-  //     setCheckUser(false);
-  //   }
-  // };
-  // const fetchOne = async () => {
-  //   try {
-  //     setCheckUser(true);
-  //     const response = await axios.get(
-  //       `${process.env.REACT_APP_PATH}user/loggedIn`,
-  //       { withCredentials: true }
-  //     );
-  //     setUser(response.data.user);
-  //     // console.log(response.data.user);
-  //     setUserUpdated(false);
-  //   } catch (error) {
-  //     setUser(null);
-  //     console.log(error);
-  //   } finally {
-  //     setCheckUser(false);
-  //   }
-  // };
+  // Fetch full profile (optional)
   const fetchOne = async () => {
     try {
       setCheckUser(true);
@@ -159,55 +31,47 @@ export const AuthProvider = ({ children }) => {
         `${process.env.REACT_APP_PATH}user/loggedIn`,
         { withCredentials: true }
       );
-      setUser(response.data.user);
-  
-      // Check if the user is logged in with Google OAuth
-      const isGoogleOAuth = response.data.user.providerId === 'google.com';
-      if (isGoogleOAuth) {
-        // Fetch additional user information from Google OAuth
-        const googleUserInfoResponse = await axios.get(
-          'https://www.googleapis.com/oauth2/v3/userinfo',
-          { withCredentials: true }
-        );
-        // Update user object with additional information from Google OAuth
-        setUser(prevUser => ({
-          ...prevUser,
-          email: googleUserInfoResponse.data.email,
-          displayName: googleUserInfoResponse.data.name,
-          // Add other necessary properties from Google OAuth response
-        }));
-      }
-  console.log("hereeee",user)
-      setUserUpdated(false);
-    } catch (error) {
+      setUser(response.data.user || null);
+      setIsLoggedIn(!!response.data.user);
+    } catch (err) {
       setUser(null);
-      console.log(error);
+      setIsLoggedIn(false);
+      console.log(err);
     } finally {
       setCheckUser(false);
     }
   };
-  
+
+  // Login function to update state immediately
+  const login = (userData) => {
+    setUser(userData);
+    setIsLoggedIn(true);
+  };
+
+  // Logout
   const logout = async () => {
     try {
-      console.log("user beforrr logout", user);
-
-      const response = await axios.post(
-        `${process.env.REACT_APP_PATH}user/logout`,
-        {},
-        { withCredentials: true }
-      );
+      await axios.post(`${process.env.REACT_APP_PATH}user/logout`, {}, { withCredentials: true });
       setUser(null);
-      console.log(response.data);
+      setIsLoggedIn(false);
       navigate("/");
-      console.log("user after logout", user);
-    } catch (error) {
-      console.error("Error logging out:", error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, checkUser, fetchOne, logout }}
+      value={{
+        user,
+        setUser,
+        checkUser,
+        fetchOne,
+        login,
+        logout,
+        isLoggedIn,
+        checkToken,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,51 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
-import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
-import styles from "./NavBar.module.css";
 import { Spin as Hamburger } from "hamburger-react";
 import { AuthContext } from "../../Context/AuthContext";
-import Button from "../../components/Button/Button";
-import logoo from "../../assets/icons/purpleLogo.png";
-import starLogo from "../../assets/icons/star.png";
+import styles from "./NavBar.module.css";
 
 function NavBar() {
-  const { user, logout } = useContext(AuthContext);
-  const location = useLocation();
+  const { isLoggedIn, logout } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [shopping, setShopping] = useState(false);
   const [isResponsive, setIsResponsive] = useState(window.innerWidth <= 1197);
-  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
-  const [visible, setVisible] = useState(true);
   const [scrollY, setScrollY] = useState(0);
-  const navigate = useNavigate();
+  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+
+  // Handle window resize and scroll
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup function
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []); // Empty dependency array ensures this effect runs only once on mount
-
-  useEffect(() => {
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      setIsResponsive(screenWidth <= 1197); // Adjust breakpoint as needed
-      console.log("Window width:", screenWidth);
-    };
-
+    const handleResize = () => setIsResponsive(window.innerWidth <= 1197);
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
       setPrevScrollPos(currentScrollPos);
-
-      if (currentScrollPos > prevScrollPos && shopping) {
-        setShopping(false);
-      }
+      setScrollY(currentScrollPos);
     };
 
     window.addEventListener("resize", handleResize);
@@ -55,26 +30,7 @@ function NavBar() {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPos, shopping]);
-
-  const handleMenuClick = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const handleScrollToAbout = () => {
-    setMenuOpen(false); // Close the menu if it's open
-
-    // Use JavaScript to scroll to the "About Us" section smoothly
-    document.getElementById("aboutus").scrollIntoView({ behavior: "smooth" });
-  };
-  // useEffect(() => {
-  //   // Listen for changes in the user state
-  //   // and update local state accordingly
-  //   if (user) {
-  //     console.log(user)
-  //     setVisible(true); // Ensure visibility when user is logged in
-  //   }
-  // }, [user]);
+  }, [prevScrollPos]);
 
   return (
     <header
@@ -82,145 +38,90 @@ function NavBar() {
       style={{ backgroundColor: scrollY > 0 ? "var(--bcg--top)" : "" }}
     >
       <nav className={styles.nav}>
-        <div className={styles.logoContainer}>
-          <Link className={styles.logo} to={"/"}>
-            {/* <div className={styles.divImgLogo}> */}
-            {/* <img width={"119px"} height={"36px"} src={logoo}style={{position:"relative"}}/>
-            <img src={starLogo}className={styles.imgLogo}/>
+        <Link className={styles.logo} to={"/"}>
+          skinWiz
+        </Link>
 
-            */}
-            {/* </div> */}
-            skinWiz
-          </Link>
-        </div>
-
+        {/* Navigation links */}
         <ul
-          className={`${isResponsive ? "" : styles.navUl} ${
-            isResponsive ? styles.dropdown : ""
-          } ${menuOpen ? styles.active : ""}`}
+          className={`${isResponsive ? styles.dropdown : styles.navUl} ${
+            menuOpen ? styles.active : ""
+          }`}
         >
-          <li className={styles.li}>
-            <NavLink
-              className={
-                location.pathname === "/" ? styles.activeLink : styles.link
-              }
-              // style={{ color: "var(--beij-color)" }}
-              to="/"
-              onClick={() => setMenuOpen(false)}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li className={styles.li}>
-            <NavLink
-              // style={{ color: "var(--beij-color)" }}
-              className={
-                location.pathname === "/reviews"
-                  ? styles.activeLink
-                  : styles.link
-              }
-              to="/reviews"
-              onClick={() => setMenuOpen(false)}
-            >
-              Reviews{" "}
-            </NavLink>
-          </li>
+          {[
+            { path: "/", name: "Home" },
+            { path: "/reviews", name: "Reviews" },
+            { path: "/forYou", name: "ForYou" },
+            { path: "/freequentQuestion", name: "FAQs" },
+          ].map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  isActive ? styles.activeLink : styles.link
+                }
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.name}
+              </NavLink>
+            </li>
+          ))}
 
-          <li className={styles.li}>
-            <NavLink
-              className={
-                location.pathname === "/forYou"
-                  ? styles.activeLink
-                  : styles.link
-              }
-              to="/forYou"
-              onClick={() => setMenuOpen(false)}
-            >
-              ForYou{" "}
-            </NavLink>
-          </li>
-          <li className={styles.li}>
-            <NavLink
-              className={
-                location.pathname === "/freequentQuestion"
-                  ? styles.activeLink
-                  : styles.link
-              }
-              to="/freequentQuestion"
-              onClick={() => setMenuOpen(false)}
-            >
-              FAQs{" "}
-            </NavLink>
-          </li>
-
-          {/* <li className={styles.li}>
-            <NavLink
-              to={location.pathname === "/" ? "#" : "/"}
-              className={styles.link}
-              onClick={handleScrollToAbout} // Call handleScrollToAbout when clicked
-            >
-              About Us
-            </NavLink>
-          </li> */}
-
-          {window.innerWidth <= 1200 && (
-            <li className={styles.li} onClick={() => setMenuOpen(false)}>
-              {!user ? (
-                <NavLink className={styles.link} to="./login">
-                  Login
-                </NavLink>
+          {/* Mobile menu: login/logout & user icon */}
+          {isResponsive && (
+            <>
+              {!isLoggedIn ? (
+                <li onClick={() => setMenuOpen(false)}>
+                  <NavLink to="/login" className={styles.link}>
+                    Login
+                  </NavLink>
+                </li>
               ) : (
-                <NavLink className={styles.link} to="/" onClick={logout}>
-                  Logout
-                </NavLink>
+                <>
+                  <li onClick={() => setMenuOpen(false)}>
+                    <NavLink to="/" onClick={logout} className={styles.link}>
+                      Logout
+                    </NavLink>
+                  </li>
+                  <li onClick={() => setMenuOpen(false)}>
+                    <Link to="/userP" className={styles.userLink}>
+                      <FaUser
+                        style={{ fontSize: "24px", color: "white" }}
+                      />
+                    </Link>
+                  </li>
+                </>
               )}
-            </li>
-          )}
-          {user && window.innerWidth <= 1197 && (
-            <li className={styles.li} onClick={() => setMenuOpen(false)}>
-              <Link to="./userP" className={styles.userLink}>
-                <FaUser
-                  style={{
-                    color: "white",
-                    backgroundColor: "transparent",
-                    fontSize: "24px",
-                  }}
-                />
-              </Link>
-            </li>
+            </>
           )}
         </ul>
-        <div className={styles.containBtn}>
-          {window.innerWidth > 1200 && (
-            <button className={styles.cart}>
-              {!user ? (
-                <NavLink className={` ${styles.btn}`} to="./login">
-                  Login
-                </NavLink>
-              ) : (
-                <NavLink className={` ${styles.btn}`} to="/" onClick={logout}>
+
+        {/* Desktop: login/logout & user icon */}
+        {!isResponsive && (
+          <div className={styles.containBtn}>
+            {!isLoggedIn ? (
+              <NavLink className={styles.btn} to="/login">
+                Login
+              </NavLink>
+            ) : (
+              <>
+                <NavLink className={styles.btn} to="/" onClick={logout}>
                   Logout
                 </NavLink>
-              )}
-            </button>
-          )}
-          {/* <button onClick={logout}>logggouttt</button> */}
- {/* Conditional rendering of user icon */}
- {user && window.innerWidth >1197 && (
-            <li className={styles.li} onClick={() => setMenuOpen(false)}>
-              <Link to="./userP" className={styles.userLink}>
-                <FaUser
-                  style={{
-                    color: "white",
-                    backgroundColor: "transparent",
-                    fontSize: "24px",
-                  }}
-                />
-              </Link>
-            </li>
-          )}
+                <Link to="/userP">
+                  <FaUser style={{ fontSize: "24px", color: "white" }} />
+                </Link>
+              </>
+            )}
+          </div>
+        )}
 
-          <div className={styles.hamburger} onClick={handleMenuClick}>
+        {/* Hamburger menu for mobile */}
+        {isResponsive && (
+          <div
+            className={styles.hamburger}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             <Hamburger
               easing="ease-in"
               label="Show menu"
@@ -230,7 +131,7 @@ function NavBar() {
               color="var(--grays-color)"
             />
           </div>
-        </div>
+        )}
       </nav>
     </header>
   );
